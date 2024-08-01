@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.cak.pattern_schematics.fabric.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+  ],
+  "mixins": [
+    "AntiCreativeCrateCrashMixin",
+    "SchematicannonInventoryMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

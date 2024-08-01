@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "create:iron_sheet"
+    },
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "tag": "forge:dyes/pinkg"
+    }
+  ],
+  "result": {
+    "item": "create_pattern_schematics:empty_pattern_schematic"
+  }
+}

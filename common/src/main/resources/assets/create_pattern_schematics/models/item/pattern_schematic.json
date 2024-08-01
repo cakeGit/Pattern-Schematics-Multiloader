@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "create_pattern_schematics:item/pattern_schematic"
+  }
+}

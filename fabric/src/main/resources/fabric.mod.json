@@ -1,32 +1,35 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "create_pattern_schematics",
   "version": "${version}",
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Create: Pattern Schematics",
+  "description": "Adds repeating pattern based schematics to create!",
   "authors": [
-    "Me!"
+    "Cak"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://modrinth.com/mod/create-pattern-schematics",
+    "sources": "https://github.com/cakeGit/Pattern-Schematics-Multiloader"
   },
-  "license": "Insert License Here",
-  "icon": "assets/examplemod/icon.png",
+  "license": "MIT",
+  "icon": "logo.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.examplemod.fabric.ExampleModFabric"
+      "com.cak.pattern_schematics.fabric.PatternSchematicsFabric"
+    ],
+    "client": [
+      "com.cak.pattern_schematics.fabric.PatternSchematicsFabricClient"
     ]
   },
   "mixins": [
-    "examplemod.mixins.json",
-    "examplemod-common.mixins.json"
+    "pattern_schematics.mixins.json",
+    "pattern_schematics.common.mixins.json"
   ],
   "depends": {
     "minecraft": "${minecraft_version}",
     "fabricloader": ">=${fabric_loader_version}",
     "fabric-api": ">=${fabric_api_version}",
-    "create": "${create_version}"
+    "create": ">=${create_version}"
   }
 }
