@@ -33,7 +33,7 @@ public class DeployerMovementBehaviorMixin {
 //    currentLevel = world;
 //  }
 //
-  @Redirect(method = "activate", at = @At(value = "INVOKE", target = "Lcom/tterrag/registrate/util/entry/ItemEntry;isIn(Lnet/minecraft/world/item/ItemStack;)Z"))
+  @Redirect(method = "activate", at = @At(value = "INVOKE", target = "Lcom/tterrag/registrate/util/entry/ItemEntry;isIn(Lnet/minecraft/world/item/ItemStack;)Z", remap = true))
   public boolean isIn(ItemEntry<SchematicItem> instance, ItemStack stack) {
     currentBlueprint = stack;
     return instance.isIn(stack) || PatternSchematicsItems.PATTERN_SCHEMATIC.isIn(stack);

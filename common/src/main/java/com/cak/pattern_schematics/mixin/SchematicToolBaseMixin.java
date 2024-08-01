@@ -27,7 +27,7 @@ public class SchematicToolBaseMixin {
         PatternSchematicsClient.PATTERN_SCHEMATIC_HANDLER : CreateClient.SCHEMATIC_HANDLER);
   }
   
-  @Inject(method = "renderOnSchematic", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lcom/simibubi/create/foundation/outliner/AABBOutline;render(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/simibubi/create/foundation/render/SuperRenderTypeBuffer;Lnet/minecraft/world/phys/Vec3;F)V"))
+  @Inject(method = "renderOnSchematic", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lcom/simibubi/create/foundation/outliner/AABBOutline;render(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/simibubi/create/foundation/render/SuperRenderTypeBuffer;Lnet/minecraft/world/phys/Vec3;F)V", remap = true))
   public void renderOnSchematic(CallbackInfo ci) {
     SimpleSchematicOutlineRenderer.applyOutlineModification(schematicHandler);
   }

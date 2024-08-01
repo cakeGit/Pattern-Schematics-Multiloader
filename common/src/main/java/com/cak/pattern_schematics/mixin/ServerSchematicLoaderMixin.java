@@ -23,7 +23,7 @@ public class ServerSchematicLoaderMixin {
     return instance.getTable(world, pos);
   }
   
-  @Redirect(method = "handleFinishedUpload", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/schematics/SchematicItem;create(Lnet/minecraft/core/HolderGetter;Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/world/item/ItemStack;"))
+  @Redirect(method = "handleFinishedUpload", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/schematics/SchematicItem;create(Lnet/minecraft/core/HolderGetter;Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/world/item/ItemStack;", remap = true))
   private ItemStack injected(HolderGetter<Block> lookup, String schematic, String owner) {
     return ((SchematicTableBlockEntityMixinAccessor) uploadTargetTable).getSchematicSource()
         .getFactory().create(lookup, schematic, owner);

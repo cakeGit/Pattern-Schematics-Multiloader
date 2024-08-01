@@ -104,7 +104,7 @@ public class SchematicPrinterMixin {
     return instance.placeInWorld(world, blockPos1, blockPos2, placeSettings, randomSource, i);
   }
   
-  @Redirect(method = "loadSchematic", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/foundation/utility/BBHelper;encapsulate(Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;"))
+  @Redirect(method = "loadSchematic", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/foundation/utility/BBHelper;encapsulate(Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;", remap = true))
   private BoundingBox loadSchem(BoundingBox bb, BlockPos pos) {
     if (lastWorld instanceof PatternSchematicWorld patternSchematicWorld) {
       return patternSchematicWorld.genBounds(bb, lastPlaceSettings);
