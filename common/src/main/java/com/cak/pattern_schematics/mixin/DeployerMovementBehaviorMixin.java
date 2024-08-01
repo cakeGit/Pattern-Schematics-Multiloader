@@ -21,18 +21,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class DeployerMovementBehaviorMixin {
 
   private ItemStack currentBlueprint;
-//  private Contraption currentContraption;
-//  private Level currentLevel;
-//  private BlockPos currentBlockPos;
-//
-//
-//  @Inject(method = "activateAsSchematicPrinter", at = @At("HEAD"))
-//  public void head_activateAsSchematicPrinter(MovementContext context, BlockPos blockPos, DeployerFakePlayer player, Level world, ItemStack filter, CallbackInfo ci) {
-//    currentContraption = context.contraption;
-//    currentBlockPos = blockPos;
-//    currentLevel = world;
-//  }
-//
+  
   @Redirect(method = "activate", at = @At(value = "INVOKE", target = "Lcom/tterrag/registrate/util/entry/ItemEntry;isIn(Lnet/minecraft/world/item/ItemStack;)Z", remap = true))
   public boolean isIn(ItemEntry<SchematicItem> instance, ItemStack stack) {
     currentBlueprint = stack;
@@ -50,9 +39,6 @@ public class DeployerMovementBehaviorMixin {
   @Redirect(method = "activateAsSchematicPrinter", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/schematics/SchematicWorld;getBlockState(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;", remap = true))
   public BlockState getBlockState(SchematicWorld instance, BlockPos globalPos) {
     if (instance instanceof PatternSchematicWorld patternSchematicWorld) {
-//      System.out.println(globalPos);
-//      System.out.println(pattern_Schematics$getSourceOfLocal(globalPos, patternSchematicWorld));
-//      System.out.println(instance.getBlockState(pattern_Schematics$getSourceOfLocal(globalPos, patternSchematicWorld)));
       return instance.getBlockState(pattern_Schematics$getSourceOfLocal(globalPos, patternSchematicWorld));
     }
     else return instance.getBlockState(globalPos);

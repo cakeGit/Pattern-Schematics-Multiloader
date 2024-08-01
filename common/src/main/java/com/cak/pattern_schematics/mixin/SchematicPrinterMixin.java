@@ -52,21 +52,6 @@ public class SchematicPrinterMixin {
     }
   }
   
-//  @Redirect(method = "loadSchematic", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate;getSize()Lnet/minecraft/core/Vec3i;"))
-//  private Vec3i getBounds(StructureTemplate instance) {
-//    //For pattern schematics template.getbounds != world.getbounds
-//    Vec3i size = lastThreadStructureTemplate.getSize();
-////
-////    if (blockReader instanceof  PatternSchematicWorld patternSchematicWorld)
-////      return Vec3iUtils.multiplyVec3i(
-////          size, new Vec3i(1, 1, 1)
-////              .subtract(patternSchematicWorld.cloneScaleMin)
-////              .offset(patternSchematicWorld.cloneScaleMax)
-////      );
-////    else
-//      return size;
-//  }
-  
   ServerLevelAccessor lastWorld;
   StructurePlaceSettings lastPlaceSettings;
   
@@ -86,15 +71,12 @@ public class SchematicPrinterMixin {
       minScale = Vec3iUtils.min(scale1, scale2);
       maxScale = Vec3iUtils.max(scale1, scale2);
       
-      int k = 0;
       for (int x = minScale.getX(); x <= maxScale.getX(); x++) {
         for (int y = minScale.getY(); y <= maxScale.getY(); y++) {
           for (int z = minScale.getZ(); z <= maxScale.getZ(); z++) {
             BlockPos anchor = blockPos1.offset(
                 Vec3iUtils.multiplyVec3i(new Vec3i(x, y, z), patternSchematicWorld.sourceBounds.getLength().offset(1, 1, 1))
             );
-            k++;
-//            System.out.println("placed" + k + "" + Vec3iUtils.multiplyVec3i(new Vec3i(x, y, z), patternSchematicWorld.sourceBounds.getLength().offset(1, 1, 1)));
             instance.placeInWorld(world, anchor, anchor, placeSettings, randomSource, i);
           }
         }
