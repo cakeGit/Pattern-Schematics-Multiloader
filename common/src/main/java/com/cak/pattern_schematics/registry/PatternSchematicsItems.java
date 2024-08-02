@@ -22,7 +22,6 @@ public class PatternSchematicsItems {
       .item("pattern_schematic", PatternSchematicItem::new)
       .defaultModel()
       .properties(p -> p.stacksTo(1))
-      //.tab(AllCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
       .register();
   
   public static void register() {}

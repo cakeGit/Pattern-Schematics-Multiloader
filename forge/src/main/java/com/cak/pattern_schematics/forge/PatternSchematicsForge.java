@@ -8,7 +8,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(PatternSchematics.MODID)
 public class PatternSchematicsForge {
-    //TODO: Fix the hot steaming mess of the lack of forge working
+    
     public PatternSchematicsForge() {
         // registrate must be given the mod event bus on forge before registration
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();

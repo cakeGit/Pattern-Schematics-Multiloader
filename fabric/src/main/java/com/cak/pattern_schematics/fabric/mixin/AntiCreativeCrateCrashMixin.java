@@ -1,5 +1,6 @@
 package com.cak.pattern_schematics.fabric.mixin;
 
+import com.cak.pattern_schematics.PatternSchematics;
 import io.github.fabricators_of_create.porting_lib.transfer.item.ItemStackHandlerSlot;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
@@ -16,7 +17,9 @@ public class AntiCreativeCrateCrashMixin {
     
     @Inject(method = "save", at = @At("HEAD"), cancellable = true)
     public void save(CallbackInfoReturnable<CompoundTag> cir) {
-        if (stack == null) cir.setReturnValue(null);
+        if (stack == null) {
+            cir.setReturnValue(null);
+        }
     }
     
 }
