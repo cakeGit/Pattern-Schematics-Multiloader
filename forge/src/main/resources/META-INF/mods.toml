@@ -1,17 +1,17 @@
 modLoader = "javafml"
 loaderVersion = "[${forge_version},)"
-#issueTrackerURL = ""
-license = "Insert License Here"
+issueTrackerURL = "https://github.com/cakeGit/Pattern-Schematics-Multiloader/issues"
+license = "MIT"
 
 [[mods]]
 modId = "create_pattern_schematics"
 version = "${version}"
-displayName = "Example Mod"
-authors = "Me!"
+displayName = "Create: Pattern Schematics"
+authors = "Cak"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+Adds repeating pattern based schematics to create!
 '''
-logoFile = "icon.png"
+logoFile = "logo.png"
 
 [[dependencies.create_pattern_schematics]]
 modId = "forge"

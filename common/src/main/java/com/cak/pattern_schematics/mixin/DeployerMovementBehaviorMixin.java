@@ -2,6 +2,9 @@ package com.cak.pattern_schematics.mixin;
 
 import com.cak.pattern_schematics.foundation.mirror.PatternSchematicWorld;
 import com.cak.pattern_schematics.registry.PatternSchematicsItems;
+import com.simibubi.create.content.contraptions.behaviour.MovementContext;
+import com.simibubi.create.content.kinetics.deployer.DeployerBlockEntity;
+import com.simibubi.create.content.kinetics.deployer.DeployerFakePlayer;
 import com.simibubi.create.content.kinetics.deployer.DeployerMovementBehaviour;
 import com.simibubi.create.content.schematics.SchematicItem;
 import com.simibubi.create.content.schematics.SchematicWorld;
@@ -15,7 +18,9 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = DeployerMovementBehaviour.class, remap = false)
 public class DeployerMovementBehaviorMixin {
@@ -26,6 +31,11 @@ public class DeployerMovementBehaviorMixin {
   public boolean isIn(ItemEntry<SchematicItem> instance, ItemStack stack) {
     currentBlueprint = stack;
     return instance.isIn(stack) || PatternSchematicsItems.PATTERN_SCHEMATIC.isIn(stack);
+  }
+  
+  @Inject(method = "activate", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/kinetics/deployer/DeployerMovementBehaviour;activateAsSchematicPrinter(Lcom/simibubi/create/content/contraptions/behaviour/MovementContext;Lnet/minecraft/core/BlockPos;Lcom/simibubi/create/content/kinetics/deployer/DeployerFakePlayer;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;)V", shift = At.Shift.AFTER, remap = true), cancellable = true)
+  public void after_activateAsSchematicPrinter(CallbackInfo ci) {
+    ci.cancel();
   }
   
   @Redirect(method = "activateAsSchematicPrinter", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/levelgen/structure/BoundingBox;isInside(Lnet/minecraft/core/Vec3i;)Z", remap = true))
@@ -66,32 +76,5 @@ public class DeployerMovementBehaviorMixin {
       return instance.getBlockEntity(pattern_Schematics$getSourceOfLocal(globalPos, patternSchematicWorld));
     return instance.getBlockEntity(globalPos);
   }
-//
-//  private BlockState transformBlock(BlockState blockState, PatternSchematicWorld patternSchematicWorld) {
-//    //System.out.println(blockState.getBlock());
-//    if (blockState == null)
-//      return null;
-//    return blockState;
-//  }
-//
-//  private BlockPos modifyPos(BlockPos globalPos, SchematicWorld instance) {
-//    if (instance instanceof PatternSchematicWorld patternSchematicWorld) {
-//
-//      currentContraptionSchematicTransform = ContraptionSchematicTransform.Handlers.get(currentContraption);
-//
-//      globalPos = currentContraptionSchematicTransform.castModifyPos(
-//          currentContraption, patternSchematicWorld,
-//          globalPos.subtract(currentContraption.anchor)
-//      ).offset(currentContraption.anchor).offset(-1, -1, -1);
-//
-//      System.out.println(globalPos);
-//
-//      return currentContraptionSchematicTransform.castApplyRealToSourcePosition(
-//          currentContraption, patternSchematicWorld, globalPos
-//      );
-//
-//    }
-//    return globalPos;
-//  }
 
 }

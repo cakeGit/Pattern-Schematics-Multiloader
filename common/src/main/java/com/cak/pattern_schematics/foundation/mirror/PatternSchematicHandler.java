@@ -68,7 +68,7 @@ public class PatternSchematicHandler extends SchematicHandler {
   protected AABBOutline outline;
   
   protected Vector<SchematicRenderer> renderers;
-  protected SchematicHotbarSlotOverlay overlay;
+  protected PatternSchematicHotbarSlotOverlay overlay;
   protected PatternSchematicsToolSelectionScreen selectionScreen;
   
   protected Vec3i cloneScaleMin = new Vec3i(0, 0, 0);
@@ -82,7 +82,7 @@ public class PatternSchematicHandler extends SchematicHandler {
     for (int i = 0; i < renderers.capacity(); i++)
       renderers.add(new SchematicRenderer());
     
-    overlay = new SchematicHotbarSlotOverlay();
+    overlay = new PatternSchematicHotbarSlotOverlay();
     currentTool = PatternSchematicsToolType.DEPLOY;
     selectionScreen = new PatternSchematicsToolSelectionScreen(ImmutableList.of(PatternSchematicsToolType.DEPLOY), this::equip);
     transformation = new SchematicTransformation();
