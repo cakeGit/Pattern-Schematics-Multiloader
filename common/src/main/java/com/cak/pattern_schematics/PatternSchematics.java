@@ -1,11 +1,9 @@
 package com.cak.pattern_schematics;
 
-import com.cak.pattern_schematics.registry.PatternSchematicPackets;
 import com.cak.pattern_schematics.registry.PatternSchematicsItems;
 import com.cak.pattern_schematics.registry.PatternSchematicsLang;
+import com.cak.pattern_schematics.registry.PlatformPackets;
 import com.mojang.logging.LogUtils;
-import com.simibubi.create.AllPackets;
-import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 
@@ -18,9 +16,9 @@ public class PatternSchematics {
     
     public static void init() {
         PatternSchematicsItems.register();
-        PatternSchematicPackets.registerPackets();
+        PlatformPackets.registerPackets();
         PatternSchematicsLang.register();
-        PatternSchematicPackets.getChannel().initServerListener();
+        PlatformPackets.getChannel().initServerListener();
     }
     
     public static ResourceLocation asResource(String loc) {

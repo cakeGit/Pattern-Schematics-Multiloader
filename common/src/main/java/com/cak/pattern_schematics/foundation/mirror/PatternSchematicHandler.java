@@ -1,33 +1,26 @@
 package com.cak.pattern_schematics.foundation.mirror;
 
-import com.cak.pattern_schematics.content.packet.PatternSchematicSyncPacket;
 import com.cak.pattern_schematics.foundation.util.Vec3iUtils;
-import com.cak.pattern_schematics.registry.PatternSchematicPackets;
 import com.cak.pattern_schematics.registry.PatternSchematicsItems;
+import com.cak.pattern_schematics.registry.PlatformPackets;
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllKeys;
-import com.simibubi.create.AllPackets;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.contraptions.StructureTransform;
-import com.simibubi.create.content.schematics.SchematicInstances;
 import com.simibubi.create.content.schematics.SchematicItem;
 import com.simibubi.create.content.schematics.SchematicWorld;
 import com.simibubi.create.content.schematics.client.SchematicHandler;
 import com.simibubi.create.content.schematics.client.SchematicHotbarSlotOverlay;
 import com.simibubi.create.content.schematics.client.SchematicRenderer;
 import com.simibubi.create.content.schematics.client.SchematicTransformation;
-import com.simibubi.create.content.schematics.packet.SchematicPlacePacket;
-import com.simibubi.create.content.schematics.packet.SchematicSyncPacket;
 import com.simibubi.create.foundation.outliner.AABBOutline;
 import com.simibubi.create.foundation.render.SuperRenderTypeBuffer;
 import com.simibubi.create.foundation.utility.AnimationTickHolder;
 import com.simibubi.create.foundation.utility.Lang;
 import com.simibubi.create.foundation.utility.NBTHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -61,28 +54,28 @@ import java.util.Vector;
  */
 public class PatternSchematicHandler extends SchematicHandler {
   
-  private String displayedSchematic;
-  private SchematicTransformation transformation;
-  private AABB bounds;
-  private boolean deployed;
-  private boolean active;
-  private PatternSchematicsToolType currentTool;
+  protected String displayedSchematic;
+  protected SchematicTransformation transformation;
+  protected AABB bounds;
+  protected boolean deployed;
+  protected boolean active;
+  protected PatternSchematicsToolType currentTool;
   
-  private static final int SYNC_DELAY = 10;
-  private int syncCooldown;
-  private int activeHotbarSlot;
-  private ItemStack activeSchematicItem;
-  private AABBOutline outline;
+  protected static final int SYNC_DELAY = 10;
+  protected int syncCooldown;
+  protected int activeHotbarSlot;
+  protected ItemStack activeSchematicItem;
+  protected AABBOutline outline;
   
-  private Vector<SchematicRenderer> renderers;
-  private SchematicHotbarSlotOverlay overlay;
-  private PatternSchematicsToolSelectionScreen selectionScreen;
+  protected Vector<SchematicRenderer> renderers;
+  protected SchematicHotbarSlotOverlay overlay;
+  protected PatternSchematicsToolSelectionScreen selectionScreen;
   
-  Vec3i cloneScaleMin = new Vec3i(0, 0, 0);
-  Vec3i cloneScaleMax = new Vec3i(0, 0, 0);
-  Vec3i cloneOffset = new Vec3i(0, 0, 0);
-  boolean isRenderingMain;
-  boolean isRenderingMultiple;
+  protected Vec3i cloneScaleMin = new Vec3i(0, 0, 0);
+  protected Vec3i cloneScaleMax = new Vec3i(0, 0, 0);
+  protected Vec3i cloneOffset = new Vec3i(0, 0, 0);
+  protected boolean isRenderingMain;
+  protected boolean isRenderingMultiple;
   
   public PatternSchematicHandler() {
     renderers = new Vector<>(3);
@@ -275,27 +268,6 @@ public class PatternSchematicHandler extends SchematicHandler {
       renderer.update();
     }
   }
-//
-//  @Override
-//  public void render(ForgeGui gui, GuiGraphics graphics, float partialTicks, int width, int height) {
-//    if (Minecraft.getInstance().options.hideGui || !active)
-//      return;
-//    if (activeSchematicItem != null)
-//      this.overlay.renderOn(graphics, activeHotbarSlot);
-//    currentTool.getTool()
-//        .renderOverlay(gui, graphics, partialTicks, width, height);
-//    selectionScreen.renderPassive(graphics, partialTicks);
-//  }
-  
-  public void renderOverlay(GuiGraphics graphics, float partialTicks, Window window) {
-    if (Minecraft.getInstance().options.hideGui || !active)
-      return;
-    if (activeSchematicItem != null)
-      this.overlay.renderOn(graphics, activeHotbarSlot);
-    currentTool.getTool()
-        .renderOverlay(graphics, partialTicks, window.getGuiScaledWidth(), window.getGuiScaledHeight());
-    selectionScreen.renderPassive(graphics, partialTicks);
-  }
   
   public boolean onMouseInput(int button, boolean pressed) {
     if (!active)
@@ -374,10 +346,9 @@ public class PatternSchematicHandler extends SchematicHandler {
   public void sync() {
     if (activeSchematicItem == null)
       return;
-    PatternSchematicPackets.getChannel().sendToServer(new PatternSchematicSyncPacket(activeHotbarSlot, transformation.toSettings(),
-        transformation.getAnchor(), deployed, cloneScaleMin, cloneScaleMax, cloneOffset));
+    PlatformPackets.sendPatternSchematicSyncPacket(activeHotbarSlot, transformation.toSettings(),
+        transformation.getAnchor(), deployed, cloneScaleMin, cloneScaleMax, cloneOffset);
   }
-  
   
   public void equip(PatternSchematicsToolType tool) {
     this.currentTool = tool;
@@ -421,17 +392,6 @@ public class PatternSchematicHandler extends SchematicHandler {
   
   public String getCurrentSchematicName() {
     return displayedSchematic != null ? displayedSchematic : "-";
-  }
-  
-  public void printInstantly() {
-    AllPackets.getChannel().sendToServer(new SchematicPlacePacket(activeSchematicItem.copy()));
-    CompoundTag nbt = activeSchematicItem.getTag();
-    nbt.putBoolean("Deployed", false);
-    activeSchematicItem.setTag(nbt);
-    SchematicInstances.clearHash(activeSchematicItem);
-    renderers.forEach(r -> r.setActive(false));
-    active = false;
-    markDirty();
   }
   
   public boolean isActive() {

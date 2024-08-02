@@ -1,4 +1,4 @@
-package com.cak.pattern_schematics.mixin;
+package com.cak.pattern_schematics.forge.mixin;
 
 import com.cak.pattern_schematics.foundation.mixin_accessors.SchematicTableMenuMixinAccessor;
 import com.cak.pattern_schematics.registry.PatternSchematicsItems;
@@ -6,13 +6,13 @@ import com.simibubi.create.AllItems;
 import com.simibubi.create.content.schematics.table.SchematicTableBlockEntity;
 import com.simibubi.create.content.schematics.table.SchematicTableMenu;
 import com.simibubi.create.foundation.gui.menu.MenuBase;
-import io.github.fabricators_of_create.porting_lib.transfer.item.SlotItemHandler;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.items.SlotItemHandler;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

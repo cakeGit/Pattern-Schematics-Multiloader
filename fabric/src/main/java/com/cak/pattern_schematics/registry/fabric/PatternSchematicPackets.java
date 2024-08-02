@@ -1,9 +1,7 @@
-package com.cak.pattern_schematics.registry;
+package com.cak.pattern_schematics.registry.fabric;
 
 import com.cak.pattern_schematics.PatternSchematics;
-import com.cak.pattern_schematics.content.packet.PatternSchematicSyncPacket;
-import com.simibubi.create.AllPackets;
-import com.simibubi.create.Create;
+import com.cak.pattern_schematics.packet.fabric.PatternSchematicSyncPacket;
 import com.simibubi.create.foundation.networking.SimplePacketBase;
 import me.pepperbell.simplenetworking.S2CPacket;
 import me.pepperbell.simplenetworking.SimpleChannel;
@@ -13,7 +11,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 
-import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 public enum PatternSchematicPackets {
@@ -27,7 +24,7 @@ public enum PatternSchematicPackets {
     private PacketType<?> packetType;
     
     <T extends SimplePacketBase> PatternSchematicPackets(Class<T> type, Function<FriendlyByteBuf, T> factory,
-                                            SimplePacketBase.NetworkDirection direction) {
+                                                         SimplePacketBase.NetworkDirection direction) {
         packetType = new PacketType<>(type, factory, direction);
     }
     

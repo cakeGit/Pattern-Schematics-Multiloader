@@ -1,7 +1,7 @@
 package com.cak.pattern_schematics;
 
 import com.cak.pattern_schematics.foundation.mirror.PatternSchematicHandler;
-import com.cak.pattern_schematics.registry.PatternSchematicPackets;
+import com.cak.pattern_schematics.registry.PlatformPackets;
 
 public class PatternSchematicsClient {
   
@@ -9,7 +9,7 @@ public class PatternSchematicsClient {
   public static PatternSchematicHandler PATTERN_SCHEMATIC_HANDLER;
 
   public static void init() {
-    PatternSchematicPackets.getChannel().initClientListener();
+    PlatformPackets.getChannel().initClientListener();
   }
   
 }

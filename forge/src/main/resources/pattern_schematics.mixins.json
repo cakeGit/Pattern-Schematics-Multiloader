@@ -1,11 +1,13 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.cak.pattern_schematics.mixin",
+  "package": "com.cak.pattern_schematics.forge.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
   ],
   "mixins": [
+    "SchematicannonInventoryMixin",
+    "SchematicTableMenuMixin"
   ],
   "injectors": {
     "defaultRequire": 1

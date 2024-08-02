@@ -26,7 +26,6 @@ public class PatternSchematicsFabricClient implements ClientModInitializer {
             Window window = Minecraft.getInstance().getWindow();
             
             PATTERN_SCHEMATICS_HANDLER_FABRIC.renderOverlay(graphics, partialTicks, window);
-            
         });
     }
     

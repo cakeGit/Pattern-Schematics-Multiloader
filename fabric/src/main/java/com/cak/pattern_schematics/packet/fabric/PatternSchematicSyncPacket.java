@@ -1,4 +1,4 @@
-package com.cak.pattern_schematics.content.packet;
+package com.cak.pattern_schematics.packet.fabric;
 
 import com.cak.pattern_schematics.foundation.util.Vec3iUtils;
 import com.cak.pattern_schematics.registry.PatternSchematicsItems;
@@ -82,7 +82,7 @@ public class PatternSchematicSyncPacket extends SimplePacketBase {
       tag.put("Anchor", NbtUtils.writeBlockPos(anchor));
       tag.putString("Rotation", rotation.name());
       tag.putString("Mirror", mirror.name());
-  
+      
       Vec3iUtils.putVec3i("CloneScaleMin", cloneScaleMin, tag);
       Vec3iUtils.putVec3i("CloneScaleMax", cloneScaleMax, tag);
       Vec3iUtils.putVec3i("CloneOffset", cloneOffset, tag);

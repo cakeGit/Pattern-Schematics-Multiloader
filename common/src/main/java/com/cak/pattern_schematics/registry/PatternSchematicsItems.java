@@ -15,7 +15,7 @@ public class PatternSchematicsItems {
       .item("empty_pattern_schematic", Item::new)
       .defaultModel()
       .properties(p -> p.stacksTo(1))
-      .tab(AllCreativeModeTabs.BASE_CREATIVE_TAB.key())
+      .transform(PlatformRegistryTransforms.transformEmptyPatternSchematic())
       .register();
   
   public static final ItemEntry<PatternSchematicItem> PATTERN_SCHEMATIC = REGISTRATE

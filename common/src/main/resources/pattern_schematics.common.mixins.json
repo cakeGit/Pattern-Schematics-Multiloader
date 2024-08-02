@@ -13,10 +13,9 @@
     "SchematicItemMixin",
     "SchematicPrinterMixin",
     "SchematicTableBlockEntityMixin",
-    "SchematicTableMenuMixin",
     "SchematicToolBaseMixin",
     "ServerSchematicLoaderMixin",
-    "StructureTemplateMixin",
+    "StructureTemplateMixin"
   ],
   "injectors": {
     "defaultRequire": 1
