@@ -1,10 +1,9 @@
 package com.cak.pattern_schematics.fabric.mixin;
 
-import com.cak.pattern_schematics.registry.PatternSchematicsItems;
+import com.cak.pattern_schematics.registry.PatternSchematicsRegistry;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.schematics.cannon.SchematicannonInventory;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
-import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,7 +17,7 @@ public class SchematicannonInventoryMixin {
   public void isItemValid(int slot, ItemVariant variant, int count, CallbackInfoReturnable<Boolean> cir) {
     if (slot == 0) {
       cir.setReturnValue(
-          PatternSchematicsItems.PATTERN_SCHEMATIC.get() == variant.getItem()
+          PatternSchematicsRegistry.PATTERN_SCHEMATIC.get() == variant.getItem()
           || AllItems.SCHEMATIC.get() == variant.getItem()
       );
     }

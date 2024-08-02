@@ -1,7 +1,7 @@
 package com.cak.pattern_schematics.packet.forge;
 
 import com.cak.pattern_schematics.foundation.util.Vec3iUtils;
-import com.cak.pattern_schematics.registry.PatternSchematicsItems;
+import com.cak.pattern_schematics.registry.PatternSchematicsRegistry;
 import com.simibubi.create.content.schematics.SchematicInstances;
 import com.simibubi.create.foundation.networking.SimplePacketBase;
 import net.minecraft.core.BlockPos;
@@ -75,7 +75,7 @@ public class PatternSchematicSyncPacket extends SimplePacketBase {
       } else {
         stack = player.getInventory().getItem(slot);
       }
-      if (!PatternSchematicsItems.PATTERN_SCHEMATIC.isIn(stack)) {
+      if (!PatternSchematicsRegistry.PATTERN_SCHEMATIC.isIn(stack)) {
         return;
       }
       CompoundTag tag = stack.getOrCreateTag();

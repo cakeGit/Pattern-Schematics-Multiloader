@@ -1,13 +1,12 @@
 package com.cak.pattern_schematics.registry;
 
 import com.cak.pattern_schematics.PatternSchematics;
-import com.cak.pattern_schematics.content.PatternSchematicItem;
-import com.simibubi.create.AllCreativeModeTabs;
+import com.cak.pattern_schematics.content.item.PatternSchematicItem;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.world.item.Item;
 
-public class PatternSchematicsItems {
+public class PatternSchematicsRegistry {
   
   public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(PatternSchematics.MODID);
   

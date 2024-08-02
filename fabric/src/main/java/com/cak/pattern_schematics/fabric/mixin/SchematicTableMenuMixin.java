@@ -1,7 +1,7 @@
 package com.cak.pattern_schematics.fabric.mixin;
 
 import com.cak.pattern_schematics.foundation.mixin_accessors.SchematicTableMenuMixinAccessor;
-import com.cak.pattern_schematics.registry.PatternSchematicsItems;
+import com.cak.pattern_schematics.registry.PatternSchematicsRegistry;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.schematics.table.SchematicTableBlockEntity;
 import com.simibubi.create.content.schematics.table.SchematicTableMenu;
@@ -42,8 +42,8 @@ public class SchematicTableMenuMixin extends MenuBase<SchematicTableBlockEntity>
         return AllItems.EMPTY_SCHEMATIC.isIn(stack)
             || AllItems.SCHEMATIC_AND_QUILL.isIn(stack)
             || AllItems.SCHEMATIC.isIn(stack)
-            || PatternSchematicsItems.EMPTY_PATTERN_SCHEMATIC.isIn(stack)
-            || PatternSchematicsItems.PATTERN_SCHEMATIC.isIn(stack);
+            || PatternSchematicsRegistry.EMPTY_PATTERN_SCHEMATIC.isIn(stack)
+            || PatternSchematicsRegistry.PATTERN_SCHEMATIC.isIn(stack);
       }
     });
   }

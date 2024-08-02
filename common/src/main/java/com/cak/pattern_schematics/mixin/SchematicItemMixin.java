@@ -1,6 +1,6 @@
 package com.cak.pattern_schematics.mixin;
 
-import com.cak.pattern_schematics.content.PatternSchematicItem;
+import com.cak.pattern_schematics.content.item.PatternSchematicItem;
 import com.simibubi.create.content.schematics.SchematicItem;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;

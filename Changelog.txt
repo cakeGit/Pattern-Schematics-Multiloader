@@ -1,0 +1,4 @@
+1.1.3:
+    - Fixed display bug, thanks to discord user @karolofgutovo for reporting
+    - Created ponder system with 1 ponder about printing (contraption ponder coming soon)
+    - (Technical) Created datagen

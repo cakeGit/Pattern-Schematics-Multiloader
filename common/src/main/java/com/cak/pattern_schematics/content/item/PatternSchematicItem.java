@@ -1,6 +1,6 @@
-package com.cak.pattern_schematics.content;
+package com.cak.pattern_schematics.content.item;
 
-import com.cak.pattern_schematics.registry.PatternSchematicsItems;
+import com.cak.pattern_schematics.registry.PatternSchematicsRegistry;
 import com.simibubi.create.content.schematics.SchematicItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderGetter;
@@ -18,7 +18,7 @@ public class PatternSchematicItem extends SchematicItem {
   }
   
   public static ItemStack create(HolderGetter<Block> lookup, String schematic, String owner) {
-    ItemStack blueprint = PatternSchematicsItems.PATTERN_SCHEMATIC.asStack();
+    ItemStack blueprint = PatternSchematicsRegistry.PATTERN_SCHEMATIC.asStack();
     
     CompoundTag tag = new CompoundTag();
     tag.putBoolean("Deployed", false);

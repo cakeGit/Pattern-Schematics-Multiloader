@@ -1,7 +1,7 @@
 package com.cak.pattern_schematics.foundation.mirror;
 
 import com.cak.pattern_schematics.foundation.util.Vec3iUtils;
-import com.cak.pattern_schematics.registry.PatternSchematicsItems;
+import com.cak.pattern_schematics.registry.PatternSchematicsRegistry;
 import com.cak.pattern_schematics.registry.PlatformPackets;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -12,7 +12,6 @@ import com.simibubi.create.content.contraptions.StructureTransform;
 import com.simibubi.create.content.schematics.SchematicItem;
 import com.simibubi.create.content.schematics.SchematicWorld;
 import com.simibubi.create.content.schematics.client.SchematicHandler;
-import com.simibubi.create.content.schematics.client.SchematicHotbarSlotOverlay;
 import com.simibubi.create.content.schematics.client.SchematicRenderer;
 import com.simibubi.create.content.schematics.client.SchematicTransformation;
 import com.simibubi.create.foundation.outliner.AABBOutline;
@@ -319,7 +318,7 @@ public class PatternSchematicHandler extends SchematicHandler {
   
   private ItemStack findBlueprintInHand(Player player) {
     ItemStack stack = player.getMainHandItem();
-    if (!PatternSchematicsItems.PATTERN_SCHEMATIC.isIn(stack))
+    if (!PatternSchematicsRegistry.PATTERN_SCHEMATIC.isIn(stack))
       return null;
     if (!stack.hasTag())
       return null;
@@ -331,8 +330,7 @@ public class PatternSchematicHandler extends SchematicHandler {
   
   private boolean itemLost(Player player) {
     for (int i = 0; i < Inventory.getSelectionSize(); i++) {
-      if (!ItemStack.matches(player.getInventory()
-          .getItem(i), activeSchematicItem))
+      if (!player.getInventory().getItem(i).equals(activeSchematicItem))
         continue;
       return false;
     }

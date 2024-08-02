@@ -20,6 +20,9 @@
     ],
     "client": [
       "com.cak.pattern_schematics.fabric.PatternSchematicsFabricClient"
+    ],
+    "fabric-datagen": [
+      "com.cak.pattern_schematics.fabric.PatternSchematicsFabricData"
     ]
   },
   "mixins": [
