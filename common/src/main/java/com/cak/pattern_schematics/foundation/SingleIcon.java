@@ -3,16 +3,16 @@ package com.cak.pattern_schematics.foundation;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Matrix4f;
 import com.simibubi.create.foundation.gui.AllIcons;
 import com.simibubi.create.foundation.gui.element.DelegatedStencilElement;
 import com.simibubi.create.foundation.utility.Color;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
-import org.joml.Matrix4f;
 
 public class SingleIcon extends AllIcons {
     
@@ -34,8 +34,10 @@ public class SingleIcon extends AllIcons {
     }
     
     @Override
-    public void render(GuiGraphics graphics, int x, int y) {
-        graphics.blit(source, x, y, 0, iconX, iconY, 16, 16, SOURCE_SIZE, SOURCE_SIZE);
+    public void render(PoseStack matrixStack, int x, int y) {
+        RenderSystem.setShaderTexture(0, source);
+        GuiComponent.blit(matrixStack, x, y, 0, iconX, iconY, 16, 16, SOURCE_SIZE, SOURCE_SIZE);
+        
     }
     
     public void render(PoseStack ms, MultiBufferSource buffer, int color) {

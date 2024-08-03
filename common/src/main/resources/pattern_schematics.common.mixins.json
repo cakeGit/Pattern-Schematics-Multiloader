@@ -8,13 +8,13 @@
   "mixins": [
     "AbstractContraptionEntityMixin",
     "CreateClientMixin",
+    "CreateCreativeModeTabMixin",
     "DeployBaseMixin",
     "DeployerMovementBehaviorMixin",
     "MovementContextMixin",
     "SchematicInstancesMixin",
     "SchematicItemMixin",
     "SchematicPrinterMixin",
-    "SchematicTableBlockEntityMixin",
     "SchematicToolBaseMixin",
     "ServerSchematicLoaderMixin",
     "StructureTemplateMixin"

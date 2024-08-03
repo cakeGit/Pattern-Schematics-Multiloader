@@ -2,16 +2,16 @@ package com.cak.pattern_schematics.foundation.mirror.fabric;
 
 import com.cak.pattern_schematics.foundation.mirror.PatternSchematicHandler;
 import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.AllPackets;
 import com.simibubi.create.content.schematics.SchematicInstances;
 import com.simibubi.create.content.schematics.packet.SchematicPlacePacket;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.nbt.CompoundTag;
 
 public class PatternSchematicHandlerFabric extends PatternSchematicHandler {
     
-    public void renderOverlay(GuiGraphics graphics, float partialTicks, Window window) {
+    public void renderOverlay(PoseStack graphics, float partialTicks, Window window) {
         if (Minecraft.getInstance().options.hideGui || !active)
             return;
         if (activeSchematicItem != null)

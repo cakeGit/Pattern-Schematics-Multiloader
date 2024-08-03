@@ -3,11 +3,9 @@ package com.cak.pattern_schematics.content.item;
 import com.cak.pattern_schematics.registry.PatternSchematicsRegistry;
 import com.simibubi.create.content.schematics.SchematicItem;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderGetter;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 
@@ -17,7 +15,7 @@ public class PatternSchematicItem extends SchematicItem {
     super(properties);
   }
   
-  public static ItemStack create(HolderGetter<Block> lookup, String schematic, String owner) {
+  public static ItemStack create(String schematic, String owner) {
     ItemStack blueprint = PatternSchematicsRegistry.PATTERN_SCHEMATIC.asStack();
     
     CompoundTag tag = new CompoundTag();
@@ -29,7 +27,7 @@ public class PatternSchematicItem extends SchematicItem {
     tag.putString("Mirror", Mirror.NONE.name());
     blueprint.setTag(tag);
     
-    writeSize(lookup, blueprint);
+    writeSize(blueprint);
     return blueprint;
   }
   

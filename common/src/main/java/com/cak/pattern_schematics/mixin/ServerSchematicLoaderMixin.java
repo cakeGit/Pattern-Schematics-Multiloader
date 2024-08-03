@@ -4,7 +4,6 @@ import com.cak.pattern_schematics.foundation.mixin_accessors.SchematicTableBlock
 import com.simibubi.create.content.schematics.ServerSchematicLoader;
 import com.simibubi.create.content.schematics.table.SchematicTableBlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderGetter;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -23,10 +22,10 @@ public class ServerSchematicLoaderMixin {
     return instance.getTable(world, pos);
   }
   
-  @Redirect(method = "handleFinishedUpload", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/schematics/SchematicItem;create(Lnet/minecraft/core/HolderGetter;Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/world/item/ItemStack;", remap = true))
-  private ItemStack injected(HolderGetter<Block> lookup, String schematic, String owner) {
+  @Redirect(method = "handleFinishedUpload", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/schematics/SchematicItem;create(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/world/item/ItemStack;", remap = true))
+  private ItemStack injected(String schematic, String owner) {
     return ((SchematicTableBlockEntityMixinAccessor) uploadTargetTable).getSchematicSource()
-        .getFactory().create(lookup, schematic, owner);
+        .getFactory().create(schematic, owner);
   }
 
 }

@@ -14,11 +14,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class SchematicannonInventoryMixin {
   
   @Inject(method = "isItemValid", at = @At("RETURN"), cancellable = true)
-  public void isItemValid(int slot, ItemVariant variant, int count, CallbackInfoReturnable<Boolean> cir) {
+  public void isItemValid(int slot, ItemVariant stack, long amount, CallbackInfoReturnable<Boolean> cir) {
     if (slot == 0) {
       cir.setReturnValue(
-          PatternSchematicsRegistry.PATTERN_SCHEMATIC.get() == variant.getItem()
-          || AllItems.SCHEMATIC.get() == variant.getItem()
+          PatternSchematicsRegistry.PATTERN_SCHEMATIC.get() == stack.getItem()
+          || AllItems.SCHEMATIC.get() == stack.getItem()
       );
     }
   }

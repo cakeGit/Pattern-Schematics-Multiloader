@@ -1,18 +1,18 @@
 package com.cak.pattern_schematics.foundation.mirror.forge;
 
 import com.cak.pattern_schematics.foundation.mirror.PatternSchematicHandler;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.AllPackets;
 import com.simibubi.create.content.schematics.SchematicInstances;
 import com.simibubi.create.content.schematics.packet.SchematicPlacePacket;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 
 public class PatternSchematicHandlerForge extends PatternSchematicHandler {
 
   @Override
-  public void render(ForgeGui gui, GuiGraphics graphics, float partialTicks, int width, int height) {
+  public void render(ForgeGui gui, PoseStack graphics, float partialTicks, int width, int height) {
     if (Minecraft.getInstance().options.hideGui || !active)
       return;
     if (activeSchematicItem != null)

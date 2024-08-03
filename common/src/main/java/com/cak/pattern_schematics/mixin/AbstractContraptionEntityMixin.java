@@ -49,15 +49,15 @@ public class AbstractContraptionEntityMixin {
         Player player, BlockPos localPos, Direction side,
         InteractionHand interactionHand, CallbackInfoReturnable<Boolean> cir
     ) {
-        if (player.level().isClientSide || !player.isShiftKeyDown() || !player.getItemInHand(interactionHand).is(PatternSchematicsRegistry.PATTERN_SCHEMATIC.get()))
+        if (player.level.isClientSide || !player.isShiftKeyDown() || !player.getItemInHand(interactionHand).is(PatternSchematicsRegistry.PATTERN_SCHEMATIC.get()))
             return;
         
         Pair<StructureTemplate.StructureBlockInfo, MovementContext> actor = contraption.getActorAt(localPos);
         
-        if (actor == null || !actor.getLeft().state().is(AllBlocks.DEPLOYER.get()))
+        if (actor == null || !actor.getLeft().state.is(AllBlocks.DEPLOYER.get()))
             return;
         
-        int appliedCount = pattern_schematics$performBulkSchematicApply(actor.getLeft().state().getValue(DeployerBlock.FACING), actor.getRight().localPos, player.getItemInHand(interactionHand));
+        int appliedCount = pattern_schematics$performBulkSchematicApply(actor.getLeft().state.getValue(DeployerBlock.FACING), actor.getRight().localPos, player.getItemInHand(interactionHand));
         
         player.displayClientMessage(
             Component.translatable("create_pattern_schematics.contraption_application.applied_to")
@@ -87,8 +87,8 @@ public class AbstractContraptionEntityMixin {
     private Set<MovementContext> pattern_schematics$collectDeployerSurface(Direction facingDirection, BlockPos localPos) {
         Set<MovementContext> allDeployers = contraption.getActors().stream()
             .filter(actor ->
-                actor.getLeft().state().is(AllBlocks.DEPLOYER.get())
-                    && actor.getLeft().state().getValue(DeployerBlock.FACING) == facingDirection
+                actor.getLeft().state.is(AllBlocks.DEPLOYER.get())
+                    && actor.getLeft().state.getValue(DeployerBlock.FACING) == facingDirection
             )
             .map(MutablePair::getRight).collect(Collectors.toSet());
         
