@@ -2,3 +2,6 @@
     - Fixed display bug, thanks to discord user @karolofgutovo for reporting
     - Created ponder system with 1 ponder about printing (contraption ponder coming soon)
     - (Technical) Created datagen
+1.1.4:
+    - Fixed a bug with deployers placing at the wrong offsets
+    - Created bulk apply system to reduce pain of having to put a schematic on each individual deployer

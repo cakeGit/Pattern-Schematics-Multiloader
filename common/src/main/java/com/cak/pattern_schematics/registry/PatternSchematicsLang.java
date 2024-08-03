@@ -14,7 +14,9 @@ public class PatternSchematicsLang {
         "create_pattern_schematics.schematic.tool.clone.description.1", "Point at the Schematic and [CTRL]-Scroll to repeat it.",
         "create_pattern_schematics.schematic.tool.clone.description.2", "",
         "create_pattern_schematics.schematic.tool.clone.description.3", "",
-        "create_pattern_schematics.ponder.schematic_printing.header", "Printing with pattern schematics"
+        "create_pattern_schematics.ponder.schematic_printing.header", "Printing with pattern schematics",
+        "create_pattern_schematics.contraption_application.applied_to", "Applied pattern schematic to ",
+        "create_pattern_schematics.contraption_application.deployers", " deployer(s)"
     );
   }
   

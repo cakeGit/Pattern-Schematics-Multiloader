@@ -55,6 +55,7 @@ public class DeployerMovementBehaviorMixin {
   public BlockPos pattern_Schematics$getSourceOfLocal(BlockPos position, PatternSchematicWorld patternSchematicWorld) {
     position = position.subtract(patternSchematicWorld.anchor);
     BoundingBox box = patternSchematicWorld.getBounds();
+    position = position.subtract(new Vec3i(box.minX(), box.minY(), box.minZ()));
     return new BlockPos(
         pattern_Schematics$repeatingBounds(position.getX(), box.minX(), box.maxX()),
         pattern_Schematics$repeatingBounds(position.getY(), box.minY(), box.maxY()),

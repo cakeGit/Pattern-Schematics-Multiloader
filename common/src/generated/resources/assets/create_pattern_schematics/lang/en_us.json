@@ -1,4 +1,6 @@
 {
+  "create_pattern_schematics.contraption_application.applied_to": "Applied pattern schematic to ",
+  "create_pattern_schematics.contraption_application.deployers": " deployers",
   "create_pattern_schematics.ponder.schematic_printing.header": "Printing patterns with pattern schematics",
   "create_pattern_schematics.ponder.schematic_printing.text_1": "To use pattern schematics, you must first save a schematic to use as a source",
   "create_pattern_schematics.ponder.schematic_printing.text_2": "Then, use a schematic table with an empty pattern schematic",

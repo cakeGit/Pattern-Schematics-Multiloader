@@ -25,7 +25,6 @@ import java.util.function.Function;
 
 public class PatternSchematicWorld extends SchematicWorld {
   
-  
   public Vec3i cloneScaleMin;
   public Vec3i cloneScaleMax;
   public Vec3i cloneOffset;
@@ -51,18 +50,6 @@ public class PatternSchematicWorld extends SchematicWorld {
   
     sourceBounds = template.getBoundingBox(SchematicItem.getSettings(blueprint), anchor);
   }
-  
-  //TODO : Remove by release, i don't think ill need this, like ever
-//  public boolean setCloneBlock(BlockPos pos, BlockState state, int i) {
-//    AtomicBoolean result = new AtomicBoolean(false);
-//    System.out.println(pos);
-//    forEachClone(clonePos -> {
-//      System.out.println("=>" + applyCloneToRealLoc(pos, clonePos));
-//      if (super.setBlock(applyCloneToRealLoc(pos, clonePos), state, i))
-//        result.set(true);
-//    });
-//    return result.get();
-//  }
   
   @Override
   public boolean addFreshEntity(Entity entityIn) {

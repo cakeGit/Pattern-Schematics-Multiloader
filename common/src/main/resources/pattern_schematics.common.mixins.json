@@ -10,6 +10,7 @@
     "CreateClientMixin",
     "DeployBaseMixin",
     "DeployerMovementBehaviorMixin",
+    "MovementContextMixin",
     "SchematicInstancesMixin",
     "SchematicItemMixin",
     "SchematicPrinterMixin",
