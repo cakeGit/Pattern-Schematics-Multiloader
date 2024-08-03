@@ -98,8 +98,8 @@ public class PatternSchematicPonderScenes {
         scene.overlay.showText(70)
             .placeNearTarget()
             .pointAt(new Vec3(2.5, 2, 2.5))
-            .text("Then, using the clone tool in placement, the structure can be repeated");
-        scene.idle(60);
+            .text("Then, using the clone tool in the options, the structure can be repeated");
+        scene.idle(80);
         
         Vec3i sectionOffset = new Vec3i(3, 0, 0);
         BlockPos sectionMin = new BlockPos(1, 1, 11);
@@ -108,7 +108,7 @@ public class PatternSchematicPonderScenes {
         scene.overlay.showText(60)
             .placeNearTarget()
             .pointAt(new Vec3(2.5, 2, 12))
-            .text("Starting from the origin, use the clone tool to repeat");
+            .text("Clones get placed next to each other");
         
         for (int i = 0; i < 4; i++) {
             scene.world.showSection(util.select.fromTo(
