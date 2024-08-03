@@ -2,6 +2,8 @@ package com.cak.pattern_schematics.forge;
 
 import com.cak.pattern_schematics.PatternSchematicsClient;
 import com.cak.pattern_schematics.PatternSchematicsClientEvents;
+import com.cak.pattern_schematics.content.ponder.PatternSchematicsPonderIndex;
+import com.cak.pattern_schematics.content.ponder.PatternSchematicsPonderTags;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.foundation.render.SuperRenderTypeBuffer;
@@ -16,6 +18,7 @@ import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(Dist.CLIENT)
 public class PatternSchematicsForgeClientEvents {
@@ -58,6 +61,12 @@ public class PatternSchematicsForgeClientEvents {
         @SubscribeEvent
         public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
             event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "pattern_schematic", PatternSchematicsClient.PATTERN_SCHEMATIC_HANDLER);
+        }
+
+        @SubscribeEvent
+        public static void setupClient(FMLClientSetupEvent event) {
+            PatternSchematicsPonderTags.register();
+            PatternSchematicsPonderIndex.register();
         }
         
     }

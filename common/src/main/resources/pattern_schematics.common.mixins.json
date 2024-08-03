@@ -6,6 +6,7 @@
   "client": [
   ],
   "mixins": [
+    "AbstractContraptionEntityMixin",
     "CreateClientMixin",
     "DeployBaseMixin",
     "DeployerMovementBehaviorMixin",

@@ -3,6 +3,8 @@ package com.cak.pattern_schematics.fabric;
 import com.cak.pattern_schematics.PatternSchematics;
 import com.cak.pattern_schematics.PatternSchematicsClient;
 import com.cak.pattern_schematics.PatternSchematicsClientEvents;
+import com.cak.pattern_schematics.content.ponder.PatternSchematicsPonderIndex;
+import com.cak.pattern_schematics.content.ponder.PatternSchematicsPonderTags;
 import com.cak.pattern_schematics.foundation.mirror.fabric.PatternSchematicHandlerFabric;
 import com.mojang.blaze3d.platform.Window;
 import net.fabricmc.api.ClientModInitializer;
@@ -19,6 +21,8 @@ public class PatternSchematicsFabricClient implements ClientModInitializer {
         PatternSchematicsClient.init();
         registerOverlays();
         PatternSchematicsFabricClientEvents.registerListeners();
+        PatternSchematicsPonderTags.register();
+        PatternSchematicsPonderIndex.register();
     }
     
     private static void registerOverlays() {

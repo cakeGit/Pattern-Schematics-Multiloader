@@ -1,8 +1,6 @@
 package com.cak.pattern_schematics;
 
-import com.cak.pattern_schematics.content.ponder.PatternSchematicsPonderIndex;
 import com.cak.pattern_schematics.registry.PatternSchematicsRegistry;
-import com.cak.pattern_schematics.content.ponder.PatternSchematicsPonderTags;
 import com.cak.pattern_schematics.registry.PlatformPackets;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
@@ -19,8 +17,6 @@ public class PatternSchematics {
         PatternSchematicsRegistry.register();
         PlatformPackets.registerPackets();
         PlatformPackets.getChannel().initServerListener();
-        PatternSchematicsPonderTags.register();
-        PatternSchematicsPonderIndex.register();
     }
     
     public static ResourceLocation asResource(String loc) {
