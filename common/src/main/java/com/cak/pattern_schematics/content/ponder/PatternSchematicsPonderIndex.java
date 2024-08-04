@@ -11,7 +11,10 @@ public class PatternSchematicsPonderIndex {
     public static void register() {
         
         HELPER.forComponents(PatternSchematicsRegistry.EMPTY_PATTERN_SCHEMATIC, PatternSchematicsRegistry.PATTERN_SCHEMATIC)
-            .addStoryBoard("pattern_schematic/schematic_printing", PatternSchematicPonderScenes::schematicPrinting, PatternSchematicsPonderTags.PATTERN_SCHEMATIC);
+            .addStoryBoard("pattern_schematic/schematic_printing",
+                PatternSchematicPonderScenes::schematicPrinting, PatternSchematicsPonderTags.PATTERN_SCHEMATIC)
+            .addStoryBoard("pattern_schematic/train_schematic_printing",
+                PatternSchematicPonderScenes::trainSchematicPrinting, PatternSchematicsPonderTags.PATTERN_SCHEMATIC);
         
     }
     

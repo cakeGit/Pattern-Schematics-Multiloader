@@ -2,15 +2,19 @@ package com.cak.pattern_schematics.content.ponder;
 
 import com.cak.pattern_schematics.registry.PatternSchematicsRegistry;
 import com.simibubi.create.AllItems;
+import com.simibubi.create.content.trains.entity.Train;
 import com.simibubi.create.foundation.ponder.*;
 import com.simibubi.create.foundation.ponder.element.EntityElement;
 import com.simibubi.create.foundation.ponder.element.InputWindowElement;
+import com.simibubi.create.foundation.ponder.element.WorldSectionElement;
 import com.simibubi.create.foundation.utility.Pointing;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
@@ -149,6 +153,116 @@ public class PatternSchematicPonderScenes {
         }
         scene.idle(50);
         
+        scene.markAsFinished();
+    }
+    
+    public static void trainSchematicPrinting(SceneBuilder scene, SceneBuildingUtil util) {
+        scene.title("train_schematic_printing", "Infinite schematic printing with trains");
+        scene.scaleSceneView(0.75f);
+        scene.configureBasePlate(0, 0, 12);
+        scene.world.showSection(util.select.layer(0), Direction.UP);
+        scene.idle(20);
+        
+        //Remove the flowerbed so it can be replaced later#
+        Selection flowerBed = util.select.fromTo(1, 1, 2, 10, 2, 4);
+        scene.world.replaceBlocks(
+            flowerBed, Blocks.AIR.defaultBlockState(), false
+        );
+        scene.world.showSection(flowerBed, Direction.DOWN);
+        
+        //Fill in train tracks
+        BlockPos
+            sectionFrom = new BlockPos(11, 1, 6),
+            selectionTo = new BlockPos(11, 2, 8);
+        
+        for (int i = 0; i <= 12; i++) {
+            scene.world.showSection(util.select.fromTo(sectionFrom, selectionTo), Direction.DOWN);
+            scene.idle(2);
+            
+            sectionFrom = sectionFrom.offset(-1, 0, 0);
+            selectionTo = selectionTo.offset(-1, 0, 0);
+        }
+        
+        scene.idle(10);
+        
+        //Place train
+        scene.world.showSection(util.select.fromTo(10, 3, 7, 11, 4, 7), Direction.DOWN);
+        scene.idle(20);
+        scene.world.showSection(util.select.fromTo(10, 3, 2, 10, 4, 6), Direction.SOUTH);
+        scene.idle(20);
+        
+        //Applying schematic
+        scene.addKeyframe();
+        
+        scene.overlay.showSelectionWithText(util.select.fromTo(10, 3, 2, 10, 3, 4), 80)
+            .placeNearTarget()
+            .pointAt(new Vec3(10.5, 3.5, 3.5))
+            .text("A single pattern schematic can be applied to a group of assembled deployers with Shift + Right Click");
+        
+        scene.idle(80);
+        
+        scene.overlay.showControls(
+            new InputWindowElement(new Vec3(10.5, 3.5, 3.5), Pointing.DOWN)
+                .withItem(PatternSchematicsRegistry.PATTERN_SCHEMATIC.get().getDefaultInstance())
+                .rightClick()
+                .whileSneaking(), 50
+        );
+        scene.idle(60);
+        
+        //Train moves 2 blocks to show original schematic
+        scene.addKeyframe();
+        
+        ElementLink<WorldSectionElement> trainSection = scene.world.makeSectionIndependent(
+            util.select.fromTo(10, 3, 2, 11, 4, 7)
+        );
+        
+        scene.world.moveSection(trainSection, new Vec3(-1, 0, 0), 10);
+        scene.world.animateBogey(util.grid.at(10, 3, 7), 1f, 10);
+        
+        for (int x = 10; x >= 9; x--) {
+            for (int z = 2; z <= 4; z++) {
+                scene.world.moveDeployer(util.grid.at(10, 3, z), 1, 4);
+            }
+            scene.idle(4);
+            scene.world.restoreBlocks(util.select.fromTo(x, 1, 2, x, 2, 4));
+            scene.idle(1);
+            for (int z = 2; z <= 4; z++) {
+                scene.world.moveDeployer(util.grid.at(10, 3, z), -1, 4);
+            }
+            scene.idle(5);
+        }
+        scene.idle(30);
+        
+        scene.overlay.showSelectionWithText(util.select.fromTo(9, 1, 2, 10, 2, 4), 80)
+            .placeNearTarget()
+            .pointAt(new Vec3(10, 2, 3.5))
+            .text("Here, the schematic has been placed as usual");
+        scene.idle(90);
+        
+        scene.overlay.showText(80)
+            .placeNearTarget()
+            .pointAt(new Vec3(8.5, 3.5, 7.5))
+            .text("But moving the train further will result in the schematic repeating");
+        scene.idle(90);
+        
+        scene.world.moveSection(trainSection, new Vec3(-8, 0, 0), 80);
+        scene.world.animateBogey(util.grid.at(10, 3, 7), 8f, 80);
+        
+        scene.idle(5);
+        for (int x = 8; x >= 1; x--) {
+            for (int z = 2; z <= 4; z++) {
+                scene.world.moveDeployer(util.grid.at(10, 3, z), 1, 4);
+            }
+            scene.idle(4);
+            scene.world.restoreBlocks(util.select.fromTo(x, 1, 2, x, 2, 4));
+            scene.idle(1);
+            for (int z = 2; z <= 4; z++) {
+                scene.world.moveDeployer(util.grid.at(10, 3, z), -1, 4);
+            }
+            scene.idle(5);
+        }
+        
+        scene.idle(20);
         scene.markAsFinished();
     }
     
