@@ -7,10 +7,12 @@
   ],
   "mixins": [
     "AbstractContraptionEntityMixin",
+    "ContraptionRotationStateMixin",
     "CreateClientMixin",
     "DeployBaseMixin",
     "DeployerMovementBehaviorMixin",
     "MovementContextMixin",
+    "OrientedContraptionEntityMixin",
     "SchematicInstancesMixin",
     "SchematicItemMixin",
     "SchematicPrinterMixin",
