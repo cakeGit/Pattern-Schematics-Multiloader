@@ -1,5 +1,0 @@
-// 1.20.1	2024-08-03T11:14:26.6944428	Create: Pattern Schematics/Registrate Provider for create_pattern_schematics [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-ef2d06ece9923cc75b5e3dc3070df2808f1cdb74 assets\create_pattern_schematics\models\item\pattern_schematic.json
-f7107be3778ab449ccffc8ced9d7a10a266a157b assets\create_pattern_schematics\lang\en_us.json
-6f95b3f285b0f5f9cd97a1f1636be1310db6950d assets\create_pattern_schematics\lang\en_ud.json
-19e25b53bb643c63106b1f83e2f1fe5a6ac63f13 assets\create_pattern_schematics\models\item\empty_pattern_schematic.json

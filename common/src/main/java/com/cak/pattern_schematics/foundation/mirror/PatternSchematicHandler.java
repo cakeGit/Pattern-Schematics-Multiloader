@@ -257,7 +257,9 @@ public class PatternSchematicHandler extends SchematicHandler {
       if (isRenderingMain) {
         currentTool.getTool()
             .renderOnSchematic(ms, buffer);
-      } else SimpleSchematicOutlineRenderer.render(ms, this, buffer);
+      } else if (deployed) {
+        SimpleSchematicOutlineRenderer.render(ms, this, buffer);
+      }
     
     ms.popPose();
   }
@@ -442,6 +444,24 @@ public class PatternSchematicHandler extends SchematicHandler {
   
   public boolean isRenderingMultiple() {
     return isRenderingMultiple;
+  }
+  
+  public AABB getExtendedBounds() {
+    AABB originalBounds = getBounds();
+    Vec3 boundsLength = new Vec3(
+        originalBounds.getXsize(),
+        originalBounds.getYsize(),
+        originalBounds.getZsize()
+    );
+    return getBounds()
+        .expandTowards(
+            new Vec3(cloneScaleMin.getX(), cloneScaleMin.getY(), cloneScaleMin.getZ())
+                .multiply(boundsLength)
+        )
+        .expandTowards(
+            new Vec3(cloneScaleMax.getX(), cloneScaleMax.getY(), cloneScaleMax.getZ())
+                .multiply(boundsLength)
+        );
   }
   
 }
