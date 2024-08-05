@@ -7,6 +7,7 @@ import com.simibubi.create.foundation.ponder.*;
 import com.simibubi.create.foundation.ponder.element.EntityElement;
 import com.simibubi.create.foundation.ponder.element.InputWindowElement;
 import com.simibubi.create.foundation.ponder.element.WorldSectionElement;
+import com.simibubi.create.foundation.ponder.instruction.DisplayWorldSectionInstruction;
 import com.simibubi.create.foundation.utility.Pointing;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -17,6 +18,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.Optional;
 
 public class PatternSchematicPonderScenes {
     
@@ -163,13 +166,6 @@ public class PatternSchematicPonderScenes {
         scene.world.showSection(util.select.layer(0), Direction.UP);
         scene.idle(20);
         
-        //Remove the flowerbed so it can be replaced later#
-        Selection flowerBed = util.select.fromTo(1, 1, 2, 10, 2, 4);
-        scene.world.replaceBlocks(
-            flowerBed, Blocks.AIR.defaultBlockState(), false
-        );
-        scene.world.showSection(flowerBed, Direction.DOWN);
-        
         //Fill in train tracks
         BlockPos
             sectionFrom = new BlockPos(11, 1, 6),
@@ -224,7 +220,11 @@ public class PatternSchematicPonderScenes {
                 scene.world.moveDeployer(util.grid.at(10, 3, z), 1, 4);
             }
             scene.idle(4);
-            scene.world.restoreBlocks(util.select.fromTo(x, 1, 2, x, 2, 4));
+            scene.addInstruction(new DisplayWorldSectionInstruction(
+                0, Direction.DOWN,
+                util.select.fromTo(x, 1, 2, x, 2, 4),
+                Optional.empty()
+            ));
             scene.idle(1);
             for (int z = 2; z <= 4; z++) {
                 scene.world.moveDeployer(util.grid.at(10, 3, z), -1, 4);
@@ -254,7 +254,11 @@ public class PatternSchematicPonderScenes {
                 scene.world.moveDeployer(util.grid.at(10, 3, z), 1, 4);
             }
             scene.idle(4);
-            scene.world.restoreBlocks(util.select.fromTo(x, 1, 2, x, 2, 4));
+            scene.addInstruction(new DisplayWorldSectionInstruction(
+                0, Direction.DOWN,
+                util.select.fromTo(x, 1, 2, x, 2, 4),
+                Optional.empty()
+            ));
             scene.idle(1);
             for (int z = 2; z <= 4; z++) {
                 scene.world.moveDeployer(util.grid.at(10, 3, z), -1, 4);

@@ -6,7 +6,7 @@ import com.simibubi.create.content.logistics.filter.FilterItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@Mixin(MovementContext.class)
+@Mixin(value = MovementContext.class, remap = false)
 public class MovementContextMixin implements MovementContextAccessor {
     
     @Shadow private FilterItemStack filter;
