@@ -18,7 +18,7 @@
   "create_pattern_schematics.schematic.tool.clone": "Clone",
   "create_pattern_schematics.schematic.tool.clone.description.0": "Repeats the selected schematic",
   "create_pattern_schematics.schematic.tool.clone.description.1": "Point at the Schematic and [CTRL]-Scroll to repeat it.",
-  "create_pattern_schematics.schematic.tool.clone.description.2": "",
+  "create_pattern_schematics.schematic.tool.clone.description.2": "Alternatively, [CTRL+SHIFT]-Scroll to repeat in the direction you are facing",
   "create_pattern_schematics.schematic.tool.clone.description.3": "",
   "item.create_pattern_schematics.empty_pattern_schematic": "Empty Pattern Schematic",
   "item.create_pattern_schematics.pattern_schematic": "Pattern Schematic"
