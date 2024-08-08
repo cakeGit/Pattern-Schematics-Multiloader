@@ -1,6 +1,7 @@
 {
   "create_pattern_schematics.contraption_application.applied_to": " oʇ ɔıʇɐɯǝɥɔs uɹǝʇʇɐd pǝıןddⱯ",
   "create_pattern_schematics.contraption_application.deployers": ")s(ɹǝʎoןdǝp ",
+  "create_pattern_schematics.contraption_application.not_positioned": "¡pǝuoıʇısod ʇou ɔıʇɐɯǝɥɔS :ɔıʇɐɯǝɥɔs ʎןddɐ ʇ,upןnoƆ",
   "create_pattern_schematics.ponder.schematic_printing.header": "sɔıʇɐɯǝɥɔs uɹǝʇʇɐd ɥʇıʍ suɹǝʇʇɐd buıʇuıɹԀ",
   "create_pattern_schematics.ponder.schematic_printing.text_1": "ǝɔɹnos ɐ sɐ ǝsn oʇ ɔıʇɐɯǝɥɔs ɐ ǝʌɐs ʇsɹıɟ ʇsnɯ noʎ 'sɔıʇɐɯǝɥɔs uɹǝʇʇɐd ǝsn o⟘",
   "create_pattern_schematics.ponder.schematic_printing.text_2": "ɔıʇɐɯǝɥɔs uɹǝʇʇɐd ʎʇdɯǝ uɐ ɥʇıʍ ǝןqɐʇ ɔıʇɐɯǝɥɔs ɐ ǝsn 'uǝɥ⟘",
@@ -18,7 +19,7 @@
   "create_pattern_schematics.schematic.tool.clone": "ǝuoןƆ",
   "create_pattern_schematics.schematic.tool.clone.description.0": "ɔıʇɐɯǝɥɔs pǝʇɔǝןǝs ǝɥʇ sʇɐǝdǝᴚ",
   "create_pattern_schematics.schematic.tool.clone.description.1": "˙ʇı ʇɐǝdǝɹ oʇ ןןoɹɔS-]Ꞁᴚ⟘Ɔ[ puɐ ɔıʇɐɯǝɥɔS ǝɥʇ ʇɐ ʇuıoԀ",
-  "create_pattern_schematics.schematic.tool.clone.description.2": "buıɔɐɟ ǝɹɐ noʎ uoıʇɔǝɹıp ǝɥʇ uı ʇɐǝdǝɹ oʇ ןןoɹɔS-]⟘ℲIHS+Ꞁᴚ⟘Ɔ[ 'ʎןǝʌıʇɐuɹǝʇןⱯ",
+  "create_pattern_schematics.schematic.tool.clone.description.2": "buıɔɐɟ ǝɹɐ noʎ uoıʇɔǝɹıp ǝɥʇ uı ǝuoןɔ oʇ ןןoɹɔS-]⟘ℲIHS+Ꞁᴚ⟘Ɔ[ 'ʎןǝʌıʇɐuɹǝʇןⱯ",
   "create_pattern_schematics.schematic.tool.clone.description.3": "",
   "item.create_pattern_schematics.empty_pattern_schematic": "ɔıʇɐɯǝɥɔS uɹǝʇʇɐԀ ʎʇdɯƎ",
   "item.create_pattern_schematics.pattern_schematic": "ɔıʇɐɯǝɥɔS uɹǝʇʇɐԀ"

@@ -19,3 +19,7 @@
 
 1.1.7:
 - Added shift control to the clone tool to help with large schematics
+
+1.1.8:
+- Made the schematicannon result in the proper item (previously would give Create's schematic no matter what)
+- Added an indicator when applying a non positioned schematic to a contraption deployer
