@@ -19,6 +19,8 @@ These pattern schematics can be used to repeat existing schematics, such as repe
 ## ! Please report any issues to the github !
 This is a new mod, and may have some bugs which will need fixing,
 
+[![Shameless Discord Plug](https://raw.githubusercontent.com/cakeGit/Pattern-Schematics-Multiloader/1.20.1/Join%20Discord%20Shameless%20Plug.png)](https://discord.gg/8uSV7b9M6K)
+
 # Changelog (as of 1.1.8)
 1.1.3:
 - Fixed display bug, thanks to discord user @karolofgutovo for reporting
