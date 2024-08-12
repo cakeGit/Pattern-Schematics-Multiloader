@@ -226,6 +226,14 @@ public class PatternSchematicHandler extends SchematicHandler {
         }
       }
     }
+      
+      if (active && deployed) {
+          ms.pushPose();
+          
+          transformation.applyTransformations(ms, camera);
+          CloneSchematicOutlineRenderer.renderCloneGridLines(ms, this, buffer);
+          ms.popPose();
+      }
     
   }
   

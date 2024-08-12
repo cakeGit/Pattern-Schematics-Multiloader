@@ -5,11 +5,20 @@
   "name": "Create: Pattern Schematics",
   "description": "Adds repeating pattern based schematics to create!",
   "authors": [
-    "Cak"
+    {
+      "name": "Cake",
+      "contact": {
+        "homepage": "https://modrinth.com/mod/create-pattern-schematics",
+        "sources": "https://github.com/cakeGit",
+        "discord": "cakeistasty_"
+      }
+    }
   ],
   "contact": {
     "homepage": "https://modrinth.com/mod/create-pattern-schematics",
-    "sources": "https://github.com/cakeGit/Pattern-Schematics-Multiloader"
+    "sources": "https://github.com/cakeGit/Pattern-Schematics-Multiloader",
+    "issues": "https://github.com/cakeGit/Pattern-Schematics-Multiloader/issues",
+    "discord": "https://discord.gg/8uSV7b9M6K"
   },
   "license": "MIT",
   "icon": "logo.png",

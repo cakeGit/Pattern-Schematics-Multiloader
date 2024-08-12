@@ -3,6 +3,7 @@ package com.cak.pattern_schematics.mixin;
 import com.cak.pattern_schematics.PatternSchematicsClient;
 import com.cak.pattern_schematics.foundation.mirror.PatternSchematicHandler;
 import com.cak.pattern_schematics.foundation.mirror.PatternSchematicsToolType;
+import com.cak.pattern_schematics.foundation.mirror.CloneSchematicOutlineRenderer;
 import com.cak.pattern_schematics.foundation.mirror.SimpleSchematicOutlineRenderer;
 import com.simibubi.create.Create;
 import com.simibubi.create.CreateClient;

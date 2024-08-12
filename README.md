@@ -1,92 +1,49 @@
-# Create Multi-Loader Addon Template
-A template based on Architectury for creating addons for Create on Forge, Fabric, and Quilt, simultaneously.
+# Warning to anyone who wishes to contribute:
+This code has a lot of mixins and dodgy mirror classes,
+View at your own risk,
+Same goes for anyone who wants to use this code for reference (mit so go at it if you want),
 
-## How does it work?
-This template is powered by the [Architectury](https://github.com/architectury) toolchain.
-Architectury allows developers to create the majority of their mod in common, loader-agnostic code that
-only touches Minecraft itself. This can be found in the [common](common) subproject. Each loader target 
-also has its own subproject: those being [forge](forge) and [fabric](fabric). (Quilt support: you 
-shouldn't need anything special and the Fabric version should work fine, but it is possible to add a 
-`quilt` subproject if needed.) These loader-specific projects bridge between their respective loaders 
-and the common code.
+# Features
+## Infinite Contraption Construction [(Development Test Demo)](https://www.youtube.com/watch?v=EhZnNdxGKrg&ab_channel=SomeGuyCalledCak)
 
-This system can be extended to work with Create as well as plain Minecraft. The common project gives
-access to most of Create, Registrate, and Flywheel.
+Pattern Schematics can be placed on trains, gantry carriages or any other contraption to infinitely build iterations of the schematic.
 
-## Limitations
-Minecraft has a lot of differences across loaders. You'll need to manage these differences using
-abstractions. Architectury does provide an [API](https://github.com/architectury/architectury-api)
-which you may use if desired, but it means you have another dependency to worry about.
+![Schematic Printing Explanation](https://cdn.modrinth.com/data/cpqKG67r/images/f746aa1bb02aee9b78175aab67606b7f92b0e07e.png)
 
-This also applies to Create, which underwent significant changes in porting to Fabric. This means a lot 
-of it will be different between loaders. The `common` project is only capable of referencing the code 
-on one loader (Fabric in this template), so you should be careful to not reference things that don't 
-exist on the other one. Test often, and check the code on both loaders. When you do need to use these 
-changed things, that leads us to...
+## Building Patterns [(Development Test Demo)](https://www.youtube.com/watch?v=jGvMWfpR8nQ&ab_channel=SomeGuyCalledCak)
 
-## Solutions
-There's a bunch of ways to work around the differences.
+These pattern schematics can be used to repeat existing schematics, such as repeating a bridge to make it longer! Print in creative or put into a schematicannon to build!
 
-First is Architectury API. It provides cross-loader abstractions that can be used in common code for
-a decent amount of Minecraft. However, it means you need to worry about another dependency. It also
-doesn't really help with Create.
+![Printing Demo](https://cdn.modrinth.com/data/cpqKG67r/images/b3043b120d7f7d16a3e9f6b6646cc8bd69f29d44.png)
 
-Next is the `@ExpectPlatform` annotation. It allows the implementation of a method to be replaced
-at compile time per-loader, letting you make your own abstractions. It is part of the Architectury
-plugin and does not cause an extra dependency. However, it can only be placed on static methods. See 
-[ExampleExpectPlatform](common/src/main/java/net/examplemod/ExampleExpectPlatform.java) in common 
-for an example.
+## ! Please report any issues to the github !
+This is a new mod, and may have some bugs which will need fixing,
 
-Finally, simply have a common interface with implementation based on the loader. You might have a
-`PlatformHelper` common interface, with a static instance somewhere. On Fabric, set it to a
-`FabricPlatformHelper`, and a `ForgePlatformHelper` on Forge. The implementation is kept as a detail
-so you can use your helper from common code.
+[![Shameless Discord Plug](https://raw.githubusercontent.com/cakeGit/Pattern-Schematics-Multiloader/1.20.1/Join%20Discord%20Shameless%20Plug.png)](https://discord.gg/8uSV7b9M6K)
 
-## Features
-- Access to Create and all of its dependencies on both loaders
-- Mojang Mappings base, with Quilt Mappings and Parchment providing Javadoc and parameters
-- VineFlower decompiler for high quality Minecraft sources: `gradlew genSourcesWithVineflower`
-- GitHub Actions automatic build workflow
-- Machete Gradle plugin to shrink jar file sizes
-- Developer QOL: Mod Menu, LazyDFU, JEI
+# Changelog (as of 1.1.8)
+1.1.3:
+- Fixed display bug, thanks to discord user @karolofgutovo for reporting
+- Created ponder system with 1 ponder about printing (contraption ponder coming soon)
+- (Technical) Created datagen
 
-## Use
-Ready to get started? First you'll want to create a new repository using this template. You can do it
-through GitHub with the big green button near the top that says `Use this template`. 
+1.1.4:
+- Fixed a bug with deployers placing at the wrong offsets
+- Created bulk apply system to reduce pain of having to put a schematic on each individual deployer
 
-Once you've got your repository set up, you'll want to change all the branding to your mod instead 
-of the template. Every `examplemod`, every placeholder. 
+1.1.5:
+- Fixed clone outlines rendering on a non-deployed schematic
+- Improved tool usage on pattern schematics (thanks @d4rkfl4sh for the suggestion)
+- Added ponder for contraption uses of schematics
 
-You're free to change your license: CC0 lets you do whatever you want. Base Create is MIT, for reference. 
+1.1.6: (No functional changes)
+- Updated mod links in mods.toml and the fabric.mod.json
+- Forge now has the update checker configured
+- Fixed the copycats not displaying accurately in the ponder (after I failed to cover up my laziness thanks @d4rkfl4sh)
 
-Replace this README with information about your addon. Give it an icon and change the metadata in the 
-[fabric.mod.json](fabric/src/main/resources/fabric.mod.json) and the
-[mods.toml](forge/src/main/resources/META-INF/mods.toml).
+1.1.7:
+- Added shift control to the clone tool to help with large schematics
 
-Configure your dependencies. Each subproject `build.gradle` has optional dependencies commented.
-Either remove them or uncomment them. For Fabric, set your preferred recipe viewer with 
-`fabric_recipe_viewer` in the root [gradle.properties](gradle.properties).
-
-Remember to remove any example code you don't need anymore.
-
-Get modding!
-
-## Notes
-- Architectury does not merge jars; When you build, you get separate jars for each loader.
-  There is an independent project that can merge these into one if desired called
-  [Forgix](https://github.com/PacifistMC/Forgix).
-- The file names and versions of jars are configured in the root [build.gradle](build.gradle). Feel 
-free to change the format if desired, but make sure it follows SemVer to work well on Fabric.
-- When publishing, you should always let GitHub Actions build your release jars. These builds will
-have build number metadata, and will be compressed by the Machete plugin.
-
-## Other Templates
-- [Fabric-only template](https://github.com/Fabricators-of-Create/create-fabric-addon-template)
-- [Forge-only template](https://github.com/kotakotik22/CreateAddonTemplate)
-
-## Help
-Questions? Join us in the #devchat channel of the [Create Discord](https://discord.com/invite/hmaD7Se).
-
-## License
-
-This template is available under the CC0 license. Feel free to do as you wish with it.
+1.1.8:
+- Made the schematicannon result in the proper item (previously would give Create's schematic no matter what)
+- Added an indicator when applying a non positioned schematic to a contraption deployer

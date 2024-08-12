@@ -9,6 +9,7 @@ import com.simibubi.create.content.contraptions.Contraption;
 import com.simibubi.create.content.contraptions.behaviour.MovementContext;
 import com.simibubi.create.content.kinetics.deployer.DeployerBlock;
 import com.simibubi.create.content.logistics.filter.FilterItemStack;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -49,15 +50,30 @@ public class AbstractContraptionEntityMixin {
         Player player, BlockPos localPos, Direction side,
         InteractionHand interactionHand, CallbackInfoReturnable<Boolean> cir
     ) {
-        if (player.level.isClientSide || !player.isShiftKeyDown() || !player.getItemInHand(interactionHand).is(PatternSchematicsRegistry.PATTERN_SCHEMATIC.get()))
+        ItemStack stack = player.getItemInHand(interactionHand);
+        if (player.level().isClientSide || !player.isShiftKeyDown() || !stack.is(PatternSchematicsRegistry.PATTERN_SCHEMATIC.get()))
             return;
+        
+        if (!stack.hasTag() || !stack.getOrCreateTag().getBoolean("Deployed")) {
+            player.displayClientMessage(
+                Component.translatable("create_pattern_schematics.contraption_application.not_positioned")
+                    .withStyle(ChatFormatting.RED),
+                true
+            );
+            cir.setReturnValue(true);
+            return;
+        }
         
         Pair<StructureTemplate.StructureBlockInfo, MovementContext> actor = contraption.getActorAt(localPos);
         
         if (actor == null || !actor.getLeft().state.is(AllBlocks.DEPLOYER.get()))
             return;
         
-        int appliedCount = pattern_schematics$performBulkSchematicApply(actor.getLeft().state.getValue(DeployerBlock.FACING), actor.getRight().localPos, player.getItemInHand(interactionHand));
+        int appliedCount = pattern_schematics$performBulkSchematicApply(
+            actor.getLeft().state().getValue(DeployerBlock.FACING),
+            actor.getRight().localPos,
+            player.getItemInHand(interactionHand)
+        );
         
         player.displayClientMessage(
             Component.translatable("create_pattern_schematics.contraption_application.applied_to")

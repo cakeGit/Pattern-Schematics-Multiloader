@@ -12,6 +12,7 @@
     "DeployBaseMixin",
     "DeployerMovementBehaviorMixin",
     "MovementContextMixin",
+    "SchematicannonBlockEntityMixin",
     "SchematicInstancesMixin",
     "SchematicItemMixin",
     "SchematicPrinterMixin",
