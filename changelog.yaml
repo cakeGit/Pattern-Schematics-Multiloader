@@ -1,0 +1,12 @@
+---
+
+1.19.2-1.1.8: |
+  - Updated mod links in mods.toml and the fabric.mod.json
+  - Forge now has the update checker configured
+  - Fixed the copycats not displaying accurately in the ponder (after I failed to cover up my laziness thanks @d4rkfl4sh)
+  - Added shift control to the clone tool to help with large schematics
+  - Made the schematicannon result in the proper item (previously would give Create's schematic no matter what)
+  - Added an indicator when applying a non positioned schematic to a contraption deployer
+  (This is a port, so this is the list of all changes from version 1.1.6->1.1.8)
+
+...
