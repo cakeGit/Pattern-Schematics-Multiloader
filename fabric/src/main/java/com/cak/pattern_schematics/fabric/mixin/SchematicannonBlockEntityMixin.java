@@ -1,4 +1,4 @@
-package com.cak.pattern_schematics.mixin;
+package com.cak.pattern_schematics.fabric.mixin;
 
 import com.cak.pattern_schematics.registry.PatternSchematicsRegistry;
 import com.simibubi.create.AllItems;
@@ -14,7 +14,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/**Change the second inventory set item call to be the pattern schematic if there was a pattern schematic previously present*/
+/**Change the second inventory set item call to be the pattern schematic if there was a pattern schematic previously present
+ * Note that due to class resolution issues, the mixin has to be duplicated across both platforms*/
 @Mixin(value = SchematicannonBlockEntity.class, remap = false)
 public class SchematicannonBlockEntityMixin {
     

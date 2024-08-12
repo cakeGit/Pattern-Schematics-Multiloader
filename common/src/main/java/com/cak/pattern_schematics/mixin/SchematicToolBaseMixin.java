@@ -1,11 +1,9 @@
 package com.cak.pattern_schematics.mixin;
 
 import com.cak.pattern_schematics.PatternSchematicsClient;
+import com.cak.pattern_schematics.foundation.mirror.CloneSchematicOutlineRenderer;
 import com.cak.pattern_schematics.foundation.mirror.PatternSchematicHandler;
 import com.cak.pattern_schematics.foundation.mirror.PatternSchematicsToolType;
-import com.cak.pattern_schematics.foundation.mirror.CloneSchematicOutlineRenderer;
-import com.cak.pattern_schematics.foundation.mirror.SimpleSchematicOutlineRenderer;
-import com.simibubi.create.Create;
 import com.simibubi.create.CreateClient;
 import com.simibubi.create.content.schematics.client.SchematicHandler;
 import com.simibubi.create.content.schematics.client.tools.SchematicToolBase;
@@ -43,7 +41,7 @@ public abstract class SchematicToolBaseMixin {
     
     @Inject(method = "renderOnSchematic", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lcom/simibubi/create/foundation/outliner/AABBOutline;render(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/simibubi/create/foundation/render/SuperRenderTypeBuffer;Lnet/minecraft/world/phys/Vec3;F)V", remap = true))
     public void renderOnSchematic(CallbackInfo ci) {
-        SimpleSchematicOutlineRenderer.applyOutlineModification(schematicHandler);
+        CloneSchematicOutlineRenderer.applyOutlineModification(schematicHandler);
     }
     
     @Unique

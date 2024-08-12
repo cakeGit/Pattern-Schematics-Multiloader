@@ -51,7 +51,7 @@ public class AbstractContraptionEntityMixin {
         InteractionHand interactionHand, CallbackInfoReturnable<Boolean> cir
     ) {
         ItemStack stack = player.getItemInHand(interactionHand);
-        if (player.level().isClientSide || !player.isShiftKeyDown() || !stack.is(PatternSchematicsRegistry.PATTERN_SCHEMATIC.get()))
+        if (player.level.isClientSide || !player.isShiftKeyDown() || !stack.is(PatternSchematicsRegistry.PATTERN_SCHEMATIC.get()))
             return;
         
         if (!stack.hasTag() || !stack.getOrCreateTag().getBoolean("Deployed")) {
@@ -70,7 +70,7 @@ public class AbstractContraptionEntityMixin {
             return;
         
         int appliedCount = pattern_schematics$performBulkSchematicApply(
-            actor.getLeft().state().getValue(DeployerBlock.FACING),
+            actor.getLeft().state.getValue(DeployerBlock.FACING),
             actor.getRight().localPos,
             player.getItemInHand(interactionHand)
         );

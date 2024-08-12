@@ -264,8 +264,6 @@ public class PatternSchematicHandler extends SchematicHandler {
       if (isRenderingMain) {
         currentTool.getTool()
             .renderOnSchematic(ms, buffer);
-      } else if (deployed) {
-        SimpleSchematicOutlineRenderer.render(ms, this, buffer);
       }
     
     ms.popPose();

@@ -6,6 +6,7 @@
   "client": [
   ],
   "mixins": [
+    "SchematicannonBlockEntityMixin",
     "SchematicannonInventoryMixin",
     "SchematicTableBlockEntityMixin",
     "SchematicTableMenuMixin"

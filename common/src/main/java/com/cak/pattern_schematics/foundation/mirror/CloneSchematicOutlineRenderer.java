@@ -8,6 +8,8 @@ import com.simibubi.create.foundation.render.SuperRenderTypeBuffer;
 import com.simibubi.create.foundation.utility.AnimationTickHolder;
 import com.simibubi.create.foundation.utility.Iterate;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
@@ -16,22 +18,34 @@ public class CloneSchematicOutlineRenderer {
   
   public static void renderCloneGridLines(PoseStack ms, PatternSchematicHandler schematicHandler, SuperRenderTypeBuffer buffer) {
     ms.pushPose();
-    AABBOutline outline = schematicHandler.getGreaterOutline();
-    outline.setBounds(schematicHandler.calculateGreaterOutlineBounds());
+    AABBOutline outline = schematicHandler.getOutline();
     outline.getParams()
-        .colored(0x6886c5)
-        .lineWidth(1/16f);
-    for (Direction.Axis axis : Iterate.axes) {
-      List<Direction.Axis> secondaries =
-          axis == Direction.Axis.X ? List.of(Direction.Axis.Y, Direction.Axis.Z) :
-              axis == Direction.Axis.Y ? List.of(Direction.Axis.Y, Direction.Axis.Z) :
-                  List.of(Direction.Axis.X, Direction.Axis.Y);
-      
-      
-      
-      continue;
+        .colored(0xa6a1af)
+        .withFaceTexture(AllSpecialTextures.CHECKERED)
+        .lineWidth(1/32f);
+//    for (Direction.Axis axis : Iterate.axes) {
+//      List<Direction.Axis> secondaries =
+//          axis == Direction.Axis.X ? List.of(Direction.Axis.Y, Direction.Axis.Z) :
+//              axis == Direction.Axis.Y ? List.of(Direction.Axis.Y, Direction.Axis.Z) :
+//                  List.of(Direction.Axis.X, Direction.Axis.Y);
+    //TODO: Actually do the optimisation, draw only outer lines
+    Vec3i min = schematicHandler.cloneScaleMin;
+    Vec3i max = schematicHandler.cloneScaleMax;
+    AABB bounds = schematicHandler.getBounds();
+    Vec3i size = new Vec3i(bounds.getXsize(), bounds.getYsize(), bounds.getZsize());
+    
+    for (int x = min.getX(); x <= max.getX(); x++) {
+      for (int y = min.getY(); y <= max.getY(); y++) {
+        for (int z = min.getZ(); z <= max.getZ(); z++) {
+          boolean isRenderingMain = (x == 0) && (y == 0) && (z == 0);
+          if (isRenderingMain) continue;
+          ms.pushPose();
+          ms.translate(x * size.getX(), y * size.getY(), z * size.getZ());
+          outline.render(ms, buffer, Vec3.ZERO, AnimationTickHolder.getPartialTicks());
+          ms.popPose();
+        }
+      }
     }
-    outline.render(ms, buffer, Vec3.ZERO, AnimationTickHolder.getPartialTicks());
     ms.popPose();
   }
   
