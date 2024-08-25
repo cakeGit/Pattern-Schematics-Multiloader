@@ -9,7 +9,6 @@ import net.minecraft.world.item.Item;
 public class PlatformRegistryTransformsImpl {
     
     public static <T extends Item, P> NonNullUnaryOperator<ItemBuilder<T, P>> transformEmptyPatternSchematic() {
-        Create.LOGGER.info("suknfidjbsfdgknjg");
         return (i) -> i.tab(AllCreativeModeTabs.BASE_CREATIVE_TAB.getKey());
     }
     

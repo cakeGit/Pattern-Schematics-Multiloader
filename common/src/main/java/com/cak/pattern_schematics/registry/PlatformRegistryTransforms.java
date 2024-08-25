@@ -8,6 +8,7 @@ import net.minecraft.world.item.Item;
 
 public class PlatformRegistryTransforms {
     
+    @Deprecated //TODO : not needed, function replaced by tabInsertions
     @ExpectPlatform
     public static <T extends Item, P> NonNullUnaryOperator<ItemBuilder<T, P>> transformEmptyPatternSchematic() {
         throw new AssertionError();

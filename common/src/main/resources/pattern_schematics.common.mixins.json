@@ -9,6 +9,7 @@
     "AbstractContraptionEntityMixin",
     "BlockHelperMixin",
     "CreateClientMixin",
+    "CreateCreativeModeTabMixin",
     "DeployBaseMixin",
     "DeployerMovementBehaviorMixin",
     "MovementContextMixin",
