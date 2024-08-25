@@ -2,7 +2,6 @@ package com.cak.pattern_schematics.registry;
 
 import java.util.function.BiConsumer;
 
-/**Currently not functional since there's no datagen, but also there isn't much of a need for datagen now the mdo is done so eeh*/
 public class PatternSchematicsLang {
   
   public static BiConsumer<String, String> ENTRY_CONSUMER = PatternSchematicsRegistry.REGISTRATE::addRawLang;
