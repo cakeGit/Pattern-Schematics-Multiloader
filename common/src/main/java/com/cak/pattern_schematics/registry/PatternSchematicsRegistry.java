@@ -14,7 +14,6 @@ public class PatternSchematicsRegistry {
       .item("empty_pattern_schematic", Item::new)
       .defaultModel()
       .properties(p -> p.stacksTo(1))
-      .transform(PlatformRegistryTransforms.transformEmptyPatternSchematic())
       .register();
   
   public static final ItemEntry<PatternSchematicItem> PATTERN_SCHEMATIC = REGISTRATE

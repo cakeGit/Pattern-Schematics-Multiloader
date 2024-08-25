@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
 public class PatternSchematics {
+    
     // Define mod id in a common place for everything to reference
     public static final String MODID = "create_pattern_schematics";
     // Directly reference a slf4j logger
