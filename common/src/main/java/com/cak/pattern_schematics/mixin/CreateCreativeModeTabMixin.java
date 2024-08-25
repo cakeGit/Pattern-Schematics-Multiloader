@@ -14,6 +14,7 @@ public class CreateCreativeModeTabMixin {
     @Redirect(method = "collectItems", at = @At(value = "INVOKE", target = "Ljava/util/List;add(Ljava/lang/Object;)Z"))
     private boolean addAdditionalItemInject(List<Item> instance, Object element) {
         Item itemToAdd = (Item) element;
+        //Ensure execution order, add the instance then add other
         boolean result = instance.add(itemToAdd);
         
         if (
