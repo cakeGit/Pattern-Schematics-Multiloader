@@ -2,9 +2,11 @@ package com.cak.pattern_schematics.registry;
 
 import java.util.function.BiConsumer;
 
+import static com.cak.pattern_schematics.PatternSchematics.REGISTRATE;
+
 public class PatternSchematicsLang {
   
-  public static BiConsumer<String, String> ENTRY_CONSUMER = PatternSchematicsRegistry.REGISTRATE::addRawLang;
+  public static BiConsumer<String, String> ENTRY_CONSUMER = REGISTRATE::addRawLang;
   
   public static void register() {
     putLang(
@@ -22,8 +24,7 @@ public class PatternSchematicsLang {
   
   public static void putLang(String... entryKeyPairs) {
     for (int i = 0; i < entryKeyPairs.length; i+=2) {
-      PatternSchematicsRegistry.REGISTRATE
-          .addRawLang(entryKeyPairs[i], entryKeyPairs[i+1]);
+      REGISTRATE.addRawLang(entryKeyPairs[i], entryKeyPairs[i+1]);
     }
   }
   

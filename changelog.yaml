@@ -16,5 +16,7 @@
 1.20.1-1.1.11: |
   - Changed creative mode tab ordering (Also should help for when latest create releases)
   - Changed to use correct gradle version
-
+1.20.1-1.1.12: |
+  - Misc refactor
+  - Mainly just to bump version to republish
 ...
