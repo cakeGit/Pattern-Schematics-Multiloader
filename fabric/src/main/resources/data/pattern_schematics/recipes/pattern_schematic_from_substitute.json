@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "create:iron_sheet"
+    },
+    {
+      "tag": "create_pattern_schematics:pattern_schematic_paper_substitutes"
+    },
+    {
+      "tag": "c:pink_dyes"
+    }
+  ],
+  "result": {
+    "item": "create_pattern_schematics:empty_pattern_schematic"
+  }
+}
