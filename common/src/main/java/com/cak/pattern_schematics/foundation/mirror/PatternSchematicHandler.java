@@ -64,6 +64,7 @@ public class PatternSchematicHandler extends SchematicHandler {
     protected int activeHotbarSlot;
     protected ItemStack activeSchematicItem;
     protected AABBOutline outline;
+    protected AABBOutline greaterOutline;
     
     protected Vector<SchematicRenderer> renderers;
     protected PatternSchematicHotbarSlotOverlay overlay;
@@ -383,7 +384,26 @@ public class PatternSchematicHandler extends SchematicHandler {
         outline.getParams()
             .colored(0xa586a5)
             .lineWidth(1 / 16f);
+        greaterOutline = new AABBOutline(calculateGreaterOutlineBounds());
+        greaterOutline.getParams()
+            .colored(0xa586a5)
+            .lineWidth(0);
         transformation.init(anchor, settings, bounds);
+    }
+    
+    public AABB calculateGreaterOutlineBounds() {
+        return bounds
+            .expandTowards(
+                new Vec3(0, 0, 0)
+                    .add(bounds.getXsize() * cloneScaleMin.getX(),
+                        bounds.getYsize() * cloneScaleMin.getY(),
+                        bounds.getZsize() * cloneScaleMin.getZ())
+            )
+            .expandTowards(new Vec3(0, 0, 0)
+                .add(bounds.getXsize() * cloneScaleMax.getX(),
+                    bounds.getYsize() * cloneScaleMax.getY(),
+                    bounds.getZsize() * cloneScaleMax.getZ())
+            );
     }
     
     public void deploy() {
@@ -467,6 +487,10 @@ public class PatternSchematicHandler extends SchematicHandler {
                 new Vec3(cloneScaleMax.getX(), cloneScaleMax.getY(), cloneScaleMax.getZ())
                     .multiply(boundsLength)
             );
+    }
+    
+    public AABBOutline getGreaterOutline() {
+        return greaterOutline;
     }
     
 }
