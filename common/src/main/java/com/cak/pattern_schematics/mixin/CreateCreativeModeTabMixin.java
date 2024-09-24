@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(value = CreateCreativeModeTab.class, remap = false)
 public class CreateCreativeModeTabMixin {
     
-    @Redirect(method = "addItems", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/Item;fillItemCategory(Lnet/minecraft/world/item/CreativeModeTab;Lnet/minecraft/core/NonNullList;)V"))
+    @Redirect(method = "addItems", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/Item;fillItemCategory(Lnet/minecraft/world/item/CreativeModeTab;Lnet/minecraft/core/NonNullList;)V", remap = true))
     private void addAdditionalItemInject(Item instance, CreativeModeTab category, NonNullList<ItemStack> items) {
         instance.fillItemCategory(category, items);
         
