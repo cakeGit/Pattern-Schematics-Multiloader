@@ -15,29 +15,29 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = SchematicInstances.class, remap = false)
 public class SchematicInstancesMixin {
-  
-  private static ItemStack lastThreadStack = null;
-  private static StructureTemplate lastThreadStructureTemplate = null;
-  
-  @Inject(method = "loadWorld", at = @At(value = "HEAD"))
-  private static void loadWorld(Level wrapped, ItemStack schematic, CallbackInfoReturnable<SchematicWorld> cir) {
-    lastThreadStack = schematic;
-  }
-  
-  @ModifyVariable(method = "loadWorld", at = @At(value = "STORE"), ordinal = 0)
-  private static StructureTemplate store_activeTemplate(StructureTemplate template) {
-    lastThreadStructureTemplate = template;
-    return template;
-  }
-  
-  @ModifyVariable(method = "loadWorld", at = @At("STORE"), ordinal = 0)
-  private static SchematicWorld loadWorld(SchematicWorld value) {
-    if (lastThreadStack.getItem() instanceof PatternSchematicItem) {
-      PatternSchematicWorld patternSchematicWorld = new PatternSchematicWorld(value.anchor, value.getLevel());
-      patternSchematicWorld.putExtraData(lastThreadStack, lastThreadStructureTemplate);
-      return patternSchematicWorld;
+    
+    private static ItemStack lastThreadStack = null;
+    private static StructureTemplate lastThreadStructureTemplate = null;
+    
+    @Inject(method = "loadWorld", at = @At(value = "HEAD"))
+    private static void loadWorld(Level wrapped, ItemStack schematic, CallbackInfoReturnable<SchematicWorld> cir) {
+        lastThreadStack = schematic;
     }
-    return value;
-  }
-  
+    
+    @ModifyVariable(method = "loadWorld", at = @At(value = "STORE"), ordinal = 0)
+    private static StructureTemplate store_activeTemplate(StructureTemplate template) {
+        lastThreadStructureTemplate = template;
+        return template;
+    }
+    
+    @ModifyVariable(method = "loadWorld", at = @At("STORE"), ordinal = 0)
+    private static SchematicWorld loadWorld(SchematicWorld value) {
+        if (lastThreadStack.getItem() instanceof PatternSchematicItem) {
+            PatternSchematicWorld patternSchematicWorld = new PatternSchematicWorld(value.anchor, value.getLevel());
+            patternSchematicWorld.putExtraData(lastThreadStack, lastThreadStructureTemplate);
+            return patternSchematicWorld;
+        }
+        return value;
+    }
+    
 }

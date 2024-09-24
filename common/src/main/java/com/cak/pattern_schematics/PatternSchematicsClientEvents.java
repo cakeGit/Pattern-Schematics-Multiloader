@@ -1,10 +1,8 @@
 package com.cak.pattern_schematics;
 
-import com.jozufozu.flywheel.event.RenderLayerEvent;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.foundation.render.SuperRenderTypeBuffer;
-import com.simibubi.create.foundation.utility.AnimationTickHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.phys.Vec3;
 
@@ -48,5 +46,5 @@ public class PatternSchematicsClientEvents {
         
         return PatternSchematicsClient.PATTERN_SCHEMATIC_HANDLER.onMouseInput(button, pressed);
     }
-
+    
 }

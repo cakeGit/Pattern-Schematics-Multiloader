@@ -2,11 +2,9 @@ package com.cak.pattern_schematics.content.ponder;
 
 import com.cak.pattern_schematics.registry.PatternSchematicsRegistry;
 import com.simibubi.create.AllItems;
-import com.simibubi.create.content.trains.entity.Train;
 import com.simibubi.create.foundation.ponder.*;
 import com.simibubi.create.foundation.ponder.element.EntityElement;
 import com.simibubi.create.foundation.ponder.element.InputWindowElement;
-import com.simibubi.create.foundation.ponder.element.WorldSectionElement;
 import com.simibubi.create.foundation.ponder.element.WorldSectionElement;
 import com.simibubi.create.foundation.ponder.instruction.DisplayWorldSectionInstruction;
 import com.simibubi.create.foundation.utility.Pointing;
@@ -15,8 +13,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 

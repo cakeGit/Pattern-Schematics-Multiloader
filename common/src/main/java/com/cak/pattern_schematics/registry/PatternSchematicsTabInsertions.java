@@ -1,6 +1,5 @@
 package com.cak.pattern_schematics.registry;
 
-import com.google.common.collect.ImmutableMap;
 import com.simibubi.create.AllItems;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.world.item.Item;

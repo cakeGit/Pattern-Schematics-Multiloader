@@ -14,7 +14,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BlockHelper.class)
 public class BlockHelperMixin {
     
-    /**Fix to issue, thanks to @zetttabyte on Discord*/
+    /**
+     * Fix to issue, thanks to @zetttabyte on Discord
+     */
     @Inject(method = "prepareBlockEntityData", at = @At(value = "RETURN"), remap = false, cancellable = true)
     private static void trainTargeting_prepareBlockEntityData(BlockState blockState, BlockEntity blockEntity, CallbackInfoReturnable<CompoundTag> cir) {
         if (blockEntity instanceof SmartBlockEntity smartBlockEntity) {

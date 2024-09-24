@@ -9,7 +9,8 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(value = MovementContext.class, remap = false)
 public class MovementContextMixin implements MovementContextAccessor {
     
-    @Shadow private FilterItemStack filter;
+    @Shadow
+    private FilterItemStack filter;
     
     @Override
     public void pattern_schematics$setFilter(FilterItemStack stack) {

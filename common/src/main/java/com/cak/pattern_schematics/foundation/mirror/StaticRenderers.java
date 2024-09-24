@@ -13,7 +13,10 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 
-/**From {@link com.simibubi.create.foundation.outliner.AABBOutline#render(PoseStack, SuperRenderTypeBuffer, Vec3, float)}*/
+/**
+ * From
+ * {@link com.simibubi.create.foundation.outliner.AABBOutline#render(PoseStack, SuperRenderTypeBuffer, Vec3, float)}
+ */
 public class StaticRenderers {
     
     protected static final Vector4f colorTemp1 = new Vector4f();
@@ -126,7 +129,7 @@ public class StaticRenderers {
     protected static final Vector3f normalTransformTemp = new Vector3f();
     
     public static void bufferQuad(PoseStack.Pose pose, VertexConsumer consumer, Vector3f pos0, Vector3f pos1, Vector3f pos2,
-                           Vector3f pos3, Vector4f color, float minU, float minV, float maxU, float maxV, int lightmap, Vector3f normal) {
+                                  Vector3f pos3, Vector4f color, float minU, float minV, float maxU, float maxV, int lightmap, Vector3f normal) {
         Matrix4f posMatrix = pose.pose();
         
         posTransformTemp.set(pos0.x(), pos0.y(), pos0.z(), 1);

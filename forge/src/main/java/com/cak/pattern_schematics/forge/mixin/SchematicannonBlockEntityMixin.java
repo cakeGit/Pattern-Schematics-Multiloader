@@ -14,12 +14,15 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/**Change the second inventory set item call to be the pattern schematic if there was a pattern schematic previously present
- * Note that due to class resolution issues, the mixin has to be duplicated across both platforms*/
+/**
+ * Change the second inventory set item call to be the pattern schematic if there was a pattern schematic previously
+ * present Note that due to class resolution issues, the mixin has to be duplicated across both platforms
+ */
 @Mixin(value = SchematicannonBlockEntity.class, remap = false)
 public class SchematicannonBlockEntityMixin {
     
-    @Shadow public SchematicannonInventory inventory;
+    @Shadow
+    public SchematicannonInventory inventory;
     @Unique
     private boolean pattern_schematics$currentThreadIsOfPatternSchematic = false;
     

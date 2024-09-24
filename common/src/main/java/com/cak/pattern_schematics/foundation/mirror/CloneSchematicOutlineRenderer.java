@@ -1,29 +1,20 @@
 package com.cak.pattern_schematics.foundation.mirror;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.simibubi.create.AllSpecialTextures;
+import com.mojang.math.Vector3f;
+import com.mojang.math.Vector4f;
 import com.simibubi.create.content.schematics.client.SchematicHandler;
 import com.simibubi.create.foundation.outliner.AABBOutline;
-import com.simibubi.create.foundation.render.RenderTypes;
 import com.simibubi.create.foundation.render.SuperRenderTypeBuffer;
 import com.simibubi.create.foundation.utility.AnimationTickHolder;
-import com.simibubi.create.foundation.utility.Color;
 import com.simibubi.create.foundation.utility.Iterate;
-import net.fabricmc.loader.impl.lib.sat4j.core.Vec;
 import net.minecraft.client.renderer.LightTexture;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import org.joml.Matrix4f;
-import org.joml.Vector3f;
-import org.joml.Vector4f;
 
 import java.util.List;
-import java.util.Optional;
 
 public class CloneSchematicOutlineRenderer {
     
@@ -79,8 +70,8 @@ public class CloneSchematicOutlineRenderer {
                     for (int secondaryCellB = min.get(secondaryB); secondaryCellB <= max.get(secondaryB); secondaryCellB++) {
                         if (
                             secondaryCellA == 0 && secondaryCellB == 0 &&
-                            ((axisDirection == Direction.AxisDirection.POSITIVE && max.get(axis) == 0)
-                                || (axisDirection == Direction.AxisDirection.NEGATIVE && max.get(axis) == 0))
+                                ((axisDirection == Direction.AxisDirection.POSITIVE && max.get(axis) == 0)
+                                    || (axisDirection == Direction.AxisDirection.NEGATIVE && max.get(axis) == 0))
                         ) continue;
                         
                         Vec3 faceMin = surfaceOrigin

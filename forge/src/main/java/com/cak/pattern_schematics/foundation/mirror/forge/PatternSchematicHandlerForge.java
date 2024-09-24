@@ -10,27 +10,27 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 
 public class PatternSchematicHandlerForge extends PatternSchematicHandler {
-
-  @Override
-  public void render(ForgeGui gui, PoseStack graphics, float partialTicks, int width, int height) {
-    if (Minecraft.getInstance().options.hideGui || !active)
-      return;
-    if (activeSchematicItem != null)
-      this.overlay.renderOn(graphics, activeHotbarSlot);
-    currentTool.getTool()
-        .renderOverlay(gui, graphics, partialTicks, width, height);
-    selectionScreen.renderPassive(graphics, partialTicks);
-  }
-  
-  public void printInstantly() {
-    AllPackets.getChannel().sendToServer(new SchematicPlacePacket(activeSchematicItem.copy()));
-    CompoundTag nbt = activeSchematicItem.getTag();
-    nbt.putBoolean("Deployed", false);
-    activeSchematicItem.setTag(nbt);
-    SchematicInstances.clearHash(activeSchematicItem);
-    renderers.forEach(r -> r.setActive(false));
-    active = false;
-    markDirty();
-  }
-  
+    
+    @Override
+    public void render(ForgeGui gui, PoseStack graphics, float partialTicks, int width, int height) {
+        if (Minecraft.getInstance().options.hideGui || !active)
+            return;
+        if (activeSchematicItem != null)
+            this.overlay.renderOn(graphics, activeHotbarSlot);
+        currentTool.getTool()
+            .renderOverlay(gui, graphics, partialTicks, width, height);
+        selectionScreen.renderPassive(graphics, partialTicks);
+    }
+    
+    public void printInstantly() {
+        AllPackets.getChannel().sendToServer(new SchematicPlacePacket(activeSchematicItem.copy()));
+        CompoundTag nbt = activeSchematicItem.getTag();
+        nbt.putBoolean("Deployed", false);
+        activeSchematicItem.setTag(nbt);
+        SchematicInstances.clearHash(activeSchematicItem);
+        renderers.forEach(r -> r.setActive(false));
+        active = false;
+        markDirty();
+    }
+    
 }

@@ -64,9 +64,9 @@ public abstract class SchematicToolBaseMixin {
     public Direction getFacingResult(RaycastHelper.PredicateTraceResult instance) {
         if (
             pattern_schematics$currentThreadIsPatternSchematic &&
-            pattern_schematics$currentThreadPatternBounds.contains(
-                schematicHandler.getTransformation().toLocalSpace(Minecraft.getInstance().player.getEyePosition())
-            )
+                pattern_schematics$currentThreadPatternBounds.contains(
+                    schematicHandler.getTransformation().toLocalSpace(Minecraft.getInstance().player.getEyePosition())
+                )
         ) {
             return instance.getFacing().getOpposite();
         }

@@ -14,7 +14,8 @@ public class PlatformGetter {
      * net.examplemod.fabric.ExampleExpectPlatformImpl#platformName() Actual Forge:
      * net.examplemod.forge.ExampleExpectPlatformImpl#platformName()
      * <p>
-     * <a href="https://plugins.jetbrains.com/plugin/16210-architectury">You should also get the IntelliJ plugin to help
+     * <a href="https://plugins.jetbrains.com/plugin/16210-architectury">You should also get the IntelliJ plugin to
+     * help
      * with @ExpectPlatform.</a>
      */
     @ExpectPlatform

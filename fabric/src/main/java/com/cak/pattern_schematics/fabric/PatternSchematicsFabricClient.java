@@ -1,8 +1,6 @@
 package com.cak.pattern_schematics.fabric;
 
-import com.cak.pattern_schematics.PatternSchematics;
 import com.cak.pattern_schematics.PatternSchematicsClient;
-import com.cak.pattern_schematics.PatternSchematicsClientEvents;
 import com.cak.pattern_schematics.content.ponder.PatternSchematicsPonderIndex;
 import com.cak.pattern_schematics.content.ponder.PatternSchematicsPonderTags;
 import com.cak.pattern_schematics.foundation.mirror.fabric.PatternSchematicHandlerFabric;
