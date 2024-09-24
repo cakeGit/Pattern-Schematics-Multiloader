@@ -44,7 +44,7 @@ public enum PatternSchematicsToolType {
   }
   
   public MutableComponent getDisplayName() {
-    return (patternModId ? Component.translatable(PatternSchematics.MODID + ".schematic.tool." + Lang.asId(name()))
+    return (patternModId ? Component.translatable(PatternSchematics.MOD_ID + ".schematic.tool." + Lang.asId(name()))
     : Lang.translateDirect("schematic.tool." + Lang.asId(name())));
   }
   
@@ -65,7 +65,7 @@ public enum PatternSchematicsToolType {
   }
   
   public List<Component> getDescription() {
-    return (patternModId ? PatternSchematicsToolType.translatedOptions(PatternSchematics.MODID + ".schematic.tool." + Lang.asId(name()) + ".description", "0", "1", "2", "3")
+    return (patternModId ? PatternSchematicsToolType.translatedOptions(PatternSchematics.MOD_ID + ".schematic.tool." + Lang.asId(name()) + ".description", "0", "1", "2", "3")
         : Lang.translatedOptions("schematic.tool." + Lang.asId(name()) + ".description", "0", "1", "2", "3"));
   }
   

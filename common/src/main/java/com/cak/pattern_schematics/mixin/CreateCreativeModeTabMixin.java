@@ -1,25 +1,33 @@
 package com.cak.pattern_schematics.mixin;
 
-import com.cak.pattern_schematics.PatternSchematics;
-import com.cak.pattern_schematics.registry.PatternSchematicsRegistry;
-import com.simibubi.create.infrastructure.item.CreateCreativeModeTab;
-import com.tterrag.registrate.util.entry.RegistryEntry;
+import com.cak.pattern_schematics.registry.PatternSchematicsTabInsertions;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
-import java.util.Collection;
+import java.util.List;
 
-@Mixin(value = CreateCreativeModeTab.class, remap = false)
+@Mixin(remap = false, targets = "com.simibubi.create.AllCreativeModeTabs$RegistrateDisplayItemsGenerator")
 public class CreateCreativeModeTabMixin {
     
-    @Inject(method = "registeredItems", at = @At("RETURN"), cancellable = true)
-    private void additional_registeredItems(CallbackInfoReturnable<Collection<RegistryEntry<Item>>> cir) {
-        Collection<RegistryEntry<Item>> items = cir.getReturnValue();
-        items.add(PatternSchematicsRegistry.EMPTY_PATTERN_SCHEMATIC);
-        cir.setReturnValue(items);
+    @Redirect(method = "collectItems", at = @At(value = "INVOKE", target = "Ljava/util/List;add(Ljava/lang/Object;)Z"))
+    private boolean addAdditionalItemInject(List<Item> instance, Object element) {
+        Item itemToAdd = (Item) element;
+        //Ensure execution order, add the instance then add otherg
+        boolean result = instance.add(itemToAdd);
+        
+        if (
+            PatternSchematicsTabInsertions.getAllInsertsAfter()
+                .containsKey(itemToAdd)
+        ) {
+            instance.add(
+                PatternSchematicsTabInsertions.getAllInsertsAfter()
+                    .get(itemToAdd)
+            );
+        }
+        
+        return result;
     }
     
 }

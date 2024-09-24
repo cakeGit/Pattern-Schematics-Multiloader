@@ -2,10 +2,11 @@ package com.cak.pattern_schematics.registry;
 
 import java.util.function.BiConsumer;
 
-/**Currently not functional since there's no datagen, but also there isn't much of a need for datagen now the mdo is done so eeh*/
+import static com.cak.pattern_schematics.PatternSchematics.REGISTRATE;
+
 public class PatternSchematicsLang {
   
-  public static BiConsumer<String, String> ENTRY_CONSUMER = PatternSchematicsRegistry.REGISTRATE::addRawLang;
+  public static BiConsumer<String, String> ENTRY_CONSUMER = REGISTRATE::addRawLang;
   
   public static void register() {
     putLang(
@@ -23,8 +24,7 @@ public class PatternSchematicsLang {
   
   public static void putLang(String... entryKeyPairs) {
     for (int i = 0; i < entryKeyPairs.length; i+=2) {
-      PatternSchematicsRegistry.REGISTRATE
-          .addRawLang(entryKeyPairs[i], entryKeyPairs[i+1]);
+      REGISTRATE.addRawLang(entryKeyPairs[i], entryKeyPairs[i+1]);
     }
   }
   

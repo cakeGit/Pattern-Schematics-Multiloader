@@ -48,16 +48,5 @@ public class PatternSchematicsClientEvents {
         
         return PatternSchematicsClient.PATTERN_SCHEMATIC_HANDLER.onMouseInput(button, pressed);
     }
-    
-//Todo: For foge
-//  @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-//  public static class ModBusEvents {
-//
-//    @SubscribeEvent
-//    public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
-//      event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "pattern_schematic", PatternSchematicsClient.PATTERN_SCHEMATIC_HANDLER);
-//    }
-//
-//  }
 
 }

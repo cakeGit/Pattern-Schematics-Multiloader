@@ -6,7 +6,7 @@ import com.simibubi.create.foundation.ponder.PonderRegistrationHelper;
 
 public class PatternSchematicsPonderIndex {
     
-    static final PonderRegistrationHelper HELPER = new PonderRegistrationHelper(PatternSchematics.MODID);
+    static final PonderRegistrationHelper HELPER = new PonderRegistrationHelper(PatternSchematics.MOD_ID);
     
     public static void register() {
         
