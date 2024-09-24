@@ -17,7 +17,7 @@ public class PatternSchematicsFabricData implements DataGeneratorEntrypoint {
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         ExistingFileHelper helper = ExistingFileHelper.withResourcesFromArg();
-        REGISTRATE.setupDatagen(fabricDataGenerator.createPack(), helper);
+        REGISTRATE.setupDatagen(fabricDataGenerator, helper);
         PatternSchematicsLang.register();
         
         PatternSchematicsPonderTags.register();

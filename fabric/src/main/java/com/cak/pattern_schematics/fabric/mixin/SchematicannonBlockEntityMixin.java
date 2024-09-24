@@ -23,6 +23,7 @@ public class SchematicannonBlockEntityMixin {
     
     @Shadow
     public SchematicannonInventory inventory;
+    
     @Unique
     private boolean pattern_schematics$currentThreadIsOfPatternSchematic = false;
     

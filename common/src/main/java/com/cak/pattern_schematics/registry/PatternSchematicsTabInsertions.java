@@ -9,23 +9,22 @@ import java.util.Map;
 
 public class PatternSchematicsTabInsertions {
     
+    private static Map<Item, Item> INSERTS_AFTER_ITEM = null;
     
-    private static Map<Item, Item> INSERTS_AFTER = null;
-    
-    public static final Map<ItemEntry<Item>, ItemEntry<Item>> REGISTRY_INSERTS_AFTER = Map.of(
+    public static final Map<ItemEntry<Item>, ItemEntry<Item>> REGISTRY_INSERTS_AFTER_ITEM = Map.of(
         AllItems.EMPTY_SCHEMATIC, PatternSchematicsRegistry.EMPTY_PATTERN_SCHEMATIC
     );
     
-    public static Map<Item, Item> getAllInsertsAfter() {
-        if (INSERTS_AFTER != null) {
-            return INSERTS_AFTER;
+    public static Map<Item, Item> getAllInsertsAfterItem() {
+        if (INSERTS_AFTER_ITEM != null) {
+            return INSERTS_AFTER_ITEM;
         }
         
-        INSERTS_AFTER = new HashMap<>();
-        for (Map.Entry<ItemEntry<Item>, ItemEntry<Item>> entry : REGISTRY_INSERTS_AFTER.entrySet()) {
-            INSERTS_AFTER.put(entry.getKey().get(), entry.getValue().get());
+        INSERTS_AFTER_ITEM = new HashMap<>();
+        for (Map.Entry<ItemEntry<Item>, ItemEntry<Item>> entry : REGISTRY_INSERTS_AFTER_ITEM.entrySet()) {
+            INSERTS_AFTER_ITEM.put(entry.getKey().get(), entry.getValue().get());
         }
-        return INSERTS_AFTER;
+        return INSERTS_AFTER_ITEM;
     }
     
 }
