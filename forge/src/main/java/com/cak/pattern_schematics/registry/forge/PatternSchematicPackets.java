@@ -33,6 +33,7 @@ public enum PatternSchematicPackets {
                                                          NetworkDirection direction) {
         packetType = new PacketType<>(type, factory, direction);
     }
+    
     public static void registerPackets() {
         channel = NetworkRegistry.ChannelBuilder.named(CHANNEL_NAME)
             .serverAcceptedVersions(NETWORK_VERSION_STR::equals)
@@ -55,6 +56,7 @@ public enum PatternSchematicPackets {
     }
     
     private static class PacketType<T extends SimplePacketBase> {
+        
         private static int index = 0;
         
         private BiConsumer<T, FriendlyByteBuf> encoder;
@@ -83,6 +85,7 @@ public enum PatternSchematicPackets {
                 .consumerNetworkThread(handler)
                 .add();
         }
+        
     }
     
 }

@@ -6,8 +6,9 @@
   "client": [
   ],
   "mixins": [
-    "AntiCreativeCrateCrashMixin",
+    "SchematicannonBlockEntityMixin",
     "SchematicannonInventoryMixin",
+    "SchematicTableBlockEntityMixin",
     "SchematicTableMenuMixin"
   ],
   "injectors": {

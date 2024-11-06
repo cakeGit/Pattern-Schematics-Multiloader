@@ -8,19 +8,22 @@
   - Made the schematicannon result in the proper item (previously would give Create's schematic no matter what)
   - Added an indicator when applying a non positioned schematic to a contraption deployer
   (This is a port, so this is the list of all changes from version 1.1.6->1.1.8)
-1.20.1-1.1.9: |
+
+1.19.2-1.1.13: |
+  - Updated to 1.1.13 from 1.20.1 branch
   - Reduced visual clutter on schematic clone highlights [Example of new system](https://media.discordapp.net/attachments/1267781614591676426/1272539875136114820/2024-08-12_13.56.54.png?ex=66bb589c&is=66ba071c&hm=7870a62f2b19ea94babd9fd1c250ee8eaecfb8827f0b1c4dfaa08f7d3080d299&=&format=webp&quality=lossless&width=1168&height=614)
     - This also should help to improve performance
-1.20.1-1.1.10: |
   - Fixed signal placement bug
-1.20.1-1.1.11: |
   - Changed creative mode tab ordering (Also should help for when latest create releases)
   - Changed to use correct gradle version
-1.20.1-1.1.12: |
   - Misc refactor
   - Mainly just to bump version to republish
-1.20.1-1.1.13: |
   - Added crafting using existing schematics instead of paper
+  
+1.19.2-1.1.15: |
+  - Updated to 1.1.15 from 1.20.1
+  - Update logo for 1.20.1
+  - Added Spanish gameplay translations
 1.20.1-1.1.14: |
   - Update logo for 1.20.1
 1.20.1-1.1.15: |

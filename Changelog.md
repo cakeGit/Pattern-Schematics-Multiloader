@@ -2,7 +2,7 @@
 - Fixed display bug, thanks to discord user @karolofgutovo for reporting
 - Created ponder system with 1 ponder about printing (contraption ponder coming soon)
 - (Technical) Created datagen
-- 
+
 1.1.4:
 - Fixed a bug with deployers placing at the wrong offsets
 - Created bulk apply system to reduce pain of having to put a schematic on each individual deployer
@@ -22,4 +22,4 @@
 
 1.1.8:
 - Made the schematicannon result in the proper item (previously would give Create's schematic no matter what)
-- Added an indicator when applying a non positioned schematic to a contraption deployer
+- Added an indicator when applying a non positioned schematic to a contraption deployer_

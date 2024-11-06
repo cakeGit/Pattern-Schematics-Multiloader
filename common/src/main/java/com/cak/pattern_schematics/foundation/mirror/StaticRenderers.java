@@ -2,6 +2,9 @@ package com.cak.pattern_schematics.foundation.mirror;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Matrix4f;
+import com.mojang.math.Vector3f;
+import com.mojang.math.Vector4f;
 import com.simibubi.create.AllSpecialTextures;
 import com.simibubi.create.foundation.render.RenderTypes;
 import com.simibubi.create.foundation.render.SuperRenderTypeBuffer;
@@ -9,11 +12,11 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
-import org.joml.Matrix4f;
-import org.joml.Vector3f;
-import org.joml.Vector4f;
 
-/**From {@link com.simibubi.create.foundation.outliner.AABBOutline#render(PoseStack, SuperRenderTypeBuffer, Vec3, float)}*/
+/**
+ * From
+ * {@link com.simibubi.create.foundation.outliner.AABBOutline#render(PoseStack, SuperRenderTypeBuffer, Vec3, float)}
+ */
 public class StaticRenderers {
     
     protected static final Vector4f colorTemp1 = new Vector4f();
@@ -126,29 +129,29 @@ public class StaticRenderers {
     protected static final Vector3f normalTransformTemp = new Vector3f();
     
     public static void bufferQuad(PoseStack.Pose pose, VertexConsumer consumer, Vector3f pos0, Vector3f pos1, Vector3f pos2,
-                           Vector3f pos3, Vector4f color, float minU, float minV, float maxU, float maxV, int lightmap, Vector3f normal) {
+                                  Vector3f pos3, Vector4f color, float minU, float minV, float maxU, float maxV, int lightmap, Vector3f normal) {
         Matrix4f posMatrix = pose.pose();
         
         posTransformTemp.set(pos0.x(), pos0.y(), pos0.z(), 1);
-        posTransformTemp.mul(posMatrix);
+        posTransformTemp.transform(posMatrix);
         double x0 = posTransformTemp.x();
         double y0 = posTransformTemp.y();
         double z0 = posTransformTemp.z();
         
         posTransformTemp.set(pos1.x(), pos1.y(), pos1.z(), 1);
-        posTransformTemp.mul(posMatrix);
+        posTransformTemp.transform(posMatrix);
         double x1 = posTransformTemp.x();
         double y1 = posTransformTemp.y();
         double z1 = posTransformTemp.z();
         
         posTransformTemp.set(pos2.x(), pos2.y(), pos2.z(), 1);
-        posTransformTemp.mul(posMatrix);
+        posTransformTemp.transform(posMatrix);
         double x2 = posTransformTemp.x();
         double y2 = posTransformTemp.y();
         double z2 = posTransformTemp.z();
         
         posTransformTemp.set(pos3.x(), pos3.y(), pos3.z(), 1);
-        posTransformTemp.mul(posMatrix);
+        posTransformTemp.transform(posMatrix);
         double x3 = posTransformTemp.x();
         double y3 = posTransformTemp.y();
         double z3 = posTransformTemp.z();
@@ -158,8 +161,8 @@ public class StaticRenderers {
         float b = color.z();
         float a = color.w();
         
-        normalTransformTemp.set(normal);
-        normalTransformTemp.mul(pose.normal());
+        normalTransformTemp.set(normal.x(), normal.y(), normal.z());
+        normalTransformTemp.transform(pose.normal());
         float nx = normalTransformTemp.x();
         float ny = normalTransformTemp.y();
         float nz = normalTransformTemp.z();

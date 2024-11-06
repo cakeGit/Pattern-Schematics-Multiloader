@@ -1,9 +1,9 @@
 package com.cak.pattern_schematics.mixin;
 
 import com.cak.pattern_schematics.PatternSchematicsClient;
+import com.cak.pattern_schematics.foundation.mirror.CloneSchematicOutlineRenderer;
 import com.cak.pattern_schematics.foundation.mirror.PatternSchematicHandler;
 import com.cak.pattern_schematics.foundation.mirror.PatternSchematicsToolType;
-import com.cak.pattern_schematics.foundation.mirror.CloneSchematicOutlineRenderer;
 import com.simibubi.create.CreateClient;
 import com.simibubi.create.content.schematics.client.SchematicHandler;
 import com.simibubi.create.content.schematics.client.tools.SchematicToolBase;
@@ -64,9 +64,9 @@ public abstract class SchematicToolBaseMixin {
     public Direction getFacingResult(RaycastHelper.PredicateTraceResult instance) {
         if (
             pattern_schematics$currentThreadIsPatternSchematic &&
-            pattern_schematics$currentThreadPatternBounds.contains(
-                schematicHandler.getTransformation().toLocalSpace(Minecraft.getInstance().player.getEyePosition())
-            )
+                pattern_schematics$currentThreadPatternBounds.contains(
+                    schematicHandler.getTransformation().toLocalSpace(Minecraft.getInstance().player.getEyePosition())
+                )
         ) {
             return instance.getFacing().getOpposite();
         }

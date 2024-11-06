@@ -11,11 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = SchematicItem.class, remap = false)
 public class SchematicItemMixin {
-  
-  @Inject(method = "onItemUse", at = @At(value = "HEAD"), cancellable = true)
-  public void onItemUse(Player player, InteractionHand hand, CallbackInfoReturnable<Boolean> cir) {
-    if (player.getItemInHand(hand).getItem() instanceof PatternSchematicItem)
-      cir.setReturnValue(false);
-  }
-  
+    
+    @Inject(method = "onItemUse", at = @At(value = "HEAD"), cancellable = true)
+    public void onItemUse(Player player, InteractionHand hand, CallbackInfoReturnable<Boolean> cir) {
+        if (player.getItemInHand(hand).getItem() instanceof PatternSchematicItem)
+            cir.setReturnValue(false);
+    }
+    
 }

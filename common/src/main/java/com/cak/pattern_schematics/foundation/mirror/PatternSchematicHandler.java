@@ -24,7 +24,6 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.Tag;
@@ -155,7 +154,7 @@ public class PatternSchematicHandler extends SchematicHandler {
     private void setupRenderer() {
         Level clientWorld = Minecraft.getInstance().level;
         StructureTemplate schematic =
-            SchematicItem.loadSchematic(clientWorld.holderLookup(Registries.BLOCK), activeSchematicItem);
+            SchematicItem.loadSchematic(activeSchematicItem);
         Vec3i size = schematic.getSize();
         if (size.equals(Vec3i.ZERO))
             return;
@@ -266,8 +265,6 @@ public class PatternSchematicHandler extends SchematicHandler {
             if (isRenderingMain) {
                 currentTool.getTool()
                     .renderOnSchematic(ms, buffer);
-            } else if (deployed) {
-                CloneSchematicOutlineRenderer.renderClone(ms, this, buffer);
             }
         
         ms.popPose();
@@ -386,7 +383,7 @@ public class PatternSchematicHandler extends SchematicHandler {
         outline = new AABBOutline(bounds);
         outline.getParams()
             .colored(0xa586a5)
-            .lineWidth(0);
+            .lineWidth(1 / 16f);
         greaterOutline = new AABBOutline(calculateGreaterOutlineBounds());
         greaterOutline.getParams()
             .colored(0xa586a5)

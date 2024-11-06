@@ -43,6 +43,7 @@ public enum PatternSchematicPackets {
     }
     
     private static class PacketType<T extends SimplePacketBase> {
+        
         private static int index = 0;
         
         private Function<FriendlyByteBuf, T> decoder;
@@ -61,6 +62,7 @@ public enum PatternSchematicPackets {
                 case PLAY_TO_SERVER -> getChannel().registerC2SPacket(type, index++, decoder);
             }
         }
+        
     }
     
 }
