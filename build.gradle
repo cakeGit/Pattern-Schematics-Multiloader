@@ -94,10 +94,12 @@ allprojects {
 
 publishMods {
     def TOKENS = new HashMap<String, String>();
-    file("$projectDir/.env").readLines().each() {
-        def (key, value) = it.tokenize('=')
-        TOKENS.put(key, value)
-    }
+    def envFile = file("$projectDir/.env");
+    if (envFile.exists())
+        envFile.readLines().each() {
+            def (key, value) = it.tokenize('=')
+            TOKENS.put(key, value)
+        }
 
     def cfg = new Yaml().load(new File("$projectDir/changelog.yaml").newInputStream())
     def changelogText = cfg[minecraft_version + "-" + mod_version];
