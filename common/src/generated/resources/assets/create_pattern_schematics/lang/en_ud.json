@@ -18,9 +18,11 @@
   "create_pattern_schematics.ponder.train_schematic_printing.text_3": "buıʇɐǝdǝɹ ɔıʇɐɯǝɥɔs ǝɥʇ uı ʇןnsǝɹ ןןıʍ ɹǝɥʇɹnɟ uıɐɹʇ ǝɥʇ buıʌoɯ ʇnᗺ",
   "create_pattern_schematics.schematic.tool.clone": "ǝuoןƆ",
   "create_pattern_schematics.schematic.tool.clone.description.0": "ɔıʇɐɯǝɥɔs pǝʇɔǝןǝs ǝɥʇ sʇɐǝdǝᴚ",
-  "create_pattern_schematics.schematic.tool.clone.description.1": "˙ʇı ʇɐǝdǝɹ oʇ ןןoɹɔS-]Ꞁᴚ⟘Ɔ[ puɐ ɔıʇɐɯǝɥɔS ǝɥʇ ʇɐ ʇuıoԀ",
-  "create_pattern_schematics.schematic.tool.clone.description.2": "buıɔɐɟ ǝɹɐ noʎ uoıʇɔǝɹıp ǝɥʇ uı ǝuoןɔ oʇ ןןoɹɔS-]⟘ℲIHS+Ꞁᴚ⟘Ɔ[ 'ʎןǝʌıʇɐuɹǝʇןⱯ",
+  "create_pattern_schematics.schematic.tool.clone.description.1": "˙uoıʇɔǝɹıp buıɔɐɟ ʇuǝɹɹnɔ ǝɥʇ uı ǝuoןɔ oʇ ןןoɹɔS-]Ꞁᴚ⟘Ɔ[ ǝsn puɐ ʇɔǝןǝS",
+  "create_pattern_schematics.schematic.tool.clone.description.2": "˙ǝɔɐɟɹns pǝʇɔǝןǝs ǝɥʇ uo ǝuoןɔ oʇ ןןoɹɔS-]⟘ℲIHS+Ꞁᴚ⟘Ɔ[ 'ʎןǝʌıʇɐuɹǝʇןⱯ",
   "create_pattern_schematics.schematic.tool.clone.description.3": "",
   "item.create_pattern_schematics.empty_pattern_schematic": "ɔıʇɐɯǝɥɔS uɹǝʇʇɐԀ ʎʇdɯƎ",
-  "item.create_pattern_schematics.pattern_schematic": "ɔıʇɐɯǝɥɔS uɹǝʇʇɐԀ"
+  "item.create_pattern_schematics.empty_pattern_schematic.tooltip.summary": "˙sǝɯıʇ ǝןdıʇןnɯ ‾ubısǝp ɐ ʇɐǝdǝɹ‾ oʇ suouuɐɔıʇɐɯǝɥɔs puɐ suoıʇdɐɹʇuoɔ sʍoןןɐ ɥɔıɥʍ ‾ɔıʇɐɯǝɥɔs s,ǝʇɐǝɹƆ ɟo uoısɹǝʌ pǝpuǝʇxǝ‾ uɐ ǝʞɐɯ oʇ uǝʇʇıɹʍ ǝq uɐƆ",
+  "item.create_pattern_schematics.pattern_schematic": "ɔıʇɐɯǝɥɔS uɹǝʇʇɐԀ",
+  "item.create_pattern_schematics.pattern_schematic.tooltip.summary": "˙sǝɯıʇ ǝןdıʇןnɯ ‾ubısǝp ɐ ʇɐǝdǝɹ‾ oʇ suouuɐɔıʇɐɯǝɥɔs puɐ suoıʇdɐɹʇuoɔ sʍoןןɐ ɥɔıɥʍ ‾ɔıʇɐɯǝɥɔs s,ǝʇɐǝɹƆ ɟo uoısɹǝʌ pǝpuǝʇxǝ‾ uⱯ"
 }

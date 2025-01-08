@@ -26,7 +26,10 @@ public class CloneTool extends SchematicToolBase {
       throw new RuntimeException("Clone tool bound in a normal SchematicHandler!");
     
     LocalPlayer player = Minecraft.getInstance().player;
-    Direction face = (AllKeys.shiftDown() && player != null) ? facingOfPlayer(player) : selectedFace;
+    Direction face = (!AllKeys.shiftDown() && player != null) ? facingOfPlayer(player).getOpposite() : selectedFace;
+    
+    if (face == null)
+      return true;
     
     boolean isPositive = face.getAxisDirection() == Direction.AxisDirection.POSITIVE;
     

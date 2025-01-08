@@ -18,9 +18,11 @@
   "create_pattern_schematics.ponder.train_schematic_printing.text_3": "But moving the train further will result in the schematic repeating",
   "create_pattern_schematics.schematic.tool.clone": "Clone",
   "create_pattern_schematics.schematic.tool.clone.description.0": "Repeats the selected schematic",
-  "create_pattern_schematics.schematic.tool.clone.description.1": "Point at the Schematic and [CTRL]-Scroll to repeat it.",
-  "create_pattern_schematics.schematic.tool.clone.description.2": "Alternatively, [CTRL+SHIFT]-Scroll to clone in the direction you are facing",
+  "create_pattern_schematics.schematic.tool.clone.description.1": "Select and use [CTRL]-Scroll to clone in the current facing direction.",
+  "create_pattern_schematics.schematic.tool.clone.description.2": "Alternatively, [CTRL+SHIFT]-Scroll to clone on the selected surface.",
   "create_pattern_schematics.schematic.tool.clone.description.3": "",
   "item.create_pattern_schematics.empty_pattern_schematic": "Empty Pattern Schematic",
-  "item.create_pattern_schematics.pattern_schematic": "Pattern Schematic"
+  "item.create_pattern_schematics.empty_pattern_schematic.tooltip.summary": "Can be written to make an _extended version of Create's schematic_ which allows contraptions and schematicannons to _repeat a design_ multiple times.",
+  "item.create_pattern_schematics.pattern_schematic": "Pattern Schematic",
+  "item.create_pattern_schematics.pattern_schematic.tooltip.summary": "An _extended version of Create's schematic_ which allows contraptions and schematicannons to _repeat a design_ multiple times."
 }

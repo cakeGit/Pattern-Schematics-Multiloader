@@ -4,8 +4,8 @@
   "create_pattern_schematics.contraption_application.not_positioned": "No se pudo aplicar el esquema: ¡Esquema no esta colocado!",
   "create_pattern_schematics.schematic.tool.clone": "Clonar",
   "create_pattern_schematics.schematic.tool.clone.description.0": "Repetir el esquema seleccionado",
-  "create_pattern_schematics.schematic.tool.clone.description.1": "Apunte al Esquema y usar [Ctrl]+[RUEDA DEL RATÓN] para repetir",
-  "create_pattern_schematics.schematic.tool.clone.description.2": "[Ctrl+Shift]+[RUEDA DEL RATÓN] clonaré donde donde te enfrentas",
+  "create_pattern_schematics.schematic.tool.clone.description.1": "Apunte al esquema y [Ctrl]+[RUEDA DEL RATÓN] para repetir",
+  "create_pattern_schematics.schematic.tool.clone.description.2": "[Ctrl+Shift]+[RUEDA DEL RATÓN] clonaré en la cara seleccionada",
   "create_pattern_schematics.schematic.tool.clone.description.3": "",
   "item.create_pattern_schematics.empty_pattern_schematic": "Esquema Patrón vacío",
   "item.create_pattern_schematics.pattern_schematic": "Esquema Patrón"

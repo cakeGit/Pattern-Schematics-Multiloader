@@ -9,7 +9,6 @@ buildscript {
     }
 }
 
-
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id "dev.architectury.loom" version "1.5-SNAPSHOT" apply false
@@ -173,6 +172,6 @@ publishMods {
     discord("discordUniversal") {
         webhookUrl = TOKENS.get("DISCORD_WEBHOOK")
         username = "New Version Announcement | Create: Pattern Schematics"
-        content = "$newVersionPing\n# Create: Pattern Schematics has been updated to $mod_version for $minecraft_version ($fabricEmoji / $forgeEmoji)\n " + changelogText
+        content = "\n# Create: Pattern Schematics has been updated to $mod_version for $minecraft_version ($fabricEmoji / $forgeEmoji)\n " + changelogText
     }
 }

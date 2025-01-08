@@ -25,4 +25,11 @@
   - Update logo for 1.20.1
 1.20.1-1.1.15: |
   - Added Spanish gameplay translations
+1.20.1-1.1.16: |
+  - Added item tooltips
+  - Tweaked control scheme for the clone tool
+1.20.1-1.1.17: |
+  - Chinese Localisation from TASC2 on github :D!
+1.20.1-1.1.18: |
+  - LOLCATZ translation (Thanks @Chazbomb)
 ...
