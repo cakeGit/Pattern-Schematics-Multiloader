@@ -7,6 +7,7 @@ import com.cak.pattern_schematics.content.ponder.PatternSchematicsPonderIndex;
 import com.cak.pattern_schematics.content.ponder.PatternSchematicsPonderTags;
 import com.cak.pattern_schematics.foundation.mirror.fabric.PatternSchematicHandlerFabric;
 import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.Minecraft;
@@ -30,6 +31,7 @@ public class PatternSchematicsFabricClient implements ClientModInitializer {
             Window window = Minecraft.getInstance().getWindow();
             
             PATTERN_SCHEMATICS_HANDLER_FABRIC.renderOverlay(graphics, partialTicks, window);
+            RenderSystem.setShaderColor(1, 1, 1, 1);
         });
     }
     

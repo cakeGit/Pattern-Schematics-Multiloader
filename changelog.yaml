@@ -32,4 +32,6 @@
   - Chinese Localisation from TASC2 on github :D!
 1.20.1-1.1.18: |
   - LOLCATZ translation (Thanks @Chazbomb)
+1.20.1-1.1.19: |
+  - Fix to fabric overlay transparency when opening the inventory
 ...

@@ -1,6 +1,7 @@
 package com.cak.pattern_schematics.foundation.mirror.forge;
 
 import com.cak.pattern_schematics.foundation.mirror.PatternSchematicHandler;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.simibubi.create.AllPackets;
 import com.simibubi.create.content.schematics.SchematicInstances;
 import com.simibubi.create.content.schematics.packet.SchematicPlacePacket;
@@ -20,6 +21,7 @@ public class PatternSchematicHandlerForge extends PatternSchematicHandler {
     currentTool.getTool()
         .renderOverlay(gui, graphics, partialTicks, width, height);
     selectionScreen.renderPassive(graphics, partialTicks);
+    RenderSystem.setShaderColor(1, 1, 1, 1);
   }
   
   public void printInstantly() {
