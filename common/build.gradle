@@ -1,12 +1,11 @@
 architectury {
     common(rootProject.enabled_platforms.split(","))
     platformSetupLoomIde()
-    forge()
+    neoForge()
 }
 
 loom {
     accessWidenerPath = file("src/main/resources/pattern_schematics.accesswidener")
-    forge {}
 }
 
 repositories {
@@ -22,10 +21,11 @@ repositories {
     maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
     maven { url = "https://maven.tterrag.com" } // Registrate
     maven { url = "https://repo.spongepowered.org/maven/" } // Mixin
+    maven { url "https://maven.neoforged.net/releases/" }
 }
 
 dependencies {
-    forge("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    neoForge("net.neoforged:neoforge:${neoforge_version}")
     // We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
     // Do NOT use other classes from fabric loader
 //    modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
@@ -40,9 +40,11 @@ dependencies {
     // Create and its dependencies
     implementation 'org.spongepowered:mixin:0.8.7'
     compileOnly('com.google.code.findbugs:jsr305:3.0.2')
+
+    // Create and its dependencies
     modCompileOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
-    modCompileOnly("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}")
-    modCompileOnly("dev.engine-room.flywheel:flywheel-forge-api-${minecraft_version}:${flywheel_version}")
+    modCompileOnly("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}")
+    modCompileOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
     modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}")
 }
 
