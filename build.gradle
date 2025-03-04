@@ -94,6 +94,7 @@ allprojects {
 publishMods {
     def TOKENS = new HashMap<String, String>();
     def envFile = file("$projectDir/.env");
+
     if (envFile.exists())
         envFile.readLines().each() {
             def (key, value) = it.tokenize('=')
@@ -108,7 +109,7 @@ publishMods {
     def fabricName = "Create: Pattern Schematics $mod_version Fabric $minecraft_version";
 
     def forgeFile = project(":forge").tasks.named("remapJar").get().archiveFile;
-    def fabricFile = project(":fabric").tasks.named("remapJar").get().archiveFile;
+//    def fabricFile = project(":fabric").tasks.named("remapJar").get().archiveFile;
 
     def forgeEmoji = "<:forge:1267784983771222088>";
     def fabricEmoji = "<:fabric:1267785013936783421>";
@@ -143,31 +144,31 @@ publishMods {
         requires("create")
     }
 
-    curseforge("fabricCF") {
-        file = fabricFile
-        displayName = fabricName
-        projectId = "1072349"
-        projectSlug = "create-pattern-schematics" // Required for discord webhook
-        accessToken = TOKENS.get("CURSEFORGE_PUBLISH_TOKEN")
-        minecraftVersions.add(minecraft_version)
-        announcementTitle = "Curseforge download for $fabricEmoji"
-        modLoaders.add("fabric")
-
-        javaVersions.add(JavaVersion.VERSION_17)
-        clientRequired = true
-        serverRequired = true
-        requires("create-fabric", "fabric-api")
-    }
-    modrinth("fabricMR") {
-        file = fabricFile
-        displayName = fabricName
-        projectId = "cpqKG67r"
-        accessToken = TOKENS.get("MODRINTH_PUBLISH_TOKEN")
-        minecraftVersions.add(minecraft_version)
-        announcementTitle = "Modrinth download for $fabricEmoji"
-        modLoaders.add("fabric")
-        requires("create-fabric", "fabric-api")
-    }
+//    curseforge("fabricCF") {
+//        file = fabricFile
+//        displayName = fabricName
+//        projectId = "1072349"
+//        projectSlug = "create-pattern-schematics" // Required for discord webhook
+//        accessToken = TOKENS.get("CURSEFORGE_PUBLISH_TOKEN")
+//        minecraftVersions.add(minecraft_version)
+//        announcementTitle = "Curseforge download for $fabricEmoji"
+//        modLoaders.add("fabric")
+//
+//        javaVersions.add(JavaVersion.VERSION_17)
+//        clientRequired = true
+//        serverRequired = true
+//        requires("create-fabric", "fabric-api")
+//    }
+//    modrinth("fabricMR") {
+//        file = fabricFile
+//        displayName = fabricName
+//        projectId = "cpqKG67r"
+//        accessToken = TOKENS.get("MODRINTH_PUBLISH_TOKEN")
+//        minecraftVersions.add(minecraft_version)
+//        announcementTitle = "Modrinth download for $fabricEmoji"
+//        modLoaders.add("fabric")
+//        requires("create-fabric", "fabric-api")
+//    }
 
     discord("discordUniversal") {
         webhookUrl = TOKENS.get("DISCORD_WEBHOOK")
