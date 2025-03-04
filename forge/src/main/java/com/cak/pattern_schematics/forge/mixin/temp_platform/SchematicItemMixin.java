@@ -1,4 +1,4 @@
-package com.cak.pattern_schematics.mixin;
+package com.cak.pattern_schematics.forge.mixin.temp_platform;
 
 import com.cak.pattern_schematics.content.item.PatternSchematicItem;
 import com.simibubi.create.content.schematics.SchematicItem;

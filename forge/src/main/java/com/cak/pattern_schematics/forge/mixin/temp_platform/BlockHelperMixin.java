@@ -1,4 +1,4 @@
-package com.cak.pattern_schematics.mixin;
+package com.cak.pattern_schematics.forge.mixin.temp_platform;
 
 import com.simibubi.create.content.trains.track.TrackTargetingBehaviour;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;

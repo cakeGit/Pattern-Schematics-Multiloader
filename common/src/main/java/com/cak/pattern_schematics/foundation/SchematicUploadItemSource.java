@@ -5,10 +5,9 @@ import com.cak.pattern_schematics.registry.PatternSchematicsRegistry;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.schematics.SchematicItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
-import net.minecraft.core.HolderGetter;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.Level;
 
 import java.util.Arrays;
 import java.util.List;
@@ -61,8 +60,8 @@ public enum SchematicUploadItemSource {
         .findAny().orElse(null);
   }
   
-  public static interface SchematicItemFactory {
-    ItemStack create(HolderGetter<Block> lookup, String schematic, String owner);
+  public interface SchematicItemFactory {
+    ItemStack create(Level lookup, String schematic, String owner);
   }
   
 }

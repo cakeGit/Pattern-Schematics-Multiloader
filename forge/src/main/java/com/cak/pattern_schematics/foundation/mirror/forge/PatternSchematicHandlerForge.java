@@ -4,6 +4,7 @@ import com.cak.pattern_schematics.foundation.mirror.PatternSchematicHandler;
 import com.simibubi.create.AllPackets;
 import com.simibubi.create.content.schematics.SchematicInstances;
 import com.simibubi.create.content.schematics.packet.SchematicPlacePacket;
+import net.createmod.catnip.outliner.AABBOutline;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.nbt.CompoundTag;
@@ -31,6 +32,10 @@ public class PatternSchematicHandlerForge extends PatternSchematicHandler {
     renderers.forEach(r -> r.setActive(false));
     active = false;
     markDirty();
+  }
+
+  public AABBOutline getOutline() {
+    return outline;
   }
   
 }

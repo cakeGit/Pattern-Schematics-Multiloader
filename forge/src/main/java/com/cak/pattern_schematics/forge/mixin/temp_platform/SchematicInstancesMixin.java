@@ -1,9 +1,9 @@
-package com.cak.pattern_schematics.mixin;
+package com.cak.pattern_schematics.forge.mixin.temp_platform;
 
 import com.cak.pattern_schematics.content.item.PatternSchematicItem;
-import com.cak.pattern_schematics.foundation.mirror.PatternSchematicWorld;
+import com.cak.pattern_schematics.foundation.mirror.PatternSchematicLevel;
 import com.simibubi.create.content.schematics.SchematicInstances;
-import com.simibubi.create.content.schematics.SchematicWorld;
+import net.createmod.catnip.levelWrappers.SchematicLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
@@ -20,7 +20,7 @@ public class SchematicInstancesMixin {
   private static StructureTemplate lastThreadStructureTemplate = null;
   
   @Inject(method = "loadWorld", at = @At(value = "HEAD"))
-  private static void loadWorld(Level wrapped, ItemStack schematic, CallbackInfoReturnable<SchematicWorld> cir) {
+  private static void loadWorld(Level wrapped, ItemStack schematic, CallbackInfoReturnable<SchematicLevel> cir) {
     lastThreadStack = schematic;
   }
   
@@ -31,13 +31,17 @@ public class SchematicInstancesMixin {
   }
   
   @ModifyVariable(method = "loadWorld", at = @At("STORE"), ordinal = 0)
-  private static SchematicWorld loadWorld(SchematicWorld value) {
+  private static SchematicLevel loadWorld(SchematicLevel value) {
+    return getSchematicLevelDebuggable(value);
+  }
+
+  private static SchematicLevel getSchematicLevelDebuggable(SchematicLevel value) {
     if (lastThreadStack.getItem() instanceof PatternSchematicItem) {
-      PatternSchematicWorld patternSchematicWorld = new PatternSchematicWorld(value.anchor, value.getLevel());
-      patternSchematicWorld.putExtraData(lastThreadStack, lastThreadStructureTemplate);
-      return patternSchematicWorld;
+      PatternSchematicLevel patternSchematicLevel = new PatternSchematicLevel(value.anchor, value.getLevel());
+      patternSchematicLevel.putExtraData(lastThreadStack, lastThreadStructureTemplate);
+      return patternSchematicLevel;
     }
     return value;
   }
-  
+
 }

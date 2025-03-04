@@ -1,12 +1,11 @@
 package com.cak.pattern_schematics.foundation.mirror;
 
-
 import com.cak.pattern_schematics.PatternSchematics;
 import com.cak.pattern_schematics.foundation.CloneTool;
 import com.cak.pattern_schematics.foundation.SingleIcon;
 import com.simibubi.create.content.schematics.client.tools.*;
 import com.simibubi.create.foundation.gui.AllIcons;
-import com.simibubi.create.foundation.utility.Lang;
+import com.simibubi.create.foundation.utility.CreateLang;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
@@ -44,8 +43,8 @@ public enum PatternSchematicsToolType {
   }
   
   public MutableComponent getDisplayName() {
-    return (patternModId ? Component.translatable(PatternSchematics.MOD_ID + ".schematic.tool." + Lang.asId(name()))
-    : Lang.translateDirect("schematic.tool." + Lang.asId(name())));
+    return (patternModId ? Component.translatable(PatternSchematics.MOD_ID + ".schematic.tool." + CreateLang.asId(name()))
+    : CreateLang.translateDirect("schematic.tool." + CreateLang.asId(name())));
   }
   
   public AllIcons getIcon() {
@@ -65,8 +64,8 @@ public enum PatternSchematicsToolType {
   }
   
   public List<Component> getDescription() {
-    return (patternModId ? PatternSchematicsToolType.translatedOptions(PatternSchematics.MOD_ID + ".schematic.tool." + Lang.asId(name()) + ".description", "0", "1", "2", "3")
-        : Lang.translatedOptions("schematic.tool." + Lang.asId(name()) + ".description", "0", "1", "2", "3"));
+    return (patternModId ? PatternSchematicsToolType.translatedOptions(PatternSchematics.MOD_ID + ".schematic.tool." + CreateLang.asId(name()) + ".description", "0", "1", "2", "3")
+        : CreateLang.translatedOptions("schematic.tool." + CreateLang.asId(name()) + ".description", "0", "1", "2", "3"));
   }
   
   public static List<Component> translatedOptions(String prefix, String... keys) {

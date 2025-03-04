@@ -1,13 +1,11 @@
-package com.cak.pattern_schematics.mixin;
+package com.cak.pattern_schematics.forge.mixin.temp_platform;
 
 import com.cak.pattern_schematics.foundation.mixin_accessors.SchematicTableBlockEntityMixinAccessor;
 import com.simibubi.create.content.schematics.ServerSchematicLoader;
 import com.simibubi.create.content.schematics.table.SchematicTableBlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderGetter;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -23,10 +21,10 @@ public class ServerSchematicLoaderMixin {
     return instance.getTable(world, pos);
   }
   
-  @Redirect(method = "handleFinishedUpload", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/schematics/SchematicItem;create(Lnet/minecraft/core/HolderGetter;Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/world/item/ItemStack;", remap = true))
-  private ItemStack injected(HolderGetter<Block> lookup, String schematic, String owner) {
+  @Redirect(method = "handleFinishedUpload", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/schematics/SchematicItem;create(Lnet/minecraft/world/level/Level;Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/world/item/ItemStack;", remap = true))
+  private ItemStack injected(Level level, String schematic, String owner) {
     return ((SchematicTableBlockEntityMixinAccessor) uploadTargetTable).getSchematicSource()
-        .getFactory().create(lookup, schematic, owner);
+        .getFactory().create(level, schematic, owner);
   }
 
 }

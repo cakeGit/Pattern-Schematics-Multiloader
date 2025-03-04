@@ -1,29 +1,20 @@
 package com.cak.pattern_schematics.foundation.mirror;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.simibubi.create.AllSpecialTextures;
 import com.simibubi.create.content.schematics.client.SchematicHandler;
-import com.simibubi.create.foundation.outliner.AABBOutline;
-import com.simibubi.create.foundation.render.RenderTypes;
-import com.simibubi.create.foundation.render.SuperRenderTypeBuffer;
-import com.simibubi.create.foundation.utility.AnimationTickHolder;
-import com.simibubi.create.foundation.utility.Color;
-import com.simibubi.create.foundation.utility.Iterate;
-import net.fabricmc.loader.impl.lib.sat4j.core.Vec;
+import net.createmod.catnip.animation.AnimationTickHolder;
+import net.createmod.catnip.data.Iterate;
+import net.createmod.catnip.outliner.AABBOutline;
+import net.createmod.catnip.render.SuperRenderTypeBuffer;
 import net.minecraft.client.renderer.LightTexture;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 
 import java.util.List;
-import java.util.Optional;
 
 public class CloneSchematicOutlineRenderer {
     
@@ -103,19 +94,6 @@ public class CloneSchematicOutlineRenderer {
     
     private static Vector3f toVec3f(Vec3 vec) {
         return new Vector3f((float) vec.x, (float) vec.y, (float) vec.z);
-    }
-    
-    public static void renderClone(PoseStack ms, SchematicHandler schematicHandler, SuperRenderTypeBuffer buffer) {
-//        ms.pushPose();
-//        AABBOutline outline = schematicHandler.getOutline();
-//        outline.getParams()
-//            .colored(0xa6a1af)
-//            .withFaceTexture(AllSpecialTextures.CHECKERED)
-//            .lineWidth(0);
-//        outline.render(ms, buffer, Vec3.ZERO, AnimationTickHolder.getPartialTicks());
-//        outline.getParams()
-//            .clearTextures();
-//        ms.popPose();
     }
     
     public static void applyOutlineModification(SchematicHandler schematicHandler) {

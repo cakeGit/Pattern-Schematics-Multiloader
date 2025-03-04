@@ -3,8 +3,7 @@ package com.cak.pattern_schematics.foundation.mirror;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.simibubi.create.AllSpecialTextures;
-import com.simibubi.create.foundation.render.RenderTypes;
-import com.simibubi.create.foundation.render.SuperRenderTypeBuffer;
+import net.createmod.catnip.render.PonderRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
@@ -13,19 +12,19 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 
-/**From {@link com.simibubi.create.foundation.outliner.AABBOutline#render(PoseStack, SuperRenderTypeBuffer, Vec3, float)}*/
+/**From {@link net.createmod.catnip.outliner.AABBOutline#render(PoseStack, net.createmod.catnip.render.SuperRenderTypeBuffer, Vec3, float)}*/
 public class StaticRenderers {
     
     protected static final Vector4f colorTemp1 = new Vector4f();
     
-    protected static void renderBoxFace(PoseStack.Pose pose, SuperRenderTypeBuffer buffer, boolean cull, boolean highlighted, Vector3f minPos, Vector3f maxPos, Direction face, Vector4f color, int lightmap) {
-        RenderType renderType = RenderTypes.getOutlineTranslucent(AllSpecialTextures.CHECKERED.getLocation(), cull);
+    protected static void renderBoxFace(PoseStack.Pose pose, net.createmod.catnip.render.SuperRenderTypeBuffer buffer, boolean cull, boolean highlighted, Vector3f minPos, Vector3f maxPos, Direction face, Vector4f color, int lightmap) {
+        RenderType renderType = PonderRenderTypes.outlineTranslucent(AllSpecialTextures.CHECKERED.getLocation(), cull);
         VertexConsumer consumer = buffer.getLateBuffer(renderType);
-        
+
         float alphaMult = highlighted ? 1 : 0.5f;
         colorTemp1.set(color.x(), color.y(), color.z(), color.w() * alphaMult);
         color = colorTemp1;
-        
+
         renderBoxFace(pose, consumer, minPos, maxPos, face, color, lightmap);
     }
     

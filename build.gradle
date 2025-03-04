@@ -11,7 +11,7 @@ buildscript {
 
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "1.5-SNAPSHOT" apply false
+    id "dev.architectury.loom" version "1.9.420" apply false
     id "io.github.p03w.machete" version "1.+" // automatic jar compressing on build
     id "me.modmuss50.mod-publish-plugin" version "0.6.3"
 }

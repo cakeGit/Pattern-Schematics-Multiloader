@@ -1,11 +1,11 @@
-package com.cak.pattern_schematics.mixin;
+package com.cak.pattern_schematics.forge.mixin.temp_platform;
 
-import com.cak.pattern_schematics.foundation.mirror.PatternSchematicWorld;
+import com.cak.pattern_schematics.foundation.mirror.PatternSchematicLevel;
 import com.cak.pattern_schematics.registry.PatternSchematicsRegistry;
 import com.simibubi.create.content.kinetics.deployer.DeployerMovementBehaviour;
 import com.simibubi.create.content.schematics.SchematicItem;
-import com.simibubi.create.content.schematics.SchematicWorld;
 import com.tterrag.registrate.util.entry.ItemEntry;
+import net.createmod.catnip.levelWrappers.SchematicLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.world.item.ItemStack;
@@ -43,24 +43,24 @@ public class DeployerMovementBehaviorMixin {
     return instance.isInside(vec3i);
   }
   
-  @Redirect(method = "activateAsSchematicPrinter", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/schematics/SchematicWorld;getBlockState(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;", remap = true))
-  public BlockState getBlockState(SchematicWorld instance, BlockPos globalPos) {
-    if (instance instanceof PatternSchematicWorld patternSchematicWorld) {
-      return instance.getBlockState(pattern_Schematics$getSourceOfLocal(globalPos, patternSchematicWorld));
+  @Redirect(method = "activateAsSchematicPrinter", at = @At(value = "INVOKE", target = "Lnet/createmod/catnip/levelWrappers/SchematicLevel;getBlockState(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;", remap = true))
+  public BlockState getBlockState(SchematicLevel instance, BlockPos globalPos) {
+    if (instance instanceof PatternSchematicLevel patternSchematicLevel) {
+      return instance.getBlockState(pattern_Schematics$getSourceOfLocal(globalPos, patternSchematicLevel));
     }
     else return instance.getBlockState(globalPos);
   }
   
   @Unique
-  public BlockPos pattern_Schematics$getSourceOfLocal(BlockPos position, PatternSchematicWorld patternSchematicWorld) {
-    position = position.subtract(patternSchematicWorld.anchor);
-    BoundingBox box = patternSchematicWorld.getBounds();
+  public BlockPos pattern_Schematics$getSourceOfLocal(BlockPos position, PatternSchematicLevel patternSchematicLevel) {
+    position = position.subtract(patternSchematicLevel.anchor);
+    BoundingBox box = patternSchematicLevel.getBounds();
     position = position.subtract(new Vec3i(box.minX(), box.minY(), box.minZ()));
     return new BlockPos(
         pattern_Schematics$repeatingBounds(position.getX(), box.minX(), box.maxX()),
         pattern_Schematics$repeatingBounds(position.getY(), box.minY(), box.maxY()),
         pattern_Schematics$repeatingBounds(position.getZ(), box.minZ(), box.maxZ())
-    ).offset(patternSchematicWorld.anchor);
+    ).offset(patternSchematicLevel.anchor);
   }
   
   @Unique
@@ -68,10 +68,10 @@ public class DeployerMovementBehaviorMixin {
     return (Math.floorMod(source, (max-min)+1) + min);
   }
   
-  @Redirect(method = "activateAsSchematicPrinter", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/schematics/SchematicWorld;getBlockEntity(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;", remap = true))
-  public BlockEntity getBlockEntity(SchematicWorld instance, BlockPos globalPos) {
-    if (instance instanceof PatternSchematicWorld patternSchematicWorld)
-      return instance.getBlockEntity(pattern_Schematics$getSourceOfLocal(globalPos, patternSchematicWorld));
+  @Redirect(method = "activateAsSchematicPrinter", at = @At(value = "INVOKE", target = "Lnet/createmod/catnip/levelWrappers/SchematicLevel;getBlockEntity(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;", remap = true))
+  public BlockEntity getBlockEntity(SchematicLevel instance, BlockPos globalPos) {
+    if (instance instanceof PatternSchematicLevel patternSchematicLevel)
+      return instance.getBlockEntity(pattern_Schematics$getSourceOfLocal(globalPos, patternSchematicLevel));
     return instance.getBlockEntity(globalPos);
   }
 

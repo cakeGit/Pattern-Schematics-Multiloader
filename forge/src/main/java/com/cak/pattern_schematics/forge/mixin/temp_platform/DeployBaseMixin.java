@@ -1,4 +1,4 @@
-package com.cak.pattern_schematics.mixin;
+package com.cak.pattern_schematics.forge.mixin.temp_platform;
 
 import com.cak.pattern_schematics.foundation.mirror.CloneSchematicOutlineRenderer;
 import com.simibubi.create.content.schematics.client.tools.DeployTool;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = DeployTool.class, remap = false)
 public class DeployBaseMixin extends SchematicToolBase {
   
-  @Inject(method = "renderTool", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lcom/simibubi/create/foundation/outliner/AABBOutline;render(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/simibubi/create/foundation/render/SuperRenderTypeBuffer;Lnet/minecraft/world/phys/Vec3;F)V", remap = true))
+  @Inject(method = "renderTool", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/createmod/catnip/outliner/AABBOutline;render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/createmod/catnip/render/SuperRenderTypeBuffer;Lnet/minecraft/world/phys/Vec3;F)V", remap = true))
   public void renderTool(CallbackInfo ci) {
     CloneSchematicOutlineRenderer.applyOutlineModification(schematicHandler);
   }

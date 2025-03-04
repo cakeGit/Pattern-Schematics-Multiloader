@@ -1,12 +1,16 @@
 architectury {
     common(rootProject.enabled_platforms.split(","))
+    platformSetupLoomIde()
+    forge()
 }
 
 loom {
     accessWidenerPath = file("src/main/resources/pattern_schematics.accesswidener")
+    forge {}
 }
 
 repositories {
+    mavenCentral()
     // mavens for Create Fabric and dependencies
     maven { url = "https://api.modrinth.com/maven" } // LazyDFU
     maven { url = "https://maven.terraformersmc.com/releases/" } // Mod Menu
@@ -15,18 +19,31 @@ repositories {
     maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" } // Forge Config API Port
     maven { url = "https://maven.jamieswhiteshirt.com/libs-release" } // Reach Entity Attributes
     maven { url = "https://jitpack.io/" } // Mixin Extras, Fabric ASM
+    maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
+    maven { url = "https://maven.tterrag.com" } // Registrate
+    maven { url = "https://repo.spongepowered.org/maven/" } // Mixin
 }
 
 dependencies {
+    forge("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     // We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
     // Do NOT use other classes from fabric loader
-    modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
+//    modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
     // Compile against Create Fabric in common
     // beware of differences across platforms!
     // dependencies must also be pulled in to minimize problems, from remapping issues to compile errors.
     // All dependencies except Flywheel and Registrate are NOT safe to use!
     // Flywheel and Registrate must also be used carefully due to differences.
-    modCompileOnly("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}")
+//    modCompileOnly("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}")
+
+
+    // Create and its dependencies
+    implementation 'org.spongepowered:mixin:0.8.7'
+    compileOnly('com.google.code.findbugs:jsr305:3.0.2')
+    modCompileOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
+    modCompileOnly("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}")
+    modCompileOnly("dev.engine-room.flywheel:flywheel-forge-api-${minecraft_version}:${flywheel_version}")
+    modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}")
 }
 
 publishing {

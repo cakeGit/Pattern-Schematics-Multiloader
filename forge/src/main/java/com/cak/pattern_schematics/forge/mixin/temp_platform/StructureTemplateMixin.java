@@ -1,4 +1,4 @@
-package com.cak.pattern_schematics.mixin;
+package com.cak.pattern_schematics.forge.mixin.temp_platform;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ServerLevelAccessor;

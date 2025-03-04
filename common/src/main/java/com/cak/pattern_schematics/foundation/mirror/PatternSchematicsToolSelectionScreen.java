@@ -6,8 +6,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.AllKeys;
 import com.simibubi.create.foundation.gui.AllGuiTextures;
-import com.simibubi.create.foundation.utility.Components;
-import com.simibubi.create.foundation.utility.Lang;
+import com.simibubi.create.foundation.utility.CreateLang;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
@@ -20,7 +19,7 @@ import java.util.function.Consumer;
 /**Same fate as {@link PatternSchematicsToolSelectionScreen}, mixins defeated me, thus, a "mirror" class (copy paste lol)*/
 public class PatternSchematicsToolSelectionScreen extends Screen {
   
-  public final String scrollToCycle = Lang.translateDirect("gui.toolmenu.cycle")
+  public final String scrollToCycle = CreateLang.translateDirect("gui.toolmenu.cycle")
       .getString();
   public final String holdToFocus = "gui.toolmenu.focusKey";
   
@@ -35,7 +34,7 @@ public class PatternSchematicsToolSelectionScreen extends Screen {
   protected int h;
   
   public PatternSchematicsToolSelectionScreen(List<PatternSchematicsToolType> tools, Consumer<PatternSchematicsToolType> callback) {
-    super(Components.literal("Tool Selection"));
+    super(Component.literal("Tool Selection"));
     this.minecraft = Minecraft.getInstance();
     this.tools = tools;
     this.callback = callback;
@@ -78,7 +77,7 @@ public class PatternSchematicsToolSelectionScreen extends Screen {
     RenderSystem.enableBlend();
     RenderSystem.setShaderColor(1, 1, 1, focused ? 7 / 8f : 1 / 2f);
     
-    graphics.blit(patternSchematicsGray, x - 15, y, gray.startX, gray.startY, w, h, gray.width, gray.height);
+    graphics.blit(patternSchematicsGray, x - 15, y, gray.getStartX(), gray.getStartY(), w, h, gray.getWidth(), gray.getHeight());
     
     float toolTipAlpha = yOffset / 10;
     List<Component> toolTip = tools.get(selection)
@@ -87,7 +86,7 @@ public class PatternSchematicsToolSelectionScreen extends Screen {
     
     if (toolTipAlpha > 0.25f) {
       RenderSystem.setShaderColor(.8f, .7f, .8f, toolTipAlpha);
-      graphics.blit(patternSchematicsGray, x - 15, y + 33, gray.startX, gray.startY, w, h + 22, gray.width, gray.height);
+      graphics.blit(patternSchematicsGray, x - 15, y + 33, gray.getStartX(), gray.getStartY(), w, h, gray.getWidth(), gray.getHeight());
       RenderSystem.setShaderColor(1, 1, 1, 1);
       
       if (toolTip.size() > 0)
@@ -106,7 +105,7 @@ public class PatternSchematicsToolSelectionScreen extends Screen {
       int width = minecraft.getWindow()
           .getGuiScaledWidth();
       if (!focused)
-        graphics.drawCenteredString(minecraft.font, Lang.translateDirect(holdToFocus, keyName), width / 2,
+        graphics.drawCenteredString(minecraft.font, CreateLang.translateDirect(holdToFocus, keyName), width / 2,
             y - 10, 0xEECDEE);
       else
         graphics.drawCenteredString(minecraft.font, scrollToCycle, width / 2, y - 10, 0xEECDEE);

@@ -6,21 +6,6 @@
   "client": [
   ],
   "mixins": [
-    "AbstractContraptionEntityMixin",
-    "BlockHelperMixin",
-    "CreateClientMixin",
-    "CreateCreativeModeTabMixin",
-    "DeployBaseMixin",
-    "DeployerMovementBehaviorMixin",
-    "MovementContextMixin",
-    "SchematicannonBlockEntityMixin",
-    "SchematicInstancesMixin",
-    "SchematicItemMixin",
-    "SchematicPrinterMixin",
-    "SchematicTableBlockEntityMixin",
-    "SchematicToolBaseMixin",
-    "ServerSchematicLoaderMixin",
-    "StructureTemplateMixin"
   ],
   "injectors": {
     "defaultRequire": 1

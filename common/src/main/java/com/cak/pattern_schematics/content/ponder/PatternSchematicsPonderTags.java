@@ -2,27 +2,30 @@ package com.cak.pattern_schematics.content.ponder;
 
 import com.cak.pattern_schematics.PatternSchematics;
 import com.cak.pattern_schematics.registry.PatternSchematicsRegistry;
-import com.simibubi.create.foundation.ponder.PonderRegistry;
-import com.simibubi.create.foundation.ponder.PonderTag;
+import com.tterrag.registrate.util.entry.RegistryEntry;
+import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
+import net.minecraft.resources.ResourceLocation;
 
 public class PatternSchematicsPonderTags {
-    
-    public static final PonderTag
-        PATTERN_SCHEMATIC = create("pattern_schematics").item(PatternSchematicsRegistry.PATTERN_SCHEMATIC.get())
-        .defaultLang("Pattern Schematics", "Printing with pattern schematics")
-        .addToIndex();
-    
-    private static PonderTag create(String id) {
-        return new PonderTag(PatternSchematics.asResource(id));
+
+    public static final ResourceLocation PATTERN_SCHEMATICS = loc("kinetic_relays");
+
+    private static ResourceLocation loc(String id) {
+        return PatternSchematics.asResource(id);
     }
-    
-    public static void register() {
-        // Add items to tags here
-        
-        PonderRegistry.TAGS.forTag(PATTERN_SCHEMATIC)
+
+    public static void register(PonderTagRegistrationHelper<ResourceLocation> helper) {
+        PonderTagRegistrationHelper<RegistryEntry<?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
+
+        helper.registerTag(PATTERN_SCHEMATICS)
+            .item(PatternSchematicsRegistry.PATTERN_SCHEMATIC.get())
+            .title("Pattern Schematics")
+            .description("Printing with pattern schematics!")
+            .register();
+
+        HELPER.addToTag(PATTERN_SCHEMATICS)
             .add(PatternSchematicsRegistry.EMPTY_PATTERN_SCHEMATIC)
             .add(PatternSchematicsRegistry.PATTERN_SCHEMATIC);
-        
     }
     
 }

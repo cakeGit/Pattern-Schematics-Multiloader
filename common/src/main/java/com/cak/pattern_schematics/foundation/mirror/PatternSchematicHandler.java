@@ -10,21 +10,22 @@ import com.simibubi.create.AllKeys;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.contraptions.StructureTransform;
 import com.simibubi.create.content.schematics.SchematicItem;
-import com.simibubi.create.content.schematics.SchematicWorld;
 import com.simibubi.create.content.schematics.client.SchematicHandler;
 import com.simibubi.create.content.schematics.client.SchematicRenderer;
 import com.simibubi.create.content.schematics.client.SchematicTransformation;
-import com.simibubi.create.foundation.outliner.AABBOutline;
-import com.simibubi.create.foundation.render.SuperRenderTypeBuffer;
-import com.simibubi.create.foundation.utility.AnimationTickHolder;
-import com.simibubi.create.foundation.utility.Lang;
-import com.simibubi.create.foundation.utility.NBTHelper;
+import com.simibubi.create.foundation.blockEntity.IMultiBlockEntityContainer;
+import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
+import com.simibubi.create.foundation.utility.CreateLang;
+import net.createmod.catnip.animation.AnimationTickHolder;
+import net.createmod.catnip.levelWrappers.SchematicLevel;
+import net.createmod.catnip.nbt.NBTHelper;
+import net.createmod.catnip.outliner.AABBOutline;
+import net.createmod.catnip.render.SuperRenderTypeBuffer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.Tag;
@@ -51,7 +52,7 @@ import java.util.Vector;
  * Gave up with the copious amounts of mixins needed so i just copied the class file :pensive: praise be to mit
  * liscence
  */
-public class PatternSchematicHandler extends SchematicHandler {
+abstract public class PatternSchematicHandler extends SchematicHandler {
     
     protected String displayedSchematic;
     protected SchematicTransformation transformation;
@@ -123,8 +124,7 @@ public class PatternSchematicHandler extends SchematicHandler {
             init(player, stack);
         if (!active)
             return;
-        
-        renderers.forEach(SchematicRenderer::tick);
+
         if (syncCooldown > 0)
             syncCooldown--;
         if (syncCooldown == 1)
@@ -155,14 +155,14 @@ public class PatternSchematicHandler extends SchematicHandler {
     private void setupRenderer() {
         Level clientWorld = Minecraft.getInstance().level;
         StructureTemplate schematic =
-            SchematicItem.loadSchematic(clientWorld.holderLookup(Registries.BLOCK), activeSchematicItem);
+            SchematicItem.loadSchematic(clientWorld, activeSchematicItem);
         Vec3i size = schematic.getSize();
         if (size.equals(Vec3i.ZERO))
             return;
-        
-        SchematicWorld w = new SchematicWorld(clientWorld);
-        SchematicWorld wMirroredFB = new SchematicWorld(clientWorld);
-        SchematicWorld wMirroredLR = new SchematicWorld(clientWorld);
+
+        SchematicLevel w = new SchematicLevel(clientWorld);
+        SchematicLevel wMirroredFB = new SchematicLevel(clientWorld);
+        SchematicLevel wMirroredLR = new SchematicLevel(clientWorld);
         StructurePlaceSettings placementSettings = new StructurePlaceSettings();
         StructureTransform transform;
         BlockPos pos;
@@ -172,7 +172,7 @@ public class PatternSchematicHandler extends SchematicHandler {
         try {
             schematic.placeInWorld(w, pos, pos, placementSettings, w.getRandom(), Block.UPDATE_CLIENTS);
         } catch (Exception e) {
-            Minecraft.getInstance().player.displayClientMessage(Lang.translate("schematic.error")
+            Minecraft.getInstance().player.displayClientMessage(CreateLang.translate("schematic.error")
                 .component(), false);
             Create.LOGGER.error("Failed to load Schematic for Previewing", e);
             return;
@@ -185,7 +185,8 @@ public class PatternSchematicHandler extends SchematicHandler {
             placementSettings.getMirror());
         for (BlockEntity be : wMirroredFB.getRenderedBlockEntities())
             transform.apply(be);
-        
+
+        this.fixControllerBlockEntities(wMirroredLR);
         placementSettings.setMirror(Mirror.LEFT_RIGHT);
         pos = BlockPos.ZERO.south(size.getZ() - 1);
         schematic.placeInWorld(wMirroredLR, pos, pos, placementSettings, wMirroredFB.getRandom(), Block.UPDATE_CLIENTS);
@@ -193,7 +194,8 @@ public class PatternSchematicHandler extends SchematicHandler {
             placementSettings.getMirror());
         for (BlockEntity be : wMirroredLR.getRenderedBlockEntities())
             transform.apply(be);
-        
+
+        this.fixControllerBlockEntities(wMirroredLR);
         renderers.get(0)
             .display(w);
         renderers.get(1)
@@ -201,7 +203,25 @@ public class PatternSchematicHandler extends SchematicHandler {
         renderers.get(2)
             .display(wMirroredLR);
     }
-    
+
+    private void fixControllerBlockEntities(SchematicLevel level) {
+        for(BlockEntity blockEntity : level.getBlockEntities()) {
+            if (blockEntity instanceof IMultiBlockEntityContainer multiBlockEntity) {
+                BlockPos lastKnown = multiBlockEntity.getLastKnownPos();
+                BlockPos current = blockEntity.getBlockPos();
+                if (lastKnown != null && current != null && !multiBlockEntity.isController() && !lastKnown.equals(current)) {
+                    BlockPos newControllerPos = multiBlockEntity.getController().offset(current.subtract(lastKnown));
+                    if (multiBlockEntity instanceof SmartBlockEntity) {
+                        SmartBlockEntity sbe = (SmartBlockEntity)multiBlockEntity;
+                        sbe.markVirtual();
+                    }
+
+                    multiBlockEntity.setController(newControllerPos);
+                }
+            }
+        }
+    }
+
     public void render(PoseStack ms, SuperRenderTypeBuffer buffer, Vec3 camera) {
         boolean present = activeSchematicItem != null;
         if (!active && !present)
@@ -266,8 +286,6 @@ public class PatternSchematicHandler extends SchematicHandler {
             if (isRenderingMain) {
                 currentTool.getTool()
                     .renderOnSchematic(ms, buffer);
-            } else if (deployed) {
-                CloneSchematicOutlineRenderer.renderClone(ms, this, buffer);
             }
         
         ms.popPose();
@@ -440,10 +458,6 @@ public class PatternSchematicHandler extends SchematicHandler {
     
     public ItemStack getActiveSchematicItem() {
         return activeSchematicItem;
-    }
-    
-    public AABBOutline getOutline() {
-        return outline;
     }
     
     public void setCloneScaleMin(Vec3i min) {
