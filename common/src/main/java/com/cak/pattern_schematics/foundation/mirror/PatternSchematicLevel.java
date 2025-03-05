@@ -1,6 +1,7 @@
 package com.cak.pattern_schematics.foundation.mirror;
 
 import com.cak.pattern_schematics.foundation.util.Vec3iUtils;
+import com.cak.pattern_schematics.registry.PatternSchematicsDataComponents;
 import com.simibubi.create.content.schematics.SchematicItem;
 import net.createmod.catnip.levelWrappers.SchematicChunkSource;
 import net.createmod.catnip.levelWrappers.SchematicLevel;
@@ -63,11 +64,9 @@ public class PatternSchematicLevel extends SchematicLevel {
   }
   
   public void putExtraData(ItemStack blueprint, StructureTemplate template) {
-    CompoundTag tag = blueprint.getTag();
-    assert tag != null;
-    cloneScaleMin = Vec3iUtils.getVec3i("CloneScaleMin", tag);
-    cloneScaleMax = Vec3iUtils.getVec3i("CloneScaleMax", tag);
-    cloneOffset = Vec3iUtils.getVec3i("CloneOffset", tag);
+    cloneScaleMin = blueprint.getOrDefault(PatternSchematicsDataComponents.SCHEMATIC_CLONE_SCALE_MIN, Vec3i.ZERO);
+    cloneScaleMax = blueprint.getOrDefault(PatternSchematicsDataComponents.SCHEMATIC_CLONE_SCALE_MAX, Vec3i.ZERO);
+    cloneOffset = blueprint.getOrDefault(PatternSchematicsDataComponents.SCHEMATIC_CLONE_OFFSET, Vec3i.ZERO);
   
     sourceBounds = template.getBoundingBox(SchematicItem.getSettings(blueprint), anchor);
   }

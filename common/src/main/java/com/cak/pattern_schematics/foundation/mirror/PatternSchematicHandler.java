@@ -1,11 +1,13 @@
 package com.cak.pattern_schematics.foundation.mirror;
 
 import com.cak.pattern_schematics.foundation.util.Vec3iUtils;
+import com.cak.pattern_schematics.registry.PatternSchematicsDataComponents;
 import com.cak.pattern_schematics.registry.PatternSchematicsRegistry;
 import com.cak.pattern_schematics.registry.PlatformPackets;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllDataComponents;
 import com.simibubi.create.AllKeys;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.contraptions.StructureTransform;
@@ -18,7 +20,6 @@ import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.utility.CreateLang;
 import net.createmod.catnip.animation.AnimationTickHolder;
 import net.createmod.catnip.levelWrappers.SchematicLevel;
-import net.createmod.catnip.nbt.NBTHelper;
 import net.createmod.catnip.outliner.AABBOutline;
 import net.createmod.catnip.render.SuperRenderTypeBuffer;
 import net.minecraft.client.Minecraft;
@@ -26,9 +27,6 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
-import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -117,11 +115,12 @@ abstract public class PatternSchematicHandler extends SchematicHandler {
             }
             return;
         }
-        
-        if (!active || !stack.getTag()
-            .getString("File")
-            .equals(displayedSchematic))
-            init(player, stack);
+
+        if (!this.active || !stack.get(AllDataComponents.SCHEMATIC_FILE).equals(this.displayedSchematic)) {
+            this.renderers.forEach((r) -> r.setActive(false));
+            this.init(player, stack);
+        }
+
         if (!active)
             return;
 
@@ -137,8 +136,7 @@ abstract public class PatternSchematicHandler extends SchematicHandler {
     
     private void init(LocalPlayer player, ItemStack stack) {
         loadSettings(stack);
-        displayedSchematic = stack.getTag()
-            .getString("File");
+        displayedSchematic = stack.get(AllDataComponents.SCHEMATIC_FILE);
         active = true;
         if (deployed) {
             setupRenderer();
@@ -349,7 +347,7 @@ abstract public class PatternSchematicHandler extends SchematicHandler {
         ItemStack stack = player.getMainHandItem();
         if (!PatternSchematicsRegistry.PATTERN_SCHEMATIC.isIn(stack))
             return null;
-        if (!stack.hasTag())
+        if (!stack.has(AllDataComponents.SCHEMATIC_FILE))
             return null;
         
         activeSchematicItem = stack;
@@ -369,7 +367,7 @@ abstract public class PatternSchematicHandler extends SchematicHandler {
     public void markDirty() {
         syncCooldown = SYNC_DELAY;
     }
-    
+
     public void sync() {
         if (activeSchematicItem == null)
             return;
@@ -384,22 +382,20 @@ abstract public class PatternSchematicHandler extends SchematicHandler {
     }
     
     public void loadSettings(ItemStack blueprint) {
-        CompoundTag tag = blueprint.getTag();
-        assert tag != null;
-        
         BlockPos anchor = BlockPos.ZERO;
         StructurePlaceSettings settings = SchematicItem.getSettings(blueprint);
-        
-        cloneScaleMin = Vec3iUtils.getVec3i("CloneScaleMin", tag);
-        cloneScaleMax = Vec3iUtils.getVec3i("CloneScaleMax", tag);
-        cloneOffset = Vec3iUtils.getVec3i("CloneOffset", tag);
-        
-        transformation = new SchematicTransformation();
-        deployed = tag.getBoolean("Deployed");
-        if (deployed)
-            anchor = NbtUtils.readBlockPos(tag.getCompound("Anchor"));
-        Vec3i size = NBTHelper.readVec3i(tag.getList("Bounds", Tag.TAG_INT));
-        
+
+        cloneScaleMin = blueprint.getOrDefault(PatternSchematicsDataComponents.SCHEMATIC_CLONE_SCALE_MIN, Vec3i.ZERO);
+        cloneScaleMax = blueprint.getOrDefault(PatternSchematicsDataComponents.SCHEMATIC_CLONE_SCALE_MAX, Vec3i.ZERO);
+        cloneOffset = blueprint.getOrDefault(PatternSchematicsDataComponents.SCHEMATIC_CLONE_OFFSET, Vec3i.ZERO);
+
+        this.transformation = new SchematicTransformation();
+        this.deployed = blueprint.getOrDefault(AllDataComponents.SCHEMATIC_DEPLOYED, false);
+        if (this.deployed) {
+            anchor = blueprint.get(AllDataComponents.SCHEMATIC_ANCHOR);
+        }
+        Vec3i size = blueprint.get(AllDataComponents.SCHEMATIC_BOUNDS);
+
         bounds = new AABB(0, 0, 0, size.getX(), size.getY(), size.getZ());
         outline = new AABBOutline(bounds);
         outline.getParams()

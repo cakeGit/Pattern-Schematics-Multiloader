@@ -163,37 +163,33 @@ public class StaticRenderers {
         float ny = normalTransformTemp.y();
         float nz = normalTransformTemp.z();
         
-        consumer.vertex(x0, y0, z0)
-            .color(r, g, b, a)
-            .uv(minU, minV)
-            .overlayCoords(OverlayTexture.NO_OVERLAY)
-            .uv2(lightmap)
-            .normal(nx, ny, nz)
-            .endVertex();
+        consumer.addVertex((float) x0, (float) y0, (float) z0)
+            .setColor(r, g, b, a)
+            .setUv(minU, minV)
+            .setOverlay(OverlayTexture.NO_OVERLAY)
+            .setLight(lightmap)
+            .setNormal(nx, ny, nz);
         
-        consumer.vertex(x1, y1, z1)
-            .color(r, g, b, a)
-            .uv(minU, maxV)
-            .overlayCoords(OverlayTexture.NO_OVERLAY)
-            .uv2(lightmap)
-            .normal(nx, ny, nz)
-            .endVertex();
+        consumer.addVertex((float) x1, (float) y1, (float) z1)
+            .setColor(r, g, b, a)
+            .setUv(minU, maxV)
+            .setOverlay(OverlayTexture.NO_OVERLAY)
+            .setLight(lightmap)
+            .setNormal(nx, ny, nz);
         
-        consumer.vertex(x2, y2, z2)
-            .color(r, g, b, a)
-            .uv(maxU, maxV)
-            .overlayCoords(OverlayTexture.NO_OVERLAY)
-            .uv2(lightmap)
-            .normal(nx, ny, nz)
-            .endVertex();
+        consumer.addVertex((float) x2, (float) y2, (float) z2)
+            .setColor(r, g, b, a)
+            .setUv(maxU, maxV)
+            .setOverlay(OverlayTexture.NO_OVERLAY)
+            .setLight(lightmap)
+            .setNormal(nx, ny, nz);
         
-        consumer.vertex(x3, y3, z3)
-            .color(r, g, b, a)
-            .uv(maxU, minV)
-            .overlayCoords(OverlayTexture.NO_OVERLAY)
-            .uv2(lightmap)
-            .normal(nx, ny, nz)
-            .endVertex();
+        consumer.addVertex((float) x3, (float) y3, (float) z3)
+            .setColor(r, g, b, a)
+            .setUv(maxU, minV)
+            .setOverlay(OverlayTexture.NO_OVERLAY)
+            .setLight(lightmap)
+            .setNormal(nx, ny, nz);
     }
     
 }

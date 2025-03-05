@@ -1,11 +1,11 @@
 package com.cak.pattern_schematics.foundation;
 
-import com.simibubi.create.foundation.networking.SimplePacketBase;
+import net.createmod.catnip.net.base.BasePacketPayload;
 
 public interface GenericNetworker {
 
     void initServerListener();
     void initClientListener();
-    void sendToServer(SimplePacketBase packet);
+    void sendToServer(BasePacketPayload packet);
     
 }

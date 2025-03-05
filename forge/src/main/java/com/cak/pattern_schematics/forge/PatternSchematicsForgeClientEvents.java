@@ -1,22 +1,23 @@
 package com.cak.pattern_schematics.forge;
 
+import com.cak.pattern_schematics.PatternSchematics;
 import com.cak.pattern_schematics.PatternSchematicsClient;
 import com.cak.pattern_schematics.PatternSchematicsClientEvents;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
-import net.minecraftforge.client.event.RenderLevelStageEvent;
-import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.InputEvent;
+import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
+import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
-@Mod.EventBusSubscriber(Dist.CLIENT)
+@EventBusSubscriber(Dist.CLIENT)
 public class PatternSchematicsForgeClientEvents {
     
     @SubscribeEvent
-    public static void onTick(TickEvent.ClientTickEvent event) {
+    public static void onTick(ClientTickEvent event) {
         PatternSchematicsClientEvents.onTick();
     }
     
@@ -35,7 +36,7 @@ public class PatternSchematicsForgeClientEvents {
     
     @SubscribeEvent
     public static void onMouseScrolled(InputEvent.MouseScrollingEvent event) {
-        if (PatternSchematicsClientEvents.onMouseScrolled(event.getScrollDelta()))
+        if (PatternSchematicsClientEvents.onMouseScrolled(event.getScrollDeltaY()))
             event.setCanceled(true);
     }
     
@@ -47,12 +48,12 @@ public class PatternSchematicsForgeClientEvents {
             event.setCanceled(true);
     }
     
-    @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
     public static class ModBusEvents {
         
         @SubscribeEvent
-        public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
-            event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "pattern_schematic", PatternSchematicsClient.PATTERN_SCHEMATIC_HANDLER);
+        public static void registerGuiOverlays(RegisterGuiLayersEvent event) {
+            event.registerAbove(VanillaGuiLayers.HOTBAR, PatternSchematics.asResource("pattern_schematic"), PatternSchematicsClient.PATTERN_SCHEMATIC_HANDLER);
         }
 
         @SubscribeEvent

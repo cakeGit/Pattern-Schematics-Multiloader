@@ -1,12 +1,10 @@
 package com.cak.pattern_schematics.forge;
 
 import com.cak.pattern_schematics.PatternSchematics;
-import com.cak.pattern_schematics.registry.PatternSchematicsRegistry;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import com.cak.pattern_schematics.registry.PatternSchematicsDataComponents;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
 
 import static com.cak.pattern_schematics.PatternSchematics.REGISTRATE;
 
@@ -15,12 +13,10 @@ public class PatternSchematicsForge {
     
     public PatternSchematicsForge() {
         // registrate must be given the mod event bus on forge before registration
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus eventBus = ModLoadingContext.get().getActiveContainer().getEventBus();
         REGISTRATE.registerEventListeners(eventBus);
+        PatternSchematicsDataComponents.register(eventBus);
         PatternSchematics.init();
-        
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> PatternSchematicsForgeClient::onInitializeClient);
-        
     }
     
 }
