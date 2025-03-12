@@ -34,4 +34,15 @@
   - LOLCATZ translation (Thanks @Chazbomb)
 1.20.1-1.2.0: |
   - Updated to work for the new Create 6.0.0!
+
+1.21.1-2.0.0: |
+  - Project is now neoforge only
+  - Port to 1.21.1 neoforge with new create
+  - Fixed height of tool overlay
+
+1.21.1-2.0.1: |
+  - I cant believe this but i forgot to check recipes still work so they work now
+  - im very sorry
+1.21.1-2.0.2: |
+  - And i forgot the dye color sorry im rushing
 ...
