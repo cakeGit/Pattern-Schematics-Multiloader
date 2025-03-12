@@ -1,8 +1,3 @@
-# Warning to anyone who wishes to contribute:
-This code has a lot of mixins and dodgy mirror classes,
-View at your own risk,
-Same goes for anyone who wants to use this code for reference (mit so go at it if you want),
-
 # Features
 ## Infinite Contraption Construction [(Development Test Demo)](https://www.youtube.com/watch?v=EhZnNdxGKrg&ab_channel=SomeGuyCalledCak)
 
