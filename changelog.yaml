@@ -37,4 +37,6 @@
 1.20.1-1.2.1: |
   - Updated Chinese Localisation from TASC2 on github
   - Fixed overlay height for 1.20.1
+1.20.1-1.2.2: |
+  - Fix ponder lang entries
 ...
