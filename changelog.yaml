@@ -34,4 +34,7 @@
   - LOLCATZ translation (Thanks @Chazbomb)
 1.20.1-1.2.0: |
   - Updated to work for the new Create 6.0.0!
+1.20.1-1.2.1: |
+  - Updated Chinese Localisation from TASC2 on github
+  - Fixed overlay height for 1.20.1
 ...

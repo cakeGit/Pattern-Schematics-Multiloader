@@ -86,7 +86,7 @@ public class PatternSchematicsToolSelectionScreen extends Screen {
     
     if (toolTipAlpha > 0.25f) {
       RenderSystem.setShaderColor(.8f, .7f, .8f, toolTipAlpha);
-      graphics.blit(patternSchematicsGray, x - 15, y + 33, gray.getStartX(), gray.getStartY(), w, h, gray.getWidth(), gray.getHeight());
+      graphics.blit(patternSchematicsGray, x - 15, y + 33, gray.getStartX(), gray.getStartY(), w, h + 22, gray.getWidth(), gray.getHeight());
       RenderSystem.setShaderColor(1, 1, 1, 1);
       
       if (toolTip.size() > 0)
