@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class PatternSchematicsPonderTags {
 
-    public static final ResourceLocation PATTERN_SCHEMATICS = loc("kinetic_relays");
+    public static final ResourceLocation PATTERN_SCHEMATICS = loc("pattern_schematics");
 
     private static ResourceLocation loc(String id) {
         return PatternSchematics.asResource(id);
