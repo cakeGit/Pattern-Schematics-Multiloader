@@ -1,8 +1,8 @@
 package com.cak.pattern_schematics;
 
+import com.cak.pattern_schematics.content.ponder.PatternSchematicsPonderPlugin;
 import com.cak.pattern_schematics.foundation.mirror.PatternSchematicHandler;
 import com.cak.pattern_schematics.registry.PlatformPackets;
-import com.simibubi.create.foundation.ponder.CreatePonderPlugin;
 import net.createmod.ponder.foundation.PonderIndex;
 
 public class PatternSchematicsClient {
@@ -12,7 +12,7 @@ public class PatternSchematicsClient {
 
   public static void init() {
     PlatformPackets.getChannel().initClientListener();
-    PonderIndex.addPlugin(new CreatePonderPlugin());
+    PonderIndex.addPlugin(new PatternSchematicsPonderPlugin());
   }
   
 }
