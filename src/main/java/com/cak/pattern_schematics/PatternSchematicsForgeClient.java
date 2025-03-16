@@ -18,7 +18,6 @@ public class PatternSchematicsForgeClient {
     public static void onInitializeClient() {
         PatternSchematicsClient.PATTERN_SCHEMATIC_HANDLER = PATTERN_SCHEMATICS_HANDLER_FORGE;
         PatternSchematicsClient.init();
-        PonderIndex.addPlugin(new PatternSchematicsPonderPlugin());
     }
     
 }

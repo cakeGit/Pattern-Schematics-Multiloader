@@ -23,7 +23,7 @@ public class PatternSchematicsPonderPlugin implements PonderPlugin {
 
     @Override
     public void registerTags(PonderTagRegistrationHelper<ResourceLocation> helper) {
-        PatternSchematicsPonderTags.register(helper);
+        PatternSchematicsPonderTags.registerTags(helper);
     }
 
     @Override

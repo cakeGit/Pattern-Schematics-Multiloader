@@ -47,4 +47,6 @@
   - And i forgot the dye color sorry im rushing
 1.21.1-2.0.3: |
   - Updated chinese localisation for 1.21.1
+1.21.1-2.0.4: |
+  - Fixed create ponder registering twice
 ...

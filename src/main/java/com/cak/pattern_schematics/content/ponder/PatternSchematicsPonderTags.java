@@ -14,7 +14,7 @@ public class PatternSchematicsPonderTags {
         return PatternSchematics.asResource(id);
     }
 
-    public static void register(PonderTagRegistrationHelper<ResourceLocation> helper) {
+    public static void registerTags(PonderTagRegistrationHelper<ResourceLocation> helper) {
         PonderTagRegistrationHelper<RegistryEntry<?, ?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
 
         helper.registerTag(PATTERN_SCHEMATICS)
