@@ -231,21 +231,18 @@ publishMods {
             def (key, value) = it.tokenize('=')
             TOKENS.put(key, value)
         }
-//
-//    dryRun = true;//TODO -> neoforge
+
+//    dryRun = true;
 
     def cfg = new Yaml().load(new File("$projectDir/changelog.yaml").newInputStream())
     def changelogText = cfg[minecraft_version + "-" + mod_version];
     println("Found Changelog: \n" + changelogText)
 
-    def forgeName = "Create: Pattern Schematics $mod_version Forge $minecraft_version";
-    def fabricName = "Create: Pattern Schematics $mod_version Fabric $minecraft_version";
+    def forgeName = "Create: Pattern Schematics $mod_version NeoForge $minecraft_version";
 
     def buildFile = file("build/libs/${mod_id}-${mod_version}.jar")
-//    def fabricFile = project(":fabric").tasks.named("remapJar").get().archiveFile;
 
-    def forgeEmoji = "<:forge:1267784983771222088>";
-    def fabricEmoji = "<:fabric:1267785013936783421>";
+    def forgeEmoji = "<:neoforge:1267784950271443004>";
     def newVersionPing = "<@&1267779725040947243>";
 
     changelog = "Changelog: \n" + changelogText
@@ -277,35 +274,9 @@ publishMods {
         requires("create")
     }
 
-//    curseforge("fabricCF") {
-//        file = fabricFile
-//        displayName = fabricName
-//        projectId = "1072349"
-//        projectSlug = "create-pattern-schematics" // Required for discord webhook
-//        accessToken = TOKENS.get("CURSEFORGE_PUBLISH_TOKEN")
-//        minecraftVersions.add(minecraft_version)
-//        announcementTitle = "Curseforge download for $fabricEmoji"
-//        modLoaders.add("fabric")
-//
-//        javaVersions.add(JavaVersion.VERSION_17)
-//        clientRequired = true
-//        serverRequired = true
-//        requires("create-fabric", "fabric-api")
-//    }
-//    modrinth("fabricMR") {
-//        file = fabricFile
-//        displayName = fabricName
-//        projectId = "cpqKG67r"
-//        accessToken = TOKENS.get("MODRINTH_PUBLISH_TOKEN")
-//        minecraftVersions.add(minecraft_version)
-//        announcementTitle = "Modrinth download for $fabricEmoji"
-//        modLoaders.add("fabric")
-//        requires("create-fabric", "fabric-api")
-//    }
-
     discord("discordUniversal") {
         webhookUrl = TOKENS.get("DISCORD_WEBHOOK")
         username = "New Version Announcement | Create: Pattern Schematics"
-        content = "\n# Create: Pattern Schematics has been updated to $mod_version for $minecraft_version ($fabricEmoji / $forgeEmoji)\n " + changelogText
+        content = "\n# Create: Pattern Schematics has been updated to $mod_version for $minecraft_version ($forgeEmoji)\n " + changelogText
     }
 }

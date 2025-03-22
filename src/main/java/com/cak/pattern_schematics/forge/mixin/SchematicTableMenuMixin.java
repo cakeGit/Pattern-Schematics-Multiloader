@@ -37,7 +37,7 @@ public class SchematicTableMenuMixin extends MenuBase<SchematicTableBlockEntity>
   
   @Redirect(method = "addSlots", at = @At(value = "FIELD", opcode = Opcodes.PUTFIELD, target = "Lcom/simibubi/create/content/schematics/table/SchematicTableMenu;inputSlot:Lnet/minecraft/world/inventory/Slot;"))
   private void addSlots_inputSlot(SchematicTableMenu instance, Slot value) {
-    ((SchematicTableMenuMixinAccessor) instance).setInputSlot(new SlotItemHandler(contentHolder.inventory, 0, 21, 57) {
+    ((SchematicTableMenuMixinAccessor) instance).setInputSlot(new SlotItemHandler(contentHolder.inventory, 0, 21, 59) {
       @Override
       public boolean mayPlace(ItemStack stack) {
         return AllItems.EMPTY_SCHEMATIC.isIn(stack)
