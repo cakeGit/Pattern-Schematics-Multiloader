@@ -14,7 +14,7 @@
   "create_pattern_schematics.ponder.tag.pattern_schematics.description": "Строительство при помощи паттерных схематик!",
   "create_pattern_schematics.ponder.train_schematic_printing.header": "Бесконечное воиспроизведение схематик при помощи поездов",
   "create_pattern_schematics.ponder.train_schematic_printing.text_1": "Паттерная схематика может быть применена к группе собранных автономных активаторов при нажатии шифта+ПКМ",
-  "create_pattern_schematics.ponder.train_schematic_printing.text_2": Здесь схематика была установлена как обычно",
+  "create_pattern_schematics.ponder.train_schematic_printing.text_2": "Здесь схематика была установлена как обычно",
   "create_pattern_schematics.ponder.train_schematic_printing.text_3": "Но при стройке на движущемся поезде схематика будет повторятся",
   "create_pattern_schematics.schematic.tool.clone": "Клонировать",
   "create_pattern_schematics.schematic.tool.clone.description.0": "Повторяет выбранную схематику",
