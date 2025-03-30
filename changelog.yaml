@@ -51,4 +51,6 @@
   - Fixed create ponder registering twice
 1.21.1-2.0.5: |
   - Fixed misalignment in the schematic table menu
+1.21.1-2.0.6: |
+  - Added ru_ru translation for 1.21.1 (1.20.1 coming soon)
 ...
