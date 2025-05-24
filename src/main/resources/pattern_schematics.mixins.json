@@ -8,6 +8,8 @@
   "mixins": [
     "SchematicannonInventoryMixin",
     "SchematicTableMenuMixin",
+    "schematic_and_quill.SchematicAndQuillHandlerMixin",
+    "schematic_and_quill.ServerSchematicLoaderMixin",
     "temp_platform.AbstractContraptionEntityMixin",
     "temp_platform.BlockHelperMixin",
     "temp_platform.CreateClientMixin",

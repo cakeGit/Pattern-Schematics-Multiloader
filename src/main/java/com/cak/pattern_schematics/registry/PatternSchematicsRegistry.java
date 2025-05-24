@@ -2,6 +2,7 @@ package com.cak.pattern_schematics.registry;
 
 import com.cak.pattern_schematics.PatternSchematics;
 import com.cak.pattern_schematics.content.item.PatternSchematicItem;
+import com.simibubi.create.content.schematics.SchematicAndQuillItem;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.world.item.Item;
@@ -21,7 +22,12 @@ public class PatternSchematicsRegistry {
       .defaultModel()
       .properties(p -> p.stacksTo(1))
       .register();
-  
+
+
+  public static final ItemEntry<SchematicAndQuillItem> PATTERN_SCHEMATIC_AND_QUILL =
+      REGISTRATE.item("pattern_schematic_and_quill", SchematicAndQuillItem::new)
+          .properties(p -> p.stacksTo(1))
+          .register();
   public static void register() {}
   
 }

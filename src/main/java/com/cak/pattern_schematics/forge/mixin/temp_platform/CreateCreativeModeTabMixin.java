@@ -14,7 +14,7 @@ public class CreateCreativeModeTabMixin {
     @Redirect(method = "outputAll", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/CreativeModeTab$Output;accept(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/CreativeModeTab$TabVisibility;)V"))
     private static void addAdditionalItemInject(CreativeModeTab.Output instance, ItemStack itemStack, CreativeModeTab.TabVisibility tabVisibility) {
         Item itemToAdd = itemStack.getItem();
-        //Ensure execution order, add the instance then add otherg
+        //Ensure execution order, add the instance then add other
         if (
             PatternSchematicsTabInsertions.getAllInsertsAfter()
                 .containsKey(itemToAdd)

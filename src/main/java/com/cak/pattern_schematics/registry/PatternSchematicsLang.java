@@ -18,10 +18,22 @@ public class PatternSchematicsLang {
             "create_pattern_schematics.contraption_application.applied_to", "Applied pattern schematic to ",
             "create_pattern_schematics.contraption_application.deployers", " deployer(s)",
             "create_pattern_schematics.contraption_application.not_positioned", "Couldn't apply schematic: Schematic not positioned!",
-            "item.create_pattern_schematics.empty_pattern_schematic.tooltip.summary"
-            , "Can be written to make an _extended version of Create's schematic_ which allows contraptions and schematicannons to _repeat a design_ multiple times.",
-            "item.create_pattern_schematics.pattern_schematic.tooltip.summary"
-            , "An _extended version of Create's schematic_ which allows contraptions and schematicannons to _repeat a design_ multiple times."
+
+            "item.create_pattern_schematics.empty_pattern_schematic.tooltip.summary",
+                "Can be written to make an _extended version of Create's schematic_ which allows contraptions and schematicannons to _repeat a design_ multiple times.",
+            "item.create_pattern_schematics.pattern_schematic.tooltip.summary",
+                "An _extended version of Create's schematic_ which allows contraptions and schematicannons to _repeat a design_ multiple times.",
+
+            "item.create_pattern_schematics.pattern_schematic_and_quill.tooltip.behaviour1",
+                "Select two _corner points_ using _R-Click_. Hold _Ctrl_ and Scroll to select locations mid-air.",
+            "item.create_pattern_schematics.pattern_schematic_and_quill.tooltip.behaviour2",
+                "_Ctrl-Scroll_ on the faces to adjust the size, then R-Click again to Save.",
+            "item.create_pattern_schematics.pattern_schematic_and_quill.tooltip.condition1",
+                "Creating a selection",
+            "item.create_pattern_schematics.pattern_schematic_and_quill.tooltip.condition2",
+                "Adjusting and Saving",
+            "item.create_pattern_schematics.pattern_schematic_and_quill.tooltip.summary",
+                "Used for _saving a Structure_ in your world to a _.nbt file_ or be printed immediately into a _pattern schematic_."
         );
     }
     

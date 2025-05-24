@@ -1,5 +1,6 @@
-// 1.21.1	2025-03-15T09:36:44.0186008	Registrate Provider for create_pattern_schematics [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
-2bcf99344dc07aa391877323dcc6e25700681645 assets/create_pattern_schematics/lang/en_ud.json
-9a552aaa4870e6f168a4a9800aed5c2617383452 assets/create_pattern_schematics/lang/en_us.json
+// 1.21.1	2025-05-24T16:52:05.4827583	Registrate Provider for create_pattern_schematics [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+c927e24de03aee4a6d858c5d717655bb3f0083bd assets/create_pattern_schematics/lang/en_ud.json
+2c4669a4910478bf50434719f18be71ef73db5e4 assets/create_pattern_schematics/lang/en_us.json
 19e25b53bb643c63106b1f83e2f1fe5a6ac63f13 assets/create_pattern_schematics/models/item/empty_pattern_schematic.json
 ef2d06ece9923cc75b5e3dc3070df2808f1cdb74 assets/create_pattern_schematics/models/item/pattern_schematic.json
+8e73a6fcd1c4904d0f0a3be5be81d70c1e8e2684 assets/create_pattern_schematics/models/item/pattern_schematic_and_quill.json

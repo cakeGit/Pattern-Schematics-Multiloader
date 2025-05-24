@@ -274,9 +274,9 @@ publishMods {
         requires("create")
     }
 
-    discord("discordUniversal") {
-        webhookUrl = TOKENS.get("DISCORD_WEBHOOK")
-        username = "New Version Announcement | Create: Pattern Schematics"
-        content = "\n# Create: Pattern Schematics has been updated to $mod_version for $minecraft_version ($forgeEmoji)\n " + changelogText
-    }
+//    discord("discordUniversal") {
+//        webhookUrl = TOKENS.get("DISCORD_WEBHOOK")
+//        username = "New Version Announcement | Create: Pattern Schematics"
+    println("\n# Create: Pattern Schematics has been updated to $mod_version for $minecraft_version ($forgeEmoji)\n " + changelogText)
+//    }
 }
