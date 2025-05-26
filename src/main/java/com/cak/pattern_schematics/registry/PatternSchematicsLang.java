@@ -33,7 +33,10 @@ public class PatternSchematicsLang {
             "item.create_pattern_schematics.pattern_schematic_and_quill.tooltip.condition2",
                 "Adjusting and Saving",
             "item.create_pattern_schematics.pattern_schematic_and_quill.tooltip.summary",
-                "Used for _saving a Structure_ in your world to a _.nbt file_ or be printed immediately into a _pattern schematic_."
+                "Used for _saving a Structure_ in your world to a _.nbt file_ or be printed immediately into a _pattern schematic_.",
+
+            "tag.item.create_pattern_schematics.pattern_schematic_paper_substitutes", "Pattern Schematic Paper Substitutes",
+            "tag.item.create_pattern_schematics.schematic_paper_substitutes", "Schematic Paper Substitutes"
         );
     }
     
