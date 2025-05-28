@@ -41,4 +41,6 @@
   - Fix ponder lang entries
 1.20.1-1.2.3: |
   - Fixed create ponder registering twice for 1.20.1
+1.20.1-1.2.4: |
+  - Update russian translation
 ...
