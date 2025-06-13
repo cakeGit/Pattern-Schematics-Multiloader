@@ -52,7 +52,7 @@ public class AbstractContraptionEntityMixin {
         
         if (!stack.getOrDefault(AllDataComponents.SCHEMATIC_DEPLOYED, false)) {
             player.displayClientMessage(
-                Component.translatable("pattern_schematics.contraption_application.not_positioned")
+                Component.translatable("create_pattern_schematics.contraption_application.not_positioned")
                     .withStyle(ChatFormatting.RED),
                 true
             );
@@ -68,9 +68,9 @@ public class AbstractContraptionEntityMixin {
         int appliedCount = pattern_schematics$performBulkSchematicApply(actor.getLeft().state().getValue(DeployerBlock.FACING), actor.getRight().localPos, stack, player.level());
         
         player.displayClientMessage(
-            Component.translatable("pattern_schematics.contraption_application.applied_to")
+            Component.translatable("create_pattern_schematics.contraption_application.applied_to")
                 .append(Component.literal(String.valueOf(appliedCount)))
-                .append(Component.translatable("pattern_schematics.contraption_application.deployers")),
+                .append(Component.translatable("create_pattern_schematics.contraption_application.deployers")),
             true
         );
         

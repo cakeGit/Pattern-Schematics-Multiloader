@@ -57,4 +57,6 @@
   - Added 'Pattern Schematic and Quill' item
 1.21.1-2.0.8: |
   - Updated Ru_Ru translation for 1.21.1
+1.21.1-2.0.9: |
+  - Fixed mislabelled translation key
 ...
