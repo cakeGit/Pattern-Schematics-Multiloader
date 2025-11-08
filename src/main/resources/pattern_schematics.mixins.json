@@ -1,0 +1,30 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.cak.pattern_schematics.platform.forge.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+  ],
+  "mixins": [
+    "SchematicannonInventoryMixin",
+    "SchematicTableMenuMixin",
+    "temp_platform.AbstractContraptionEntityMixin",
+    "temp_platform.BlockHelperMixin",
+    "temp_platform.CreateClientMixin",
+    "temp_platform.CreateCreativeModeTabMixin",
+    "temp_platform.DeployBaseMixin",
+    "temp_platform.DeployerMovementBehaviorMixin",
+    "temp_platform.MovementContextMixin",
+    "temp_platform.SchematicannonBlockEntityMixin",
+    "temp_platform.SchematicInstancesMixin",
+    "temp_platform.SchematicItemMixin",
+    "temp_platform.SchematicPrinterMixin",
+    "temp_platform.SchematicTableBlockEntityMixin",
+    "temp_platform.SchematicToolBaseMixin",
+    "temp_platform.ServerSchematicLoaderMixin",
+    "temp_platform.StructureTemplateMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

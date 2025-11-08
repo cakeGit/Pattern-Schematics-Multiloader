@@ -1,0 +1,46 @@
+---
+
+1.19.2-1.1.8: |
+  - Updated mod links in mods.toml and the fabric.mod.json
+  - Forge now has the update checker configured
+  - Fixed the copycats not displaying accurately in the ponder (after I failed to cover up my laziness thanks @d4rkfl4sh)
+  - Added shift control to the clone tool to help with large schematics
+  - Made the schematicannon result in the proper item (previously would give Create's schematic no matter what)
+  - Added an indicator when applying a non positioned schematic to a contraption deployer
+  (This is a port, so this is the list of all changes from version 1.1.6->1.1.8)
+1.20.1-1.1.9: |
+  - Reduced visual clutter on schematic clone highlights [Example of new system](https://media.discordapp.net/attachments/1267781614591676426/1272539875136114820/2024-08-12_13.56.54.png?ex=66bb589c&is=66ba071c&hm=7870a62f2b19ea94babd9fd1c250ee8eaecfb8827f0b1c4dfaa08f7d3080d299&=&format=webp&quality=lossless&width=1168&height=614)
+    - This also should help to improve performance
+1.20.1-1.1.10: |
+  - Fixed signal placement bug
+1.20.1-1.1.11: |
+  - Changed creative mode tab ordering (Also should help for when latest create releases)
+  - Changed to use correct gradle version
+1.20.1-1.1.12: |
+  - Misc refactor
+  - Mainly just to bump version to republish
+1.20.1-1.1.13: |
+  - Added crafting using existing schematics instead of paper
+1.20.1-1.1.14: |
+  - Update logo for 1.20.1
+1.20.1-1.1.15: |
+  - Added Spanish gameplay translations
+1.20.1-1.1.16: |
+  - Added item tooltips
+  - Tweaked control scheme for the clone tool
+1.20.1-1.1.17: |
+  - Chinese Localisation from TASC2 on github :D!
+1.20.1-1.1.18: |
+  - LOLCATZ translation (Thanks @Chazbomb)
+1.20.1-1.2.0: |
+  - Updated to work for the new Create 6.0.0!
+1.20.1-1.2.1: |
+  - Updated Chinese Localisation from TASC2 on github
+  - Fixed overlay height for 1.20.1
+1.20.1-1.2.2: |
+  - Fix ponder lang entries
+1.20.1-1.2.3: |
+  - Fixed create ponder registering twice for 1.20.1
+1.20.1-1.2.4: |
+  - Update russian translation
+...

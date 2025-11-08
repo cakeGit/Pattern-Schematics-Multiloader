@@ -1,0 +1,178 @@
+import org.yaml.snakeyaml.Yaml
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'org.yaml', name: 'snakeyaml', version: '1.19'
+    }
+}
+
+plugins {
+    id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "dev.architectury.loom" version "1.10.430" apply false
+    id "io.github.p03w.machete" version "1.+" // automatic jar compressing on build
+    id "me.modmuss50.mod-publish-plugin" version "0.6.3"
+}
+
+architectury {
+    minecraft = rootProject.minecraft_version
+}
+
+subprojects {
+    apply plugin: "dev.architectury.loom"
+
+    loom {
+        silentMojangMappingsLicense()
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
+        maven { url = "https://maven.blamejared.com/" } // JEI
+        maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
+        maven { url = "https://maven.quiltmc.org/repository/release" } // Quilt Mappings
+        maven { // Flywheel
+            url = "https://maven.tterrag.com/"
+            content {
+                // need to be specific here due to version overlaps
+                includeGroup("com.jozufozu.flywheel")
+            }
+        }
+    }
+
+    dependencies {
+        minecraft "com.mojang:minecraft:${minecraft_version}"
+        // layered mappings - Mojmap names, parchment and QM docs and parameters
+        mappings(loom.layered {
+            it.mappings("org.quiltmc:quilt-mappings:${minecraft_version}+build.${qm_version}:intermediary-v2")
+            it.parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
+            it.officialMojangMappings { nameSyntheticMembers = false }
+        })
+
+        // see each subproject for dependencies.
+    }
+}
+
+allprojects {
+    apply plugin: "java"
+    apply plugin: "architectury-plugin"
+    apply plugin: "maven-publish"
+
+    archivesBaseName = rootProject.archives_base_name
+    group = rootProject.maven_group
+
+    // Formats the mod version to include the loader, Minecraft version, and build number (if present)
+    // example: 1.0.0+fabric-1.18.2-100
+    String buildNumber = System.getenv("GITHUB_RUN_NUMBER")
+    version = "${mod_version}+${project.name}-${minecraft_version}" + (buildNumber != null ? "-${buildNumber}" : "")
+
+    repositories {
+        // Add repositories to retrieve artifacts from in here.
+        // You should only use this when depending on other mods because
+        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+        // for more information about repositories.
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+
+    java {
+        withSourcesJar()
+    }
+
+    machete {
+        // disable machete locally for faster builds
+        enabled = buildNumber != null
+    }
+}
+
+
+publishMods {
+    def TOKENS = new HashMap<String, String>();
+    def envFile = file("$projectDir/.env");
+
+    if (envFile.exists())
+        envFile.readLines().each() {
+            def (key, value) = it.tokenize('=')
+            TOKENS.put(key, value)
+        }
+
+    def cfg = new Yaml().load(new File("$projectDir/changelog.yaml").newInputStream())
+    def changelogText = cfg[minecraft_version + "-" + mod_version];
+    println("Found Changelog: \n" + changelogText)
+
+    def forgeName = "Create: Pattern Schematics $mod_version Forge $minecraft_version";
+    def fabricName = "Create: Pattern Schematics $mod_version Fabric $minecraft_version";
+
+    def forgeFile = project(":forge").tasks.named("remapJar").get().archiveFile;
+//    def fabricFile = project(":fabric").tasks.named("remapJar").get().archiveFile;
+
+    def forgeEmoji = "<:forge:1267784983771222088>";
+    def fabricEmoji = "<:fabric:1267785013936783421>";
+    def newVersionPing = "<@&1267779725040947243>";
+
+    changelog = "Changelog: \n" + changelogText
+    type = STABLE
+
+    curseforge("forgeCF") {
+        file = forgeFile
+        displayName = forgeName
+        projectId = "1072349"
+        projectSlug = "create-pattern-schematics" // Required for discord webhook
+        accessToken = TOKENS.get("CURSEFORGE_PUBLISH_TOKEN")
+        minecraftVersions.add(minecraft_version)
+        announcementTitle = "Curseforge download for $forgeEmoji"
+        modLoaders.add("forge")
+
+        javaVersions.add(JavaVersion.VERSION_17)
+        clientRequired = true
+        serverRequired = true
+        requires("create")
+    }
+    modrinth("forgeMR") {
+        file = forgeFile
+        displayName = forgeName
+        projectId = "cpqKG67r"
+        accessToken = TOKENS.get("MODRINTH_PUBLISH_TOKEN")
+        minecraftVersions.add(minecraft_version)
+        announcementTitle = "Modrinth download for $forgeEmoji"
+        modLoaders.add("forge")
+        requires("create")
+    }
+
+//    curseforge("fabricCF") {
+//        file = fabricFile
+//        displayName = fabricName
+//        projectId = "1072349"
+//        projectSlug = "create-pattern-schematics" // Required for discord webhook
+//        accessToken = TOKENS.get("CURSEFORGE_PUBLISH_TOKEN")
+//        minecraftVersions.add(minecraft_version)
+//        announcementTitle = "Curseforge download for $fabricEmoji"
+//        modLoaders.add("fabric")
+//
+//        javaVersions.add(JavaVersion.VERSION_17)
+//        clientRequired = true
+//        serverRequired = true
+//        requires("create-fabric", "fabric-api")
+//    }
+//    modrinth("fabricMR") {
+//        file = fabricFile
+//        displayName = fabricName
+//        projectId = "cpqKG67r"
+//        accessToken = TOKENS.get("MODRINTH_PUBLISH_TOKEN")
+//        minecraftVersions.add(minecraft_version)
+//        announcementTitle = "Modrinth download for $fabricEmoji"
+//        modLoaders.add("fabric")
+//        requires("create-fabric", "fabric-api")
+//    }
+
+    discord("discordUniversal") {
+        webhookUrl = TOKENS.get("DISCORD_WEBHOOK")
+        username = "New Version Announcement | Create: Pattern Schematics"
+        content = "\n# Create: Pattern Schematics has been updated to $mod_version for $minecraft_version ($fabricEmoji / $forgeEmoji)\n " + changelogText
+    }
+}

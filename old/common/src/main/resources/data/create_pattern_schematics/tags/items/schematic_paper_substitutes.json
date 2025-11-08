@@ -1,0 +1,6 @@
+{
+  "values": [
+    "create_pattern_schematics:pattern_schematic",
+    "create_pattern_schematics:empty_pattern_schematic"
+  ]
+}
