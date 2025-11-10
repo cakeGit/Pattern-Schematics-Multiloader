@@ -26,5 +26,6 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "refmap": "pattern_schematics.mixins.refmap.json"
 }
