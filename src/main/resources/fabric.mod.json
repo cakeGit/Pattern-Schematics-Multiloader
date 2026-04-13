@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "create_pattern_schematics",
+  "version": "${version}",
+  "name": "Create: Pattern Schematics",
+  "description": "Pattern schematics are a new type of schematic that can be placed on trains, gantry carriages or any other contraption to infinitely build iterations of the schematic.",
+  "authors": [
+    "Cake"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/create-pattern-schematics",
+    "sources": "https://github.com/cakeGit/Create-Pattern-Schematics",
+    "issues": "https://github.com/cakeGit/Create-Pattern-Schematics/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/create_pattern_schematics/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.cak.pattern_schematics.PatternSchematicsFabric"
+    ],
+    "client": [
+      "com.cak.pattern_schematics.PatternSchematicsFabricClient"
+    ],
+    "fabric-datagen": [
+      "com.cak.pattern_schematics.PatternSchematicsFabricData"
+    ]
+  },
+  "mixins": [
+    "create_pattern_schematics.mixins.json"
+  ],
+  "accessWidener": "pattern_schematics.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*",
+    "create": "*"
+  }
+}

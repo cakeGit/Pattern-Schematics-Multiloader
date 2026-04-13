@@ -1,0 +1,33 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.cak.pattern_schematics.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "AbstractContraptionEntityMixin",
+    "AntiCreativeCrateCrashMixin",
+    "BlockHelperMixin",
+    "CreateCreativeModeTabMixin",
+    "DeployBaseMixin",
+    "DeployerMovementBehaviorMixin",
+    "MovementContextMixin",
+    "SchematicannonBlockEntityMixin",
+    "SchematicannonInventoryMixin",
+    "SchematicItemMixin",
+    "SchematicPrinterMixin",
+    "SchematicTableBlockEntityMixin",
+    "SchematicTableMenuMixin",
+    "SchematicToolBaseMixin",
+    "ServerSchematicLoaderMixin",
+    "StructureTemplateMixin"
+  ],
+  "client": [
+    "CreateClientMixin",
+    "KeyboardHandlerMixin",
+    "MouseHandlerMixin",
+    "SchematicInstancesMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
