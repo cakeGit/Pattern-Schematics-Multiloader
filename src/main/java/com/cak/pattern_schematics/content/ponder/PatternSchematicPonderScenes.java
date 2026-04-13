@@ -11,6 +11,7 @@ import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
 import net.createmod.ponder.api.scene.Selection;
 import net.createmod.catnip.math.Pointing;
+import net.createmod.ponder.api.scene.WorldInstructions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
@@ -155,7 +156,7 @@ public class PatternSchematicPonderScenes {
         scene.world().showSection(util.select().layer(0), Direction.UP);
         scene.idle(20);
         
-        CreateSceneBuilder.WorldInstructions createWorld = (CreateSceneBuilder.WorldInstructions) scene.world();
+        CreateSceneBuilder.WorldInstructions createWorld = new CreateSceneBuilder(scene).world();
         
         BlockPos
             sectionFrom = new BlockPos(11, 1, 6),
